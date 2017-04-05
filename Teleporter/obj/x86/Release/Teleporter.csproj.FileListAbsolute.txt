@@ -1,0 +1,5 @@
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleporter\Mod\Teleporter.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleporter\Mod\Teleporter.pdb
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleporter\obj\x86\Release\Teleporter.csprojResolveAssemblyReference.cache
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleporter\obj\x86\Release\Teleporter.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleporter\obj\x86\Release\Teleporter.pdb

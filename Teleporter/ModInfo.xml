@@ -1,0 +1,18 @@
+<Mod ID="Teleporter">
+  <Compatible>0.57c</Compatible>
+  <Button Standard="N" ID="TeleportMe">
+    <Name>
+      <EN>Teleport window</EN>
+    </Name>
+    <Description>
+      <EN></EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>Teleport Mod</EN>
+  </Name>
+  <Description>
+    <EN>Save your current location and teleport back to that exact location any time.</EN>
+  </Description>
+  <Version>1.0.0.1</Version>
+</Mod>
