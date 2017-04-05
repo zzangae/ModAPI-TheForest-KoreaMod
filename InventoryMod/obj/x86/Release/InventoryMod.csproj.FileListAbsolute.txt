@@ -8,3 +8,8 @@ C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\Mod\Inventory
 C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.csprojResolveAssemblyReference.cache
 C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
 C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.csprojResolveAssemblyReference.cache
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
