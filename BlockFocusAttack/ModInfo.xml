@@ -1,0 +1,10 @@
+<Mod ID="BlockFocusAttack">
+  <Compatible>0.57c</Compatible>
+  <Name>
+    <EN>Block Focus Attack</EN>
+  </Name>
+  <Description>
+    <EN>Blocks attacking when the game is out of focus and you focus it again with a left click</EN>
+  </Description>
+  <Version>1.0</Version>
+</Mod>
