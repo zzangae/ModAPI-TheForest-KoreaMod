@@ -1,0 +1,12 @@
+<Mod ID="SpawnCommand">
+  <Compatible>0.57c</Compatible>
+  <Name>
+    <EN>Spawn Command</EN>
+    <DE>Spawn Kommando</DE>
+  </Name>
+  <Description>
+    <EN>Adds a spawn command to the console.</EN>
+    <DE>Fügt einen Spawn Kommando zur Konsole hinzu.</DE>
+  </Description>
+  <Version>0.1</Version>
+</Mod>
