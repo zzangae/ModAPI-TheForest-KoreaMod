@@ -1,0 +1,10 @@
+<Mod ID="pewf_sleepez">
+  <Compatible>0.57c</Compatible>
+  <Name>
+    <EN>SleepEZ</EN>
+  </Name>
+  <Description>
+    <EN>Always be able to sleep.</EN>
+  </Description>
+  <Version>0.1.0</Version>
+</Mod>
