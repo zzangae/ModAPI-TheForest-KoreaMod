@@ -1,75 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace Teleporter
+namespace Teleport
 {
-    internal class Xml
+    public class Xml
     {
-        public void Create(string path)
+        
+
+        public void Create(String path)
         {
-            XmlDocument expr_05 = new XmlDocument();
-            XmlDeclaration newChild = expr_05.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement documentElement = expr_05.DocumentElement;
-            expr_05.InsertBefore(newChild, documentElement);
-            XmlElement newChild2 = expr_05.CreateElement("body");
-            expr_05.AppendChild(newChild2);
-            expr_05.Save(path + "tp.xml");
+            XmlDocument doc = new XmlDocument();
+            //xml declaration
+            XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement root = doc.DocumentElement;
+            doc.InsertBefore(xmlDeclaration, root);
+
+            //(2) string.Empty makes cleaner code
+            XmlElement body = doc.CreateElement("body");
+            doc.AppendChild(body);
+            
+            doc.Save(path + "tp.xml");
         }
 
         public void Update(string path, string name, float x, float y, float z)
         {
-            XmlDocument expr_05 = new XmlDocument();
-            expr_05.Load(path + "tp.xml");
-            XmlNode xmlNode = expr_05.SelectSingleNode("/body");
-            XmlElement xmlElement = expr_05.CreateElement("Location");
-            XmlAttribute xmlAttribute = expr_05.CreateAttribute("x");
-            xmlAttribute.Value = x.ToString();
-            xmlElement.Attributes.Append(xmlAttribute);
-            xmlAttribute = expr_05.CreateAttribute("y");
-            xmlAttribute.Value = y.ToString();
-            xmlElement.Attributes.Append(xmlAttribute);
-            xmlAttribute = expr_05.CreateAttribute("z");
-            xmlAttribute.Value = z.ToString();
-            xmlElement.Attributes.Append(xmlAttribute);
-            xmlAttribute = expr_05.CreateAttribute("name");
-            xmlAttribute.Value = name;
-            xmlElement.Attributes.Append(xmlAttribute);
-            xmlNode.AppendChild(xmlElement);
-            expr_05.Save(path + "tp.xml");
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path + "tp.xml");
+
+            XmlNode body = doc.SelectSingleNode("/body");
+
+            //Create position element
+            XmlElement positionNode = doc.CreateElement("Location");
+
+            //Add attributes
+            XmlAttribute attribute = doc.CreateAttribute("x");
+            attribute.Value =x.ToString();
+            positionNode.Attributes.Append(attribute);
+
+            attribute = doc.CreateAttribute("y");
+            attribute.Value = y.ToString();
+            positionNode.Attributes.Append(attribute);
+
+            attribute = doc.CreateAttribute("z");
+            attribute.Value = z.ToString();
+            positionNode.Attributes.Append(attribute);
+
+            attribute = doc.CreateAttribute("name");
+            attribute.Value = name;
+            positionNode.Attributes.Append(attribute);
+
+            body.AppendChild(positionNode);
+
+            doc.Save(path + "tp.xml");
+
         }
 
-        public System.Collections.Generic.List<Location> Read(string path)
+        public List<Location> Read(string path)
         {
-            XmlDocument expr_05 = new XmlDocument();
-            expr_05.Load(path + "tp.xml");
-            XmlNodeList arg_26_0 = expr_05.SelectNodes("/body/Location");
-            System.Collections.Generic.List<Location> list = new System.Collections.Generic.List<Location>();
-            foreach (XmlNode expr_3C in arg_26_0)
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path + "tp.xml");
+
+            XmlNodeList aNodes = doc.SelectNodes("/body/Location");
+            List<Location> locations = new List<Location>();
+            foreach(XmlNode aNode in aNodes)
             {
-                XmlAttribute xmlAttribute = expr_3C.Attributes["name"];
-                XmlAttribute xmlAttribute2 = expr_3C.Attributes["x"];
-                XmlAttribute xmlAttribute3 = expr_3C.Attributes["y"];
-                XmlAttribute xmlAttribute4 = expr_3C.Attributes["z"];
-                string value = xmlAttribute.Value;
-                float arg_B6_0 = float.Parse(xmlAttribute2.Value);
-                float y = float.Parse(xmlAttribute3.Value);
-                float z = float.Parse(xmlAttribute4.Value);
-                Location item = new Location(arg_B6_0, y, z, value);
-                list.Add(item);
+                XmlAttribute nameAttribute = aNode.Attributes["name"];
+                XmlAttribute xAttribute = aNode.Attributes["x"];
+                XmlAttribute yAttribute = aNode.Attributes["y"];
+                XmlAttribute zAttribute = aNode.Attributes["z"];
+                
+
+                string name = nameAttribute.Value;
+                float x = float.Parse(xAttribute.Value);
+                float y = float.Parse(yAttribute.Value);
+                float z = float.Parse(zAttribute.Value);
+                Location loc = new Location(x,y,z,name);
+                locations.Add(loc);
             }
-            return list;
+
+            return locations;
         }
 
         public void Delete(string path, Location location)
         {
-            XmlDocument expr_05 = new XmlDocument();
-            expr_05.Load(path + "tp.xml");
-            XmlNode xmlNode = expr_05.SelectSingleNode("/body/Location[@name='" + location.GetName() + "']");
-            xmlNode.ParentNode.RemoveChild(xmlNode);
-            expr_05.Save(path + "tp.xml");
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path +  "tp.xml");
+
+
+            XmlNode lo = doc.SelectSingleNode("/body/Location[@name='" + location.GetName() + "']");
+            lo.ParentNode.RemoveChild(lo);
+
+            doc.Save(path + "tp.xml");
+
         }
+
     }
 }

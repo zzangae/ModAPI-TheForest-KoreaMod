@@ -1,150 +1,154 @@
-﻿using ModAPI;
-using ModAPI.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.IO;
-using TheForest.Utils;
+
 using UnityEngine;
+using TheForest.Utils;
+using ModAPI.Attributes;
 
-namespace Teleporter
+namespace Teleport
 {
-    internal class TeleportMod : MonoBehaviour
+    class TeleportMod : MonoBehaviour
     {
+        
         protected bool visible;
-
         protected GUIStyle labelStyle;
-
         public string TPname = "";
-
         public string Message = "";
-
         private static Xml xml = new Xml();
-
         private static string path;
-
-        public Rect TPWindow = new Rect(420f, 0f, 300f, 300f);
-
+        public Rect TPWindow = new Rect(420, 0, 300, 300);
         private bool clicked;
 
         private TeleportMod()
         {
-            TeleportMod.path = SaveSlotUtils.GetLocalSlotPath();
+            path = SaveSlotUtils.GetLocalPath();
         }
 
-        [ExecuteOnGameStart]
+        [ModAPI.Attributes.ExecuteOnGameStart]
         private static void AddToScene()
         {
             new GameObject("__Teleporter__").AddComponent<TeleportMod>();
-            if (!System.IO.File.Exists(TeleportMod.path + "tp.xml"))
+            if(!File.Exists(path + "tp.xml"))
             {
-                TeleportMod.xml.Create(TeleportMod.path);
+                xml.Create(path);
             }
         }
 
         private void OnGUI()
-        {
+        {            
             if (!this.visible)
-            {
                 return;
-            }
             UnityEngine.GUI.skin = ModAPI.GUI.Skin;
-            Matrix4x4 arg_299_0 = UnityEngine.GUI.matrix;
+            Matrix4x4 matrix = UnityEngine.GUI.matrix;
             if (this.labelStyle == null)
             {
                 this.labelStyle = new GUIStyle(UnityEngine.GUI.skin.label);
                 this.labelStyle.fontSize = 12;
             }
+
             UnityEngine.GUI.Box(new Rect(10f, 10f, 400f, 280f), "Teleport menu", UnityEngine.GUI.skin.window);
-            float num = 50f;
-            UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "Location Name", this.labelStyle);
-            this.TPname = UnityEngine.GUI.TextField(new Rect(170f, num, 200f, 20f), this.TPname, 25);
-            num += 30f;
-            float x = LocalPlayer.GameObject.transform.position.x;
-            float y = LocalPlayer.GameObject.transform.position.y;
-            float z = LocalPlayer.GameObject.transform.position.z;
-            if (UnityEngine.GUI.Button(new Rect(20f, num, 100f, 20f), "SAVE"))
+            float cY = 50f;
+
+            UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), "Location Name", this.labelStyle);
+            TPname = UnityEngine.GUI.TextField(new Rect(170f,cY,200f,20f), TPname, 25) ;
+            cY += 30f;
+            float x = TheForest.Utils.LocalPlayer.GameObject.transform.position.x;
+            float y = TheForest.Utils.LocalPlayer.GameObject.transform.position.y;
+            float z = TheForest.Utils.LocalPlayer.GameObject.transform.position.z;
+            if (UnityEngine.GUI.Button(new Rect(20f, cY, 100f, 20f), "SAVE"))
             {
-                TeleportMod.xml.Update(TeleportMod.path, this.TPname, x, y, z);
-                this.Message = "Location '" + this.TPname + "' added!";
-                this.TPname = "";
+                xml.Update(path, TPname,x,y,z);
+                Message = "Location '" + TPname + "' added!";
+                TPname = "";
             }
-            num += 30f;
-            if (UnityEngine.GUI.Button(new Rect(280f, num, 100f, 20f), "Locations"))
+            cY += 30;
+            if (UnityEngine.GUI.Button(new Rect(280f, cY, 100f, 20f), "Locations"))
             {
-                this.clicked = true;
+                clicked = true;
             }
-            if (this.clicked)
+            if (clicked)
             {
-                this.TPWindow = UnityEngine.GUI.Window(0, this.TPWindow, new UnityEngine.GUI.WindowFunction(this.FillTPWindow), "TP Locations");
+                TPWindow = UnityEngine.GUI.Window(0, TPWindow, FillTPWindow, "TP Locations");
             }
-            num += 30f;
-            UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "x-" + x, this.labelStyle);
-            num += 20f;
-            UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "y-" + y, this.labelStyle);
-            num += 20f;
-            UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "z-" + z, this.labelStyle);
-            num += 30f;
-            UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), this.Message, this.labelStyle);
-            UnityEngine.GUI.matrix = arg_299_0;
+            cY += 30;
+            UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), "x-" + x, this.labelStyle);
+            cY += 20;
+            UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), "y-" + y, this.labelStyle);
+            cY += 20;
+            UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), "z-" + z, this.labelStyle);
+            cY += 30f;
+            UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), Message, this.labelStyle);
+            UnityEngine.GUI.matrix = matrix;
         }
 
-        private void FillTPWindow(int windowID)
+        void FillTPWindow(int windowID)
         {
-            float num = 30f;
-            foreach (BoltEntity current in BoltNetwork.entities)
+            float cY = 30f;
+            //Fetch Players
+            
+            foreach (BoltEntity boltEntity in BoltNetwork.entities)
             {
-                if (current.StateIs<IPlayerState>())
+                if (boltEntity.StateIs<IPlayerState>())
                 {
-                    string name = current.GetState<IPlayerState>().name;
-                    float x = current.GetState<IPlayerState>().Transform.Position.x;
-                    float y = current.GetState<IPlayerState>().Transform.Position.y;
-                    float z = current.GetState<IPlayerState>().Transform.Position.z;
-                    if (UnityEngine.GUI.Button(new Rect(120f, num, 150f, 20f), name))
+                    string CPlayerName = boltEntity.GetState<IPlayerState>().name;
+                    float CPlayerX = boltEntity.GetState<IPlayerState>().Transform.Position.x;
+                    float CPlayerY = boltEntity.GetState<IPlayerState>().Transform.Position.y;
+                    float CPlayerZ = boltEntity.GetState<IPlayerState>().Transform.Position.z;
+
+                    if (UnityEngine.GUI.Button(new Rect(120f, cY, 150f, 20f), CPlayerName))
                     {
-                        LocalPlayer.GameObject.transform.localPosition = new Vector3(x, y, z);
+                       LocalPlayer.GameObject.transform.localPosition = new Vector3(CPlayerX, CPlayerY, CPlayerZ);
+                        
                     }
-                    num += 30f;
+                    cY += 30f;
                 }
             }
-            new System.Collections.Generic.List<Location>();
-            foreach (Location current2 in TeleportMod.xml.Read(TeleportMod.path))
+            //Fetch locations
+            List<Location> locations = new List<Location>();
+            locations = xml.Read(path);
+            
+            foreach (Location location in locations)
             {
-                UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), current2.GetName(), this.labelStyle);
-                if (UnityEngine.GUI.Button(new Rect(120f, num, 80f, 20f), "Teleport"))
+                
+                UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), location.GetName() , this.labelStyle);
+                if(UnityEngine.GUI.Button(new Rect( 120f, cY, 80f, 20f), "Teleport"))
                 {
-                    LocalPlayer.GameObject.transform.localPosition = new Vector3(current2.GetX(), current2.GetY(), current2.GetZ());
+                    LocalPlayer.GameObject.transform.localPosition = new Vector3(location.GetX(), location.GetY(), location.GetZ());
                 }
-                if (UnityEngine.GUI.Button(new Rect(205f, num, 80f, 20f), "Remove"))
+                if(UnityEngine.GUI.Button(new Rect(205, cY, 80f, 20f ), "Remove"))
                 {
-                    TeleportMod.xml.Delete(TeleportMod.path, current2);
+                    xml.Delete(path, location);
                 }
-                num += 30f;
+                cY += 30;
             }
-            if (UnityEngine.GUI.Button(new Rect(20f, num, 100f, 20f), "Close"))
+
+            if (UnityEngine.GUI.Button(new Rect(20f, cY, 100f, 20f), "Close"))
             {
-                this.clicked = false;
+                clicked = false;
             }
+
         }
 
         private void Update()
-        {
+        {            
             if (ModAPI.Input.GetButtonDown("TeleportMe"))
             {
                 if (this.visible)
                 {
-                    this.Message = "";
+                    Message = "";
                     LocalPlayer.FpCharacter.UnLockView();
-                }
-                else
+                }else
                 {
-                    LocalPlayer.FpCharacter.LockView(true);
+                    LocalPlayer.FpCharacter.LockView();
                 }
                 this.visible = !this.visible;
-                if (this.clicked)
+                if (clicked)
                 {
-                    this.clicked = false;
+                    clicked = false;
                 }
             }
         }

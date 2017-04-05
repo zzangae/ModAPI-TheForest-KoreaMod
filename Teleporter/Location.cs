@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Teleporter
+namespace Teleport
 {
-    internal class Location
+    public class Location
     {
         private float x;
-
         private float y;
-
         private float z;
-
         private string name;
 
         public Location(float x, float y, float z, string name)
@@ -25,22 +22,21 @@ namespace Teleporter
 
         public string GetName()
         {
-            return this.name;
+            return name;
         }
 
         public float GetY()
         {
-            return this.y;
+            return y;
         }
 
         public float GetZ()
         {
-            return this.z;
+            return z;
         }
-
         public float GetX()
         {
-            return this.x;
+            return x;
         }
     }
 }

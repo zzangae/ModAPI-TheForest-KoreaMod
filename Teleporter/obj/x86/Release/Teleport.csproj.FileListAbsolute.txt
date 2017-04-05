@@ -1,0 +1,8 @@
+C:\Users\jeffrey\Desktop\MOD\projects\TheForest\Teleport\Mod\Teleport.dll
+C:\Users\jeffrey\Desktop\MOD\projects\TheForest\Teleport\Mod\Teleport.pdb
+C:\Users\jeffrey\Desktop\MOD\projects\TheForest\Teleport\obj\x86\Release\Teleport.dll
+C:\Users\jeffrey\Desktop\MOD\projects\TheForest\Teleport\obj\x86\Release\Teleport.pdb
+C:\Users\jeffrey\Desktop\MOD\projects\TheForest\Teleport\obj\x86\Release\Teleport.csprojResolveAssemblyReference.cache
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleport\obj\x86\Release\Teleport.csprojResolveAssemblyReference.cache
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleport\obj\x86\Release\Teleport.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\Teleport\obj\x86\Release\Teleport.pdb
