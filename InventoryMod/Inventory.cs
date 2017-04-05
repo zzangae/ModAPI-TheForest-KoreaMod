@@ -2,7 +2,6 @@
 using ModAPI.Attributes;
 using System;
 using TheForest.Items;
-using TheForest.Items.Craft;
 using TheForest.Utils;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ namespace InventoryMod
                     UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), ItemDatabase.Items[i]._name, labelStyle);
                     if(UnityEngine.GUI.Button(new Rect(170f, cY, 150f, 20f), "Add"))
                     {
-                        LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, 1, false, false, (WeaponStatUpgrade.Types)(-2), 0f);
+                        LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, 1, false, false, null);
                     }
                     this.cY += 30f;
                 }
