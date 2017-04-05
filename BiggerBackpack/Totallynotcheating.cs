@@ -17,12 +17,12 @@ namespace BiggerBackpack
         {
             string arg = "1.1";
             ModAPI.Console.Write(string.Format("BiggerBackpack v{0} initializing.", arg), "BiggerBackpack");
-            if (!System.IO.File.Exists(Application.get_dataPath() + "/BiggerBackpack.ini"))
+            if (!System.IO.File.Exists(Application.dataPath + "/BiggerBackpack.ini"))
             {
                 ModAPI.Console.Write(string.Format("ini file not found, creating a new one!", arg), "BiggerBackpack");
                 try
                 {
-                    using (System.IO.StreamWriter streamWriter = System.IO.File.AppendText(Application.get_dataPath() + "/BiggerBackpack.ini"))
+                    using (System.IO.StreamWriter streamWriter = System.IO.File.AppendText(Application.dataPath + "/BiggerBackpack.ini"))
                     {
                         streamWriter.Write("Stick = 100\r\nRock = 100\r\nBooze = 20\r\nBone = 25\r\ndynamite = 20\r\nBattery = 50\r\nChocolateBar = 50\r\nEnergyMix = 50\r\nSoda = 25\r\nSmallGenericMeat = 25\r\nSkull = 25\r\nRope = 25\r\nRabbitSkin = 15\r\nRabbit Dead = 15\r\nLizard = 15\r\nLizardSkin = 15\r\nCBoard = 15\r\nOrangePaint = 15\r\nBluePaint = 15\r\nFlare = 25\r\nHeadBomb = 5\r\nMolotov = 15\r\nAirCanister = 15\r\nMeds = 15\r\nCod = 15");
                         streamWriter.Close();
@@ -35,7 +35,7 @@ namespace BiggerBackpack
             }
             try
             {
-                System.IO.StreamReader streamReader = new System.IO.StreamReader(Application.get_dataPath() + "/BiggerBackpack.ini", System.Text.Encoding.Default);
+                System.IO.StreamReader streamReader = new System.IO.StreamReader(Application.dataPath + "/BiggerBackpack.ini", System.Text.Encoding.Default);
                 using (streamReader)
                 {
                     string text;

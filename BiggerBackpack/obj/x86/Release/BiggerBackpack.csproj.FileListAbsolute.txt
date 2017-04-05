@@ -1,0 +1,5 @@
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BiggerBackpack\Mod\BiggerBackpack.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BiggerBackpack\Mod\BiggerBackpack.pdb
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BiggerBackpack\obj\x86\Release\BiggerBackpack.csprojResolveAssemblyReference.cache
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BiggerBackpack\obj\x86\Release\BiggerBackpack.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BiggerBackpack\obj\x86\Release\BiggerBackpack.pdb
