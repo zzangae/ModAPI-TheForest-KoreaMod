@@ -42,8 +42,8 @@ namespace InventoryMod
                 {
                     GUI.Label(new Rect(20f, cY, 150f, 20f), ItemDatabase.Items[i]._name, labelStyle);
                     if(GUI.Button(new Rect(170f, cY, 150f, 20f), "Add"))
-                    {                        
-                        LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, 1, false, false, (WeaponStatUpgrade.Types)(-2));
+                    {
+                        LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, 1, false, false, (WeaponStatUpgrade.Types)(-2), 0f);
                     }
                     this.cY += 30f;
                 }
