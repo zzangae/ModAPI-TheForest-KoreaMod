@@ -1,0 +1,18 @@
+<Mod ID="NoFog">
+  <Compatible>0.57c</Compatible>
+  <Button Standard="LeftShift+F" ID="_FogColor">
+    <Name>
+      <EN>toggleFog</EN>
+    </Name>
+    <Description>
+      <EN>toggle Fog</EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>NoFog</EN>
+  </Name>
+  <Description>
+    <EN>Removes fog</EN>
+  </Description>
+  <Version>1.0.0.1</Version>
+</Mod>
