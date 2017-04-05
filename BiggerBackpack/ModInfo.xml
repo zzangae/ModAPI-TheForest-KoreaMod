@@ -1,0 +1,10 @@
+<Mod ID="BiggerBackpack">
+  <Compatible>0.57c</Compatible>
+  <Name>
+    <EN>BiggerBackpack</EN>
+  </Name>
+  <Description>
+    <EN>Carry more stuff! Configure your own limits - create BiggerBackpack.ini in TheForest_Data directory and add items and values or start mod once to make default.ini file!</EN>
+  </Description>
+  <Version>1.0.1</Version>
+</Mod>
