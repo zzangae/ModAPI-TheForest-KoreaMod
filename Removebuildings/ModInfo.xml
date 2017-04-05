@@ -1,18 +1,22 @@
-<Mod ID="Removebuildings">
+<Mod ID="RemoveBuildings">
   <Compatible>0.57c</Compatible>
   <Button Standard="T" ID="RemoveBuilding">
     <Name>
+      <DE>Gebäude löschen</DE>
       <EN>Remove building</EN>
     </Name>
     <Description>
+      <DE></DE>
       <EN></EN>
     </Description>
   </Button>
   <Name>
+    <DE>Gebäude löschen</DE>
     <EN>Remove buildings</EN>
   </Name>
   <Description>
-    <EN>Makes it possible to remove all buildings</EN>
+    <DE>Ermöglicht das Entfernen von Gebäuden.</DE>
+    <EN>Makes it possible to remove all buildings.</EN>
   </Description>
   <Version>0.0.2.6</Version>
 </Mod>

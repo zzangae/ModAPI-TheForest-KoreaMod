@@ -7,8 +7,8 @@
     <ProjectGuid>{53821041-E269-4717-BAED-3C9C6836E83F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Removebuildings</RootNamespace>
-    <AssemblyName>Removebuildings</AssemblyName>
+    <RootNamespace>RemoveBuildings</RootNamespace>
+    <AssemblyName>RemoveBuildings</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -168,7 +168,8 @@
 
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RemoveBuildingsBehaviour.cs"  />
+    <Compile Include="NewCreate.cs"  />
+<Compile Include="RemoveBuildings.cs"  />
 
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
