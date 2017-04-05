@@ -1,0 +1,5 @@
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BetterFlashlight\obj\x86\Release\BetterFlashlight.csprojResolveAssemblyReference.cache
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BetterFlashlight\Mod\BetterFlashlight.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BetterFlashlight\Mod\BetterFlashlight.pdb
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BetterFlashlight\obj\x86\Release\BetterFlashlight.dll
+D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\BetterFlashlight\obj\x86\Release\BetterFlashlight.pdb
