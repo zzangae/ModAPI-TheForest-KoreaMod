@@ -1,0 +1,18 @@
+<Mod ID="InventoryMod">
+  <Compatible>0.57c</Compatible>
+  <Button Standard="N" ID="Start">
+    <Name>
+      <EN>InventoryMod</EN>
+    </Name>
+    <Description>
+      <EN>Key to open Menu</EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>InventoryMod</EN>
+  </Name>
+  <Description>
+    <EN>This inventory mod allows you to add every item to your inventory!</EN>
+  </Description>
+  <Version>1.0.0.17</Version>
+</Mod>
