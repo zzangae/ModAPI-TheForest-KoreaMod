@@ -1,12 +1,26 @@
 <Mod ID="SpawnCommand">
-  <Compatible>0.57c</Compatible>
+  <Compatible>0.39bp2</Compatible>
+  <Button Standard="C" ID="Respawn">
+    <Name>
+      <EN>Respawn</EN>
+    </Name>
+    <Description>
+      <EN>spawn last prop again</EN>
+    </Description>
+  </Button>
+  <Button Standard="LeftShift+C" ID="RespawnInfinite">
+    <Name>
+      <EN>RespawnInfinite</EN>
+    </Name>
+    <Description>
+      <EN>Hold button to spawn infinite props</EN>
+    </Description>
+  </Button>
   <Name>
-    <EN>Spawn Command</EN>
-    <DE>Spawn Kommando</DE>
+    <EN>SpawnCommand [0.0.19]</EN>
   </Name>
   <Description>
-    <EN>Adds a spawn command to the console.</EN>
-    <DE>Fügt einen Spawn Kommando zur Konsole hinzu.</DE>
+    <EN>Adds a spawn command to the console</EN>
   </Description>
-  <Version>0.1</Version>
+  <Version>0.0.19</Version>
 </Mod>

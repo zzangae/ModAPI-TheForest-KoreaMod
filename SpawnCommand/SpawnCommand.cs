@@ -1,133 +1,243 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using ModAPI;
+using ModAPI.Attributes;
+using TheForest.Items;
+using TheForest.Items.Craft;
+using TheForest.Utils;
 using UnityEngine;
 
 namespace SpawnCommand
 {
-    public class SpawnCommand
+    public class SpawnCommand : MonoBehaviour
     {
-
+        public static List<string> ItemNames = new List<string>();
+        public static string lastObject = "";
+        public static string lastObjectType = "";
+        protected static Dictionary<string, int> MutantCounts = new Dictionary<string, int>();
         public static List<string> ObjectNames = new List<string>();
         public static Dictionary<string, GameObject> Objects = new Dictionary<string, GameObject>();
 
-        [ModAPI.Attributes.ExecuteOnApplicationStart]
-        public static void AddSpawnCommand()
-        {
-            ModAPI.Console.RegisterCommand(new ModAPI.Console.Command()
-            {
-                CommandName = "spawn",
-                HelpText = "Spawns an item/object",
-                OnSubmit = delegate (object[] objs) {
-                    string name = (string) objs[0];
-                    GameObject.Instantiate(Objects[name], TheForest.Utils.LocalPlayer.MainCam.transform.position + TheForest.Utils.LocalPlayer.MainCam.transform.forward * 2f, Quaternion.identity);
-                },
-                Parameters = new List<ModAPI.Console.IConsoleParameter>()
-                {
-                    new ModAPI.Console.BaseConsoleParameter()
-                    {
-                        IsOptional = false,
-                        UseAutoComplete = true,
-                        Name = "Object",
-                        ListValueRequired = true,
-                        TooltipText = "",
-                        Values = ObjectNames
-                    }
-                }
-            });
-        }
 
-        protected static Dictionary<string, int> MutantCounts = new Dictionary<string, int>();
+
         protected static void AddEnemy(string name, GameObject go)
         {
             if (go != null)
             {
                 if (!MutantCounts.ContainsKey(name))
+                {
                     MutantCounts.Add(name, 0);
-
-                bool add = true;
+                }
+                bool flag = true;
                 for (int i = 0; i < MutantCounts[name]; i++)
                 {
-                    string n = "";
+                    string str = "";
                     if (i > 0)
-                        n = i+"";
-                    if (Objects["Enemy." + name + n] == go)
                     {
-                        add = false;
+                        str = i + "";
+                    }
+                    if (Objects["Enemy." + name + str] == go)
+                    {
+                        flag = false;
                         break;
                     }
                 }
-                if (add)
+                if (flag)
                 {
-                    string nk = "";
+                    Dictionary<string, int> dictionary;
+                    string str3;
+                    string str2 = "";
                     if (MutantCounts[name] > 0)
-                        nk = MutantCounts[name] + "";
-                    ObjectNames.Add("Enemy."+name + nk);
-                    Objects.Add("Enemy."+name + nk, go);
-                    MutantCounts[name]++;
+                    {
+                        str2 = MutantCounts[name] + "";
+                    }
+                    ObjectNames.Add("Enemy." + name + str2);
+                    Objects.Add("Enemy." + name + str2, go);
+                    (dictionary = MutantCounts)[str3 = name] = dictionary[str3] + 1;
                 }
             }
         }
-        [ModAPI.Attributes.ExecuteEveryFrame]
+
+        
+
+
+        [ExecuteOnGameStart]
+        private static void AddMeToScene()
+        {
+            //new GameObject("__SpawnCommand__").AddComponent<SpawnCommand.SpawnCommand>();
+            GameObject GO = new GameObject("__SpawnCommand__");
+            GO.AddComponent<SpawnCommand>();
+        }
+
+        [ExecuteOnApplicationStart]
+        public static void AddSpawnCommand()
+        {
+            ModAPI.Console.Command command = new ModAPI.Console.Command
+            {
+                CommandName = "spawn",
+                HelpText = "Spawns an item/object",
+                OnSubmit = delegate (object[] objs) {
+                    string str = (string)objs[0];
+                    lastObject = str;
+                    lastObjectType = "spawn";
+                    UnityEngine.Object.Instantiate(Objects[str], LocalPlayer.MainCam.transform.position + ((Vector3)(LocalPlayer.MainCam.transform.forward * 2f)), Quaternion.identity);
+                }
+            };
+            List<ModAPI.Console.IConsoleParameter> list = new List<ModAPI.Console.IConsoleParameter>();
+            ModAPI.Console.BaseConsoleParameter item = new ModAPI.Console.BaseConsoleParameter
+            {
+                IsOptional = false,
+                UseAutoComplete = true,
+                Name = "Object",
+                ListValueRequired = true,
+                TooltipText = "",
+                Values = ObjectNames
+            };
+            list.Add(item);
+            command.Parameters = list;
+            ModAPI.Console.RegisterCommand(command);
+            ModAPI.Console.Command command2 = new ModAPI.Console.Command
+            {
+                CommandName = "add",
+                HelpText = "Add items to inventory",
+                OnSubmit = delegate (object[] objs) {
+                    string str = (string)objs[0];
+                    int amount = 1;
+                    for (int j = 0; j < ItemDatabase.Items.Length; j++)
+                    {
+                        try
+                        {
+                            if ((ItemDatabase.Items[j]._name == str) || (str == "All"))
+                            {
+                                if (str == "All")
+                                {
+                                    amount = 50;
+                                }
+                                if ((ItemDatabase.Items[j]._name != "BombTimed") || (str != "All"))
+                                {
+                                    lastObject = ItemDatabase.Items[j]._id.ToString();
+                                    lastObjectType = "add";
+                                    LocalPlayer.Inventory.AddItem(ItemDatabase.Items[j]._id, amount, false, false, ~WeaponStatUpgrade.Types.smashDamage);
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            ModAPI.Console.Lines.Add("[Item]: Error while adding " + ItemDatabase.Items[j]._name);
+                        }
+                    }
+                }
+            };
+            List<ModAPI.Console.IConsoleParameter> list2 = new List<ModAPI.Console.IConsoleParameter>();
+            ModAPI.Console.BaseConsoleParameter parameter2 = new ModAPI.Console.BaseConsoleParameter
+            {
+                IsOptional = false,
+                UseAutoComplete = true,
+                Name = "Object",
+                ListValueRequired = true,
+                TooltipText = "",
+                Values = ItemNames
+            };
+            list2.Add(parameter2);
+            command2.Parameters = list2;
+            ModAPI.Console.RegisterCommand(command2);
+        }
+
+        [ExecuteEveryFrame(true)]
         public static void FindEnemies()
         {
             if (!Objects.ContainsKey("Enemy.mutant"))
             {
-                spawnMutants[] m = (spawnMutants[]) GameObject.FindObjectsOfTypeAll(typeof(spawnMutants));
-                for (int i = 0; i < m.Length; i++)
+                foreach (spawnMutants mutants in (spawnMutants[])FindObjectsOfTypeAll(typeof(spawnMutants)))
                 {
-                    spawnMutants mk = m[i];
-                    AddEnemy("mutant", mk.mutant);
-                    AddEnemy("mutant_female", mk.mutant_female);
-                    AddEnemy("mutant_pale", mk.mutant_pale);
-                    AddEnemy("armsy", mk.armsy);
-                    AddEnemy("vags", mk.vags);
-                    AddEnemy("baby", mk.baby);
-                    AddEnemy("fat", mk.fat);
+                    AddEnemy("mutant", mutants.mutant);
+                    AddEnemy("mutant_female", mutants.mutant_female);
+                    AddEnemy("mutant_pale", mutants.mutant_pale);
+                    AddEnemy("armsy", mutants.armsy);
+                    AddEnemy("vags", mutants.vags);
+                    AddEnemy("baby", mutants.baby);
+                    AddEnemy("fat", mutants.fat);
                 }
             }
         }
 
-        [ModAPI.Attributes.ExecuteOnGameStart]
+        [ExecuteOnGameStart]
         public static void FindObjects()
         {
             ObjectNames.Clear();
+            ItemNames.Clear();
             Objects.Clear();
             try
             {
-                GreebleZone[] zones = (GreebleZone[])GameObject.FindObjectsOfTypeAll(typeof(GreebleZone));
-                foreach (GreebleZone zone in zones)
+                GreebleZone[] zoneArray = (GreebleZone[])FindObjectsOfTypeAll(typeof(GreebleZone));
+                foreach (GreebleZone zone in zoneArray)
                 {
                     foreach (GreebleDefinition definition in zone.GreebleDefinitions)
                     {
-                        string name = "Prop." + definition.Prefab.name;
-                        if (!ObjectNames.Contains(name))
+                        string item = "Prop." + definition.Prefab.name;
+                        if (!ObjectNames.Contains(item))
                         {
-                            ObjectNames.Add(name);
-                            Objects.Add(name, definition.Prefab);
+                            ObjectNames.Add(item);
+                            Objects.Add(item, definition.Prefab);
                         }
                     }
                 }
-
-                AnimalSpawnZone[] animalSpawns = GameObject.FindObjectsOfType<AnimalSpawnZone>();
-                foreach (AnimalSpawnZone aZone in animalSpawns)
+                for (int i = 0; i < ItemDatabase.Items.Length; i++)
                 {
-                    foreach (AnimalSpawnConfig config in aZone.Spawns)
+                    string str2 = ItemDatabase.Items[i]._name;
+                    if (!ItemNames.Contains(str2))
                     {
-                        string name = "Animal." + config.Prefab.name;
-                        if (!ObjectNames.Contains(name))
+                        ItemNames.Add(str2);
+                    }
+                }
+                ItemNames.Add("All");
+                foreach (AnimalSpawnZone zone2 in UnityEngine.Object.FindObjectsOfType<AnimalSpawnZone>())
+                {
+                    foreach (AnimalSpawnConfig config in zone2.Spawns)
+                    {
+                        string str3 = "Animal." + config.Prefab.name;
+                        if (!ObjectNames.Contains(str3))
                         {
-                            ObjectNames.Add(name);
-                            Objects.Add(name, config.Prefab);
+                            ObjectNames.Add(str3);
+                            Objects.Add(str3, config.Prefab);
                         }
                     }
                 }
-                
-            } catch (System.Exception e)
+                ObjectNames.Sort();
+                ItemNames.Sort();
+            }
+            catch (Exception exception)
             {
-                ModAPI.Log.Write(e.ToString());
+                Log.Write(exception.ToString(), "SpawnCommand");
             }
         }
+
+        private void Update()
+        {
+            if (ModAPI.Input.GetButtonDown("Respawn", "SpawnCommand"))
+            {
+                if (lastObjectType == "spawn")
+                {
+                    UnityEngine.Object.Instantiate(Objects[lastObject], LocalPlayer.MainCam.transform.position + ((Vector3)(LocalPlayer.MainCam.transform.forward * 2f)), Quaternion.identity);
+                }
+                else if (lastObjectType == "add")
+                {
+                    LocalPlayer.Inventory.AddItem(int.Parse(lastObject), 1, false, false, ~WeaponStatUpgrade.Types.smashDamage);
+                }
+            }
+            if (ModAPI.Input.GetButton("RespawnInfinite", "SpawnCommand"))
+            {
+                if (lastObjectType == "spawn")
+                {
+                    UnityEngine.Object.Instantiate(Objects[lastObject], LocalPlayer.MainCam.transform.position + ((Vector3)(LocalPlayer.MainCam.transform.forward * 2f)), Quaternion.identity);
+                }
+                else if (lastObjectType == "add")
+                {
+                    LocalPlayer.Inventory.AddItem(int.Parse(lastObject), 1, false, false, ~WeaponStatUpgrade.Types.smashDamage);
+                }
+            }
+        }
+
+
     }
 }
