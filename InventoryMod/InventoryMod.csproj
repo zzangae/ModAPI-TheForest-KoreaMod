@@ -166,7 +166,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InventoryMod.cs" />
+    <Compile Include="Inventory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

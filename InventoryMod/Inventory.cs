@@ -1,13 +1,17 @@
-﻿using ModAPI;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ModAPI;
 using ModAPI.Attributes;
-using System;
 using TheForest.Items;
+using TheForest.Items.Craft;
 using TheForest.Utils;
 using UnityEngine;
 
 namespace InventoryMod
 {
-    class Inventory : MonoBehaviour
+    internal class Inventory : MonoBehaviour
     {
         protected bool visible;
 
@@ -17,11 +21,10 @@ namespace InventoryMod
 
         private float cY;
 
-        [ModAPI.Attributes.ExecuteOnGameStart]
-        static void AddMeToScene()
+        [ExecuteOnGameStart]
+        private static void AddMeToScene()
         {
-            GameObject GO = new GameObject("__InventoryMenu__");
-            GO.AddComponent<Inventory>();
+            new GameObject("__InventoryMenu__").AddComponent<Inventory>();
         }
 
         private void OnGUI()
@@ -29,67 +32,63 @@ namespace InventoryMod
             if (this.visible)
             {
                 UnityEngine.GUI.skin = ModAPI.GUI.Skin;
-
-                Matrix4x4 Matrix = UnityEngine.GUI.matrix;
-
-                if (labelStyle == null)
+                Matrix4x4 matrix = UnityEngine.GUI.matrix;
+                if (this.labelStyle == null)
                 {
-                    labelStyle = new GUIStyle(UnityEngine.GUI.skin.label);
-                    labelStyle.fontSize = 12;
+                    this.labelStyle = new GUIStyle(UnityEngine.GUI.skin.label);
+                    this.labelStyle.fontSize = 12;
                 }
-
-                UnityEngine.GUI.Box(new Rect(10, 10, 400, 450), "Cheat menu", UnityEngine.GUI.skin.window);
-                scrollPosition = UnityEngine.GUI.BeginScrollView(new Rect(10, 50, 390, 350), scrollPosition, new Rect(0, 0, 350, cY));
+                UnityEngine.GUI.Box(new Rect(10f, 10f, 400f, 450f), "Inventory menu", UnityEngine.GUI.skin.window);
+                this.scrollPosition = UnityEngine.GUI.BeginScrollView(new Rect(10f, 50f, 390f, 350f), this.scrollPosition, new Rect(0f, 0f, 350f, this.cY));
                 this.cY = 25f;
-                for (int i = 0; i < ItemDatabase.Items.Length; ++i)
+                for (int i = 0; i < ItemDatabase.Items.Length; i++)
                 {
-                    UnityEngine.GUI.Label(new Rect(20f, cY, 150f, 20f), ItemDatabase.Items[i]._name, labelStyle);
-                    if(UnityEngine.GUI.Button(new Rect(170f, cY, 150f, 20f), "Add"))
+                    UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), ItemDatabase.Items[i]._name, this.labelStyle);
+                    if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Add"))
                     {
+
                         LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, 1, false, false, null);
+
+                    }
+                    if (UnityEngine.GUI.Button(new Rect(250f, this.cY, 70f, 20f), "MAX"))
+                    {
+                        for (int i2 = 0; i2 < ItemDatabase.Items.Length; ++i2)
+                        {
+                            LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, ItemDatabase.Items.Length, false, false, null);
+                        }
                     }
                     this.cY += 30f;
                 }
                 UnityEngine.GUI.EndScrollView();
-                
-                if(UnityEngine.GUI.Button(new Rect(20f, 410f, 100f, 20f), "Close"))
+                if (UnityEngine.GUI.Button(new Rect(280f, 410f, 100f, 20f), "Close"))
                 {
                     this.visible = false;
                 }
-
-                UnityEngine.GUI.matrix = Matrix;
+                UnityEngine.GUI.matrix = matrix;
             }
         }
 
         private void GenerateList()
         {
-            for (int i = 0; i < ItemDatabase.Items.Length; i++)
-            {
-                ModAPI.Console.Write(string.Concat(new object[]
-                {
-                    "itemName",
-                    ItemDatabase.Items[i]._name,
-                    " itemID: ",
-                    ItemDatabase.Items[i]._id
-                }), "InventoryMod");
+            for (int i = 0; i < ItemDatabase.Items.Length; i++) {
+                ModAPI.Console.Write(string.Concat(new object[] {"itemName", ItemDatabase.Items[i]._name, " itemID: ", ItemDatabase.Items[i]._id}), "InventoryMod");
             }
         }
 
         private void Update()
-        {
-            if (ModAPI.Input.GetButtonDown("Start"))
+        {            
+            if (ModAPI.Input.GetButtonDown("Start"))                
             {
                 if (this.visible)
                 {
-                    TheForest.Utils.LocalPlayer.FpCharacter.UnLockView();
+                    LocalPlayer.FpCharacter.UnLockView();
                 }
                 else
                 {
-                    TheForest.Utils.LocalPlayer.FpCharacter.LockView();
+                    LocalPlayer.FpCharacter.LockView(true);
                 }
                 this.visible = !this.visible;
             }
-
         }
     }
 }
