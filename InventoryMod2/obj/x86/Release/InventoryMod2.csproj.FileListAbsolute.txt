@@ -3,7 +3,3 @@ D:\20160910\modapi_20160910\projects\TheForest\InventoryMod2\Mod\InventoryMod2.p
 D:\20160910\modapi_20160910\projects\TheForest\InventoryMod2\obj\x86\Release\InventoryMod2.csprojResolveAssemblyReference.cache
 D:\20160910\modapi_20160910\projects\TheForest\InventoryMod2\obj\x86\Release\InventoryMod2.dll
 D:\20160910\modapi_20160910\projects\TheForest\InventoryMod2\obj\x86\Release\InventoryMod2.pdb
-D:\__더 포레스트\ModAPI\20160910\projects\TheForest\InventoryMod2\Mod\InventoryMod2.dll
-D:\__더 포레스트\ModAPI\20160910\projects\TheForest\InventoryMod2\Mod\InventoryMod2.pdb
-D:\__더 포레스트\ModAPI\20160910\projects\TheForest\InventoryMod2\obj\x86\Release\InventoryMod2.dll
-D:\__더 포레스트\ModAPI\20160910\projects\TheForest\InventoryMod2\obj\x86\Release\InventoryMod2.pdb

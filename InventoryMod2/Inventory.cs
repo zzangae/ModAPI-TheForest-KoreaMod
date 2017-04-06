@@ -1,5 +1,4 @@
-﻿using ModAPI;
-using ModAPI.Attributes;
+﻿using ModAPI.Attributes;
 using System;
 using System.Collections.Generic;
 using TheForest.Items;
@@ -20,87 +19,94 @@ namespace InventoryMod2
         private List<Item> listOther = new List<Item>();
         private string[] catWeapons = new string[12]
         {
-      "club",
-      "axe",
-      "katana",
-      "flaregun",
-      "molotov",
-      "dynamite",
-      "spear",
-      "bomb",
-      "upgraded",
-      "bow",
-      "arrows",
-      "flintlock"
+            "club",
+            "axe",
+            "katana",
+            "flaregun",
+            "molotov",
+            "dynamite",
+            "spear",
+            "bomb",
+            "upgraded",
+            "bow",
+            "arrows",
+            "flintlock"
         };
+
         private string[] catItems = new string[18]
         {
-      "lighter",
-      "walkman",
-      "torch",
-      "firestick",
-      "compass",
-      "flare",
-      "snowshoes",
-      "boots",
-      "quiver",
-      "pouch",
-      "waterskin",
-      "pedometer",
-      "rebreather",
-      "canister",
-      "armor",
-      "rockbag",
-      "stickbag",
-      "metaltintray"
+            "lighter",
+            "walkman",
+            "torch",
+            "firestick",
+            "compass",
+            "flare",
+            "snowshoes",
+            "boots",
+            "quiver",
+            "pouch",
+            "waterskin",
+            "pedometer",
+            "rebreather",
+            "canister",
+            "armor",
+            "rockbag",
+            "stickbag",
+            "metaltintray"
         };
+
         private string[] catResources = new string[43]
         {
-      "cboard",
-      "cloth",
-      "glass",
-      "hairspray",
-      "cod",
-      "coneflower",
-      "bone",
-      "stick",
-      "rock",
-      "leaf",
-      "tree",
-      "sap",
-      "battery",
-      "booze",
-      "rope",
-      "food",
-      "soda",
-      "energy",
-      "chocolate",
-      "circuit",
-      "cash",
-      "tooth",
-      "berry",
-      "arm",
-      "berry",
-      "aloe",
-      "leg",
-      "lizard",
-      "shell",
-      "meds",
-      "watch",
-      "feather",
-      "skin",
-      "chicory",
-      "mari",
-      "coin",
-      "paint",
-      "skull",
-      "seed",
-      "meat",
-      "rabbit dead",
-      "rabbit alive",
-      "log"
+            "cboard",
+            "cloth",
+            "glass",
+            "hairspray",
+            "cod",
+            "coneflower",
+            "bone",
+            "stick",
+            "rock",
+            "leaf",
+            "tree",
+            "sap",
+            "battery",
+            "booze",
+            "rope",
+            "food",
+            "soda",
+            "energy",
+            "chocolate",
+            "circuit",
+            "cash",
+            "tooth",
+            "berry",
+            "arm",
+            "berry",
+            "aloe",
+            "leg",
+            "lizard",
+            "shell",
+            "meds",
+            "watch",
+            "feather",
+            "skin",
+            "chicory",
+            "mari",
+            "coin",
+            "paint",
+            "skull",
+            "seed",
+            "meat",
+            "rabbit dead",
+            "rabbit alive",
+            "log"
         };
-        private string[] catAnimals = new string[1] { "head" };
+
+        private string[] catAnimals = new string[1] 
+        {
+            "head"
+        };
+
         protected bool visible;
         protected GUIStyle labelStyle;
         private float cY;
@@ -165,7 +171,9 @@ namespace InventoryMod2
                                 }
                             }
                             if (!this.skip)
+                            {
                                 this.listOther.Add(ItemDatabase.Items[index]);
+                            }
                         }
                     }
                 }
@@ -180,8 +188,10 @@ namespace InventoryMod2
         private void OnGUI()
         {
             if (!this.visible)
+            {
                 return;
-            UnityEngine.GUI.skin = (GUISkin)ModAPI.GUI.Skin;
+            }
+            UnityEngine.GUI.skin = ModAPI.GUI.Skin;
             Matrix4x4 matrix = UnityEngine.GUI.matrix;
             if (this.labelStyle == null)
             {
@@ -199,15 +209,21 @@ namespace InventoryMod2
                 if (this.listWeapons[index1]._name.Equals("Arrows") || this.listWeapons[index1]._name.Equals("FlareGunAmmo") || this.listWeapons[index1]._name.Equals("FlintlockAmmo"))
                 {
                     if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Add"))
-                        LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                    {
+                        LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, null);
+                    }
                     if (UnityEngine.GUI.Button(new Rect(250f, this.cY, 70f, 20f), "Add 10"))
                     {
                         for (int index2 = 0; index2 < 10; ++index2)
-                            LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                        {
+                            LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, null);
+                        }
                     }
                 }
                 else if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 150f, 20f), "Add"))
-                    LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                {
+                    LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, null);
+                }
                 this.cY = this.cY + 30f;
             }
             UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), "Items", this.labelStyle);
@@ -216,7 +232,9 @@ namespace InventoryMod2
             {
                 UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), this.listItems[index]._name, this.labelStyle);
                 if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 150f, 20f), "Add"))
-                    LocalPlayer.Inventory.AddItem(this.listItems[index]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                {
+                    LocalPlayer.Inventory.AddItem(this.listItems[index]._id, 1, false, false, null);
+                }
                 this.cY = this.cY + 30f;
             }
             UnityEngine.GUI.EndScrollView();
@@ -228,11 +246,15 @@ namespace InventoryMod2
             {
                 UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listResources[index1]._name, this.labelStyle);
                 if (UnityEngine.GUI.Button(new Rect(170f, this.cY2, 70f, 20f), "Add 1"))
-                    LocalPlayer.Inventory.AddItem(this.listResources[index1]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                {
+                    LocalPlayer.Inventory.AddItem(this.listResources[index1]._id, 1, false, false, null);
+                }
                 if (UnityEngine.GUI.Button(new Rect(250f, this.cY2, 70f, 20f), "Add 5"))
                 {
                     for (int index2 = 0; index2 < 5; ++index2)
-                        LocalPlayer.Inventory.AddItem(this.listResources[index1]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                    {
+                        LocalPlayer.Inventory.AddItem(this.listResources[index1]._id, 1, false, false, null);
+                    }
                 }
                 this.cY2 = this.cY2 + 30f;
             }
@@ -242,7 +264,9 @@ namespace InventoryMod2
             {
                 UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listOther[index]._name, this.labelStyle);
                 if (UnityEngine.GUI.Button(new Rect(170f, this.cY2, 150f, 20f), "Add"))
-                    LocalPlayer.Inventory.AddItem(this.listOther[index]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                {
+                    LocalPlayer.Inventory.AddItem(this.listOther[index]._id, 1, false, false, null);
+                }
                 this.cY2 = this.cY2 + 30f;
             }
             UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Heads", this.labelStyle);
@@ -251,7 +275,9 @@ namespace InventoryMod2
             {
                 UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listAnimals[index]._name, this.labelStyle);
                 if (UnityEngine.GUI.Button(new Rect(170f, this.cY2, 150f, 20f), "Add"))
-                    LocalPlayer.Inventory.AddItem(this.listAnimals[index]._id, 1, false, false, ~WeaponStatUpgrade.Types.smashDamage, 0.0f);
+                {
+                    LocalPlayer.Inventory.AddItem(this.listAnimals[index]._id, 1, false, false, null);
+                }
                 this.cY2 = this.cY2 + 30f;
             }
             UnityEngine.GUI.EndScrollView();
@@ -261,19 +287,29 @@ namespace InventoryMod2
         private void GenerateList()
         {
             for (int index = 0; index < ItemDatabase.Items.Length; ++index)
+            {
                 ModAPI.Console.Write("itemName" + ItemDatabase.Items[index]._name + " itemID: " + (object)ItemDatabase.Items[index]._id, "InventoryModSorted");
+            }
         }
 
         private void Update()
         {
             if (!this.sorted)
+            {
                 this.Sort();
-            if (!ModAPI.Input.GetButtonDown("StartInventoryMenu2", "InventoryMod2"))
+            }
+            if (!ModAPI.Input.GetButtonDown("StartInventoryMenu2"))
+            {
                 return;
+            }
             if (this.visible)
+            {
                 LocalPlayer.FpCharacter.UnLockView();
+            }
             else
+            {
                 LocalPlayer.FpCharacter.LockView(true);
+            }
             this.visible = !this.visible;
         }
     }

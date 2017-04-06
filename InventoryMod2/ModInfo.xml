@@ -1,6 +1,6 @@
 <Mod ID="InventoryMod2">
-  <Compatible>0.50c</Compatible>
-  <Button Standard="F4" ID="StartInventoryMenu2">
+  <Compatible>0.54b</Compatible>
+  <Button Standard="N" ID="StartInventoryMenu2">
     <Name>
       <EN>Open Menu</EN>
     </Name>
@@ -9,10 +9,10 @@
     </Description>
   </Button>
   <Name>
-    <EN>Inventory Mod 2.1</EN>
+    <EN>Inventory Mod 2</EN>
   </Name>
   <Description>
     <EN>Inventory Mod 2 provides abilities to add more than one of certain items and has them sorted alphabeticaly and by category</EN>
   </Description>
-  <Version>1.0.0.1</Version>
+  <Version>1.0.0.2</Version>
 </Mod>
