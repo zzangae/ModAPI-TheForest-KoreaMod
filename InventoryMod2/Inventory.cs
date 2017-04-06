@@ -117,7 +117,7 @@ namespace InventoryMod2
 
         [ExecuteOnGameStart]
         private static void AddMeToScene()
-        {
+        {   
             new GameObject("__InventoryMenu__").AddComponent<Inventory>();
         }
 
@@ -191,28 +191,49 @@ namespace InventoryMod2
             {
                 return;
             }
-            UnityEngine.GUI.skin = ModAPI.GUI.Skin;
-            Matrix4x4 matrix = UnityEngine.GUI.matrix;
+            GUI.skin = ModAPI.GUI.Skin;
+            Matrix4x4 matrix = GUI.matrix;
             if (this.labelStyle == null)
             {
-                this.labelStyle = new GUIStyle(UnityEngine.GUI.skin.label);
+                this.labelStyle = new GUIStyle(GUI.skin.label);
                 this.labelStyle.fontSize = 12;
             }
-            UnityEngine.GUI.Box(new Rect(5f, 5f, 700f, 610f), "Inventory menu", UnityEngine.GUI.skin.window);
-            this.scrollPosition = UnityEngine.GUI.BeginScrollView(new Rect(5f, 45f, 350f, 550f), this.scrollPosition, new Rect(0.0f, 0.0f, 330f, this.cY));
+            GUI.Box(new Rect(5f, 5f, 700f, 610f), "Inventory menu", GUI.skin.window);
+            this.scrollPosition = GUI.BeginScrollView(new Rect(5f, 45f, 350f, 550f), this.scrollPosition, new Rect(0.0f, 0.0f, 330f, this.cY));
             this.cY = 25f;
-            UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), "Weapons", this.labelStyle);
+
+            GUI.Label(new Rect(20f, this.cY, 150f, 20f), "All Items", this.labelStyle);            
+            if (GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Give all"))
+            {
+                for (int i = 0; i < ItemDatabase.Items.Length; i++)
+                {
+                    Item item = ItemDatabase.Items[i];
+                    try
+                    {
+                        if (item._maxAmount >= 0)
+                        {
+                            LocalPlayer.Inventory.AddItem(item._id, 2000 - LocalPlayer.Inventory.AmountOf(item._id, true), true, false, null);
+                        }
+                    }
+                    catch (Exception)
+                    {}
+                }
+            }
             this.cY = this.cY + 30f;
+
+            GUI.Label(new Rect(20f, this.cY, 150f, 20f), "Weapons", this.labelStyle);
+            this.cY = this.cY + 30f;
+
             for (int index1 = 0; index1 < this.listWeapons.Count; ++index1)
             {
-                UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), this.listWeapons[index1]._name, this.labelStyle);
+                GUI.Label(new Rect(20f, this.cY, 150f, 20f), this.listWeapons[index1]._name, this.labelStyle);
                 if (this.listWeapons[index1]._name.Equals("Arrows") || this.listWeapons[index1]._name.Equals("FlareGunAmmo") || this.listWeapons[index1]._name.Equals("FlintlockAmmo"))
                 {
-                    if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Add"))
+                    if (GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Add"))
                     {
                         LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, null);
                     }
-                    if (UnityEngine.GUI.Button(new Rect(250f, this.cY, 70f, 20f), "Add 10"))
+                    if (GUI.Button(new Rect(250f, this.cY, 70f, 20f), "Add 10"))
                     {
                         for (int index2 = 0; index2 < 10; ++index2)
                         {
@@ -220,36 +241,38 @@ namespace InventoryMod2
                         }
                     }
                 }
-                else if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 150f, 20f), "Add"))
+                else if (GUI.Button(new Rect(170f, this.cY, 150f, 20f), "Add"))
                 {
                     LocalPlayer.Inventory.AddItem(this.listWeapons[index1]._id, 1, false, false, null);
                 }
                 this.cY = this.cY + 30f;
             }
-            UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), "Items", this.labelStyle);
+
+            GUI.Label(new Rect(20f, this.cY, 150f, 20f), "Items", this.labelStyle);
             this.cY = this.cY + 30f;
+
             for (int index = 0; index < this.listItems.Count; ++index)
             {
-                UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), this.listItems[index]._name, this.labelStyle);
-                if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 150f, 20f), "Add"))
+                GUI.Label(new Rect(20f, this.cY, 150f, 20f), this.listItems[index]._name, this.labelStyle);
+                if (GUI.Button(new Rect(170f, this.cY, 150f, 20f), "Add"))
                 {
                     LocalPlayer.Inventory.AddItem(this.listItems[index]._id, 1, false, false, null);
                 }
                 this.cY = this.cY + 30f;
             }
-            UnityEngine.GUI.EndScrollView();
-            this.scrollPosition2 = UnityEngine.GUI.BeginScrollView(new Rect(350f, 45f, 350f, 550f), this.scrollPosition2, new Rect(0.0f, 0.0f, 330f, this.cY2));
+            GUI.EndScrollView();
+            this.scrollPosition2 = GUI.BeginScrollView(new Rect(350f, 45f, 350f, 550f), this.scrollPosition2, new Rect(0.0f, 0.0f, 330f, this.cY2));
             this.cY2 = 25f;
-            UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Resources", this.labelStyle);
+            GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Resources", this.labelStyle);
             this.cY2 = this.cY2 + 30f;
             for (int index1 = 0; index1 < this.listResources.Count; ++index1)
             {
-                UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listResources[index1]._name, this.labelStyle);
-                if (UnityEngine.GUI.Button(new Rect(170f, this.cY2, 70f, 20f), "Add 1"))
+                GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listResources[index1]._name, this.labelStyle);
+                if (GUI.Button(new Rect(170f, this.cY2, 70f, 20f), "Add 1"))
                 {
                     LocalPlayer.Inventory.AddItem(this.listResources[index1]._id, 1, false, false, null);
                 }
-                if (UnityEngine.GUI.Button(new Rect(250f, this.cY2, 70f, 20f), "Add 5"))
+                if (GUI.Button(new Rect(250f, this.cY2, 70f, 20f), "Add 5"))
                 {
                     for (int index2 = 0; index2 < 5; ++index2)
                     {
@@ -258,30 +281,30 @@ namespace InventoryMod2
                 }
                 this.cY2 = this.cY2 + 30f;
             }
-            UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Other", this.labelStyle);
+            GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Other", this.labelStyle);
             this.cY2 = this.cY2 + 30f;
             for (int index = 0; index < this.listOther.Count; ++index)
             {
-                UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listOther[index]._name, this.labelStyle);
-                if (UnityEngine.GUI.Button(new Rect(170f, this.cY2, 150f, 20f), "Add"))
+                GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listOther[index]._name, this.labelStyle);
+                if (GUI.Button(new Rect(170f, this.cY2, 150f, 20f), "Add"))
                 {
                     LocalPlayer.Inventory.AddItem(this.listOther[index]._id, 1, false, false, null);
                 }
                 this.cY2 = this.cY2 + 30f;
             }
-            UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Heads", this.labelStyle);
+            GUI.Label(new Rect(20f, this.cY2, 150f, 20f), "Heads", this.labelStyle);
             this.cY2 = this.cY2 + 30f;
             for (int index = 0; index < this.listAnimals.Count; ++index)
             {
-                UnityEngine.GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listAnimals[index]._name, this.labelStyle);
-                if (UnityEngine.GUI.Button(new Rect(170f, this.cY2, 150f, 20f), "Add"))
+                GUI.Label(new Rect(20f, this.cY2, 150f, 20f), this.listAnimals[index]._name, this.labelStyle);
+                if (GUI.Button(new Rect(170f, this.cY2, 150f, 20f), "Add"))
                 {
                     LocalPlayer.Inventory.AddItem(this.listAnimals[index]._id, 1, false, false, null);
                 }
                 this.cY2 = this.cY2 + 30f;
             }
-            UnityEngine.GUI.EndScrollView();
-            UnityEngine.GUI.matrix = matrix;
+            GUI.EndScrollView();
+            GUI.matrix = matrix;
         }
 
         private void GenerateList()
