@@ -1,18 +1,50 @@
 <Mod ID="InventoryMod">
   <Compatible>0.57c</Compatible>
-  <Button Standard="N" ID="Start">
+  <Button Standard="F4" ID="Start">
     <Name>
       <EN>InventoryMod</EN>
+      <DE>InventoryMod</DE>
+      <KO>인벤토리 모드</KO>
+      <JA>InventoryMod</JA>
+      <RU>InventoryMod</RU>
+      <ES>InventoryMod</ES>
+      <FR>InventoryMod</FR>
+      <ZH>InventoryMod</ZH>
+      <PT>InventoryMod</PT>
     </Name>
     <Description>
       <EN>Key to open Menu</EN>
+      <DE>Taste zum Öffnen des Menüs</DE>
+      <KO>메뉴 열기</KO>
+      <JA>指先を開く</JA>
+      <RU>Ключ, чтобы открыть меню</RU>
+      <ES>Tecla para abrir el menú</ES>
+      <FR>Touche pour ouvrir le menu</FR>
+      <ZH>键打开菜单</ZH>
+      <PT>Key para abrir o menu</PT>
     </Description>
   </Button>
   <Name>
     <EN>InventoryMod</EN>
+    <DE>InventoryMod</DE>
+    <KO>인벤토리 모드</KO>
+    <JA>InventoryMod</JA>
+    <RU>InventoryMod</RU>
+    <ES>InventoryMod</ES>
+    <FR>InventoryMod</FR>
+    <ZH>InventoryMod</ZH>
+    <PT>InventoryMod</PT>
   </Name>
   <Description>
-    <EN>This inventory mod allows you to add every item to your inventory!</EN>
+    <EN>This inventory mod allows you to add every item to your inventory! </EN>
+    <DE>Mit diesem Inventarmodus können Sie jeden Artikel zu Ihrem Inventar hinzufügen!</DE>
+    <KO>이 인벤토리 모드를 사용하면 모든 항목을 인벤토리에 추가 할 수 있습니다!</KO>
+    <JA>あなたのためにすべてのアイテムを使用できるようにするには、ここをクリックしてください！</JA>
+    <RU>Этот перечень мод позволяет добавлять каждый элемент в свой инвентарь!</RU>
+    <ES>Este mod de inventario le permite agregar todos los elementos a su inventario!</ES>
+    <FR>Ce mod de l'inventaire vous permet d'ajouter chaque élément à votre inventaire!</FR>
+    <ZH>这份清单MOD可以让你每一个项目添加到您的库存！</ZH>
+    <PT>Este mod inventário permite que você adicione todos os itens para o seu inventário!</PT>
   </Description>
   <Version>1.0.0.20</Version>
 </Mod>

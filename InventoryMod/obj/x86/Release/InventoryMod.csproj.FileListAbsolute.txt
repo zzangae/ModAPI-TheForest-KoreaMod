@@ -1,15 +1,8 @@
-C:\Users\jeffrey\Desktop\MOD\projects\TheForest\InventoryMod\Mod\InventoryMod.dll
-C:\Users\jeffrey\Desktop\MOD\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
-C:\Users\jeffrey\Desktop\MOD\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.csprojResolveAssemblyReference.cache
-C:\Users\jeffrey\Desktop\MOD\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
-C:\Users\jeffrey\Desktop\MOD\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
-C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\Mod\InventoryMod.dll
-C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
-C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.csprojResolveAssemblyReference.cache
-C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
-C:\Users\jeffrey\Desktop\ModAPI 21\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
-D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.dll
-D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
-D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.csprojResolveAssemblyReference.cache
-D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
-D:\dll\modapi_20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\InventoryMod\Mod\InventoryMod.dll
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\InventoryMod\Mod\InventoryMod.pdb
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\InventoryMod\obj\x86\Release\InventoryMod.dll
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\InventoryMod\obj\x86\Release\InventoryMod.pdb
+D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.dll
+D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
+D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
+D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
