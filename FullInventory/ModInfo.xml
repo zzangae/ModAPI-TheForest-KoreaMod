@@ -1,0 +1,18 @@
+<Mod ID="FullInventory">
+  <Compatible>0.54b</Compatible>
+  <Button Standard="F7" ID="FillInv">
+    <Name>
+      <EN>Fill Key </EN>
+    </Name>
+    <Description>
+      <EN>Press F7 to fill your entire inventory! </EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>FullInventory </EN>
+  </Name>
+  <Description>
+    <EN>Press F7 to fill your entire inventory! </EN>
+  </Description>
+  <Version>1.0.0.1</Version>
+</Mod>

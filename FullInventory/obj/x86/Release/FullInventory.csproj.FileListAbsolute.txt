@@ -1,0 +1,4 @@
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\Mod\FullInventory.dll
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\Mod\FullInventory.pdb
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\obj\x86\Release\FullInventory.dll
+D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\obj\x86\Release\FullInventory.pdb
