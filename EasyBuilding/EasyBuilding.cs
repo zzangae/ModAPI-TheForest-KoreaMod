@@ -5,11 +5,8 @@ using UnityEngine;
 namespace EasyBuilding
 {
     internal class EasyBuilding : Craft_Structure
-    {
-        private bool _initialized;        
-        private ReceipeIngredient[] _presentIngredients;
-
-        public new void Initialize()
+    {   
+        public override void Initialize()
         {
             if (!_initialized)
             {
@@ -24,26 +21,29 @@ namespace EasyBuilding
                 }
                 for (int i = 0; i < base._requiredIngredients.Count; i++)
                 {
-                    BuildIngredients ingredients = _requiredIngredients[i];
+                    BuildIngredients buildIngredients = _requiredIngredients[i];
                     if (_presentIngredients[i] == null)
                     {
-                        _presentIngredients[i] = new ReceipeIngredient { _itemID = ingredients._itemID };
+                        _presentIngredients[i] = new ReceipeIngredient { _itemID = buildIngredients._itemID };
                     }
-                    ReceipeIngredient ingredient = _presentIngredients[i];
-                    if (ingredients._amount != 1)
+                    ReceipeIngredient receipeIngredient = _presentIngredients[i];
+
+                    if (buildIngredients._amount != 1)
                     {
-                        ingredients._amount /= 2;
+                        buildIngredients._amount /= 2;
                     }
-                    if (ingredient._amount != 1)
+                    if (receipeIngredient._amount != 1)
                     {
-                        ingredient._amount /= 2;
+                        receipeIngredient._amount /= 2;
                     }
-                    int amount = ingredients._amount - ingredient._amount;
-                    BuildMission.AddNeededToBuildMission(ingredients._itemID, amount);
-                    for (int j = 0; (j < ingredient._amount) && (j < ingredients._renderers.Length); j++)
+
+                    int amount = buildIngredients._amount - receipeIngredient._amount;
+                    BuildMission.AddNeededToBuildMission(buildIngredients._itemID, amount);                    
+                    for (int j = 0; (j < receipeIngredient._amount) && (j >= buildIngredients._renderers.Length); j++)
                     {
-                        ingredients._renderers[j].SetActive(true);
+                        buildIngredients._renderers[j].SetActive(true);
                     }
+                    
                 }
                 _initialized = true;
                 if (BoltNetwork.isRunning)
@@ -52,37 +52,34 @@ namespace EasyBuilding
                     if (BoltNetwork.isServer && base.entity.isAttached)
                     {
                         this.UpdateNetworkIngredients();
+                    }                    
+                    if (!BoltNetwork.isClient)
+                    {
+                        this.CheckNeeded();
                     }
                 }
             }
         }
 
-        private void SetUpIcons()
-        {
-            //throw new NotImplementedException();
+        protected override void SetUpIcons()
+        {   
             if (Application.isPlaying)
             {
                 if (this._requiredIngredients != null)
                 {
-                    float num = 1f / (Screen.width / 70f);
-                    Vector3 vector = new Vector3(0.5f - (num * (this._requiredIngredients.Count - 0.5f)), 0.15f, 0f);
+                    float num = 1f / (Screen.width / 70f);                    
+                    Vector3 localPosition = new Vector3(0.5f - num * (float)(this._requiredIngredients.Count / 2), 0.06f, 0f);
                     for (int i = 0; i < this._requiredIngredients.Count; i++)
                     {
-                        BuildIngredients ingredients = this._requiredIngredients[i];
-                        if (ingredients._icon.transform.parent != base.transform)
-                        {
-                            ingredients._icon = Instantiate(ingredients._icon);
-                            ingredients._icon.transform.parent = base.transform;
-                            ingredients._icon.transform.position = vector;
-                            ingredients._text = Instantiate(ingredients._text);
-                            ingredients._text.transform.parent = base.transform;
-                            vector.z++;
-                            ingredients._text.transform.position = vector;
-                            vector.z--;
-                            vector.x += num;
-                        }
-                        ingredients._icon.SetActive(false);
-                        ingredients._text.SetActive(false);
+                        BuildIngredients buildIngredients = this._requiredIngredients[i];                        
+                        HudGui.BuildingIngredient icons = this.GetIcons(buildIngredients._itemID);
+                        icons._icon.transform.parent = null;
+                        icons._text.transform.parent = null;
+                        icons._icon.transform.localPosition = localPosition;
+                        localPosition.z += 1f;
+                        icons._text.transform.localPosition = localPosition;
+                        localPosition.z -= 1f;
+                        localPosition.x += num;
                     }
                 }
                 else
