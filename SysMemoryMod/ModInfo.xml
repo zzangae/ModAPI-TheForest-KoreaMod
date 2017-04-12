@@ -1,0 +1,22 @@
+<Mod ID="SysMemoryMod">
+  <Compatible>0.57c</Compatible>
+  <Button Standard="LeftShift+X" ID="open">
+    <Name>
+      <EN>sysMemory Viewer</EN>
+      <KO>메모리 뷰어</KO>
+    </Name>
+    <Description>
+      <EN>Shows memory and fps allocated in game. </EN>
+      <KO>메모리 및 FPS 표시함.</KO>
+    </Description>
+  </Button>
+  <Name>
+    <EN>sysMemory Viewer</EN>
+    <KO>메모리 뷰어</KO>
+  </Name>
+  <Description>
+    <EN>Shows memory and fps allocated in game. Press ESC to play while showing mod.</EN>
+    <KO>메모리 및 FPS 표시함. Mod 를 보면서 플레이어를 움직이려면 ESC 를 누르십시오.</KO>
+  </Description>
+  <Version>1.0.0.0</Version>
+</Mod>
