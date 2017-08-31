@@ -1,0 +1,18 @@
+<Mod ID="repairTool">
+  <Compatible>0.65b</Compatible>
+  <Button Standard="F" ID="repairTool">
+    <Name>
+      <EN>repairTool</EN>
+    </Name>
+    <Description>
+      <EN>Automatically repairs buildings</EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>repairTool</EN>
+  </Name>
+  <Description>
+    <EN>Automatically repairs buildings</EN>
+  </Description>
+  <Version>1.0.0.0</Version>
+</Mod>
