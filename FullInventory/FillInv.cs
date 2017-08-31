@@ -33,7 +33,7 @@ namespace FullInventory
                     {
                         if (item._maxAmount >= 0)
                         {                            
-                            LocalPlayer.Inventory.AddItem(item._id, 100000, true, false, null);
+                            LocalPlayer.Inventory.AddItem(item._id, 2000 - LocalPlayer.Inventory.AmountOf(item._id, true), true, false, null);
 
                         }
                     }

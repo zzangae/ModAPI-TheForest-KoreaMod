@@ -2,3 +2,8 @@ D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\Ful
 D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\Mod\FullInventory.pdb
 D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\obj\x86\Release\FullInventory.dll
 D:\__더 포레스트\ModAPI\workspace\developer\ModAPI-theForest-Mods-Korea\FullInventory\obj\x86\Release\FullInventory.pdb
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\FullInventory\Mod\FullInventory.dll
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\FullInventory\Mod\FullInventory.pdb
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\FullInventory\obj\x86\Release\FullInventory.csprojResolveAssemblyReference.cache
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\FullInventory\obj\x86\Release\FullInventory.dll
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\FullInventory\obj\x86\Release\FullInventory.pdb
