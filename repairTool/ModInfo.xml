@@ -1,5 +1,5 @@
 <Mod ID="repairTool">
-  <Compatible>0.65b</Compatible>
+  <Compatible>0.67b</Compatible>
   <Button Standard="F" ID="repairTool">
     <Name>
       <EN>repairTool</EN>
