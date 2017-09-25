@@ -100,6 +100,8 @@ namespace CheatMenu050
 
         protected float rotationY;
 
+        public static bool removeBuildings = false;
+
         [ExecuteOnGameStart]
         private static void AddMeToScene()
         {
@@ -149,15 +151,15 @@ namespace CheatMenu050
                     UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "AutoBuild:", this.labelStyle);
                     AutoBuild = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), AutoBuild, "");
                     num += 30f;
-                    //UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "RemoveBuild:", this.labelStyle);
-                    //RemoveBuild = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), RemoveBuild, "");
-                    //num += 30f;
+                    UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "DestroyBuild:", this.labelStyle);
+                    removeBuildings = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), removeBuildings, "");
+                    num += 30f;
                     UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "InstaKill:", this.labelStyle);
                     InstaKill = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), InstaKill, "");
                     num += 30f;
-                    //UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "Use Rebreather:", this.labelStyle);
-                    //Rebreather = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), Rebreather, "");
-                    //num += 30f;
+                    UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "Use Rebreather:", this.labelStyle);
+                    Rebreather = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), Rebreather, "");
+                    num += 30f;
                     UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "SleepTimer :", this.labelStyle);
                     SleepTimer = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), SleepTimer, "");
                     num += 30f;

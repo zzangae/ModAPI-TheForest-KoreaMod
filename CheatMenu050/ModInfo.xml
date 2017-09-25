@@ -40,14 +40,6 @@
       <EN>Pressing this key will instantly create a blueprint and repair the building.</EN>
     </Description>
   </Button>
-  <Button Standard="Y" ID="RemoveBuilding">
-    <Name>
-      <EN>RemoveBuilding</EN>
-    </Name>
-    <Description>
-      <EN>Makes it possible to remove all buildings.</EN>
-    </Description>
-  </Button>
   <Button Standard="X" ID="MassTree">
     <Name>
       <EN>Mass cut trees</EN>
@@ -62,5 +54,5 @@
   <Description>
     <EN>This Mod grants you superpowers and some other nice features like instant build or instant tree cutting.</EN>
   </Description>
-  <Version>0.67.1</Version>
+  <Version>0.67.2</Version>
 </Mod>
