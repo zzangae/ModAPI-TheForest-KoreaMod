@@ -31,7 +31,7 @@ namespace InventoryMod
         {
             if (this.visible)
             {
-                UnityEngine.GUI.skin = ModAPI.GUI.Skin;
+                UnityEngine.GUI.skin = ModAPI.Gui.Skin;
                 Matrix4x4 matrix = UnityEngine.GUI.matrix;
                 if (this.labelStyle == null)
                 {

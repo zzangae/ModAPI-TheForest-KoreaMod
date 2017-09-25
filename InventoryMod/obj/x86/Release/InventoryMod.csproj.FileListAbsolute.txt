@@ -6,3 +6,7 @@ D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\Invento
 D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
 D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
 D:\__더 포레스트\ModAPI\20170117\modapi_20160910\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\InventoryMod\Mod\InventoryMod.dll
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\InventoryMod\Mod\InventoryMod.pdb
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.dll
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\InventoryMod\obj\x86\Release\InventoryMod.pdb

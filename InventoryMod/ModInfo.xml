@@ -1,5 +1,5 @@
 <Mod ID="InventoryMod">
-  <Compatible>0.57c</Compatible>
+  <Compatible>0.67b</Compatible>
   <Button Standard="F4" ID="Start">
     <Name>
       <EN>InventoryMod</EN>
@@ -46,5 +46,5 @@
     <ZH>这份清单MOD可以让你每一个项目添加到您的库存！</ZH>
     <PT>Este mod inventário permite que você adicione todos os itens para o seu inventário!</PT>
   </Description>
-  <Version>1.0.0.20</Version>
+  <Version>1.0.0.21</Version>
 </Mod>
