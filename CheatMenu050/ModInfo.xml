@@ -1,0 +1,66 @@
+<Mod ID="CheatMenu050">
+  <Compatible>0.67b</Compatible>
+  <Button Standard="F1" ID="OpenMenu">
+    <Name>
+      <EN>Open cheat menu</EN>
+    </Name>
+    <Description>
+      <EN>Key to open the cheat menu which makes it  possible to change the activation state of god mode, fly mode and so on.</EN>
+    </Description>
+  </Button>
+  <Button Standard="F2" ID="FreezeTime">
+    <Name>
+      <EN>Freeze Time</EN>
+    </Name>
+    <Description>
+      <EN>Freezes the time.</EN>
+    </Description>
+  </Button>
+  <Button Standard="F3" ID="FreeCam">
+    <Name>
+      <EN>Free Cam</EN>
+    </Name>
+    <Description>
+      <EN>Makes the cam fly free.</EN>
+    </Description>
+  </Button>
+  <Button Standard="F4" ID="SleepTimer">
+    <Name>
+      <EN>SleepTimer</EN>
+    </Name>
+    <Description>
+      <EN>You can sleep now.</EN>
+    </Description>
+  </Button>
+  <Button Standard="F" ID="InstantBuild">
+    <Name>
+      <EN>Instant build /Repair</EN>
+    </Name>
+    <Description>
+      <EN>Pressing this key will instantly create a blueprint and repair the building.</EN>
+    </Description>
+  </Button>
+  <Button Standard="Y" ID="RemoveBuilding">
+    <Name>
+      <EN>RemoveBuilding</EN>
+    </Name>
+    <Description>
+      <EN>Makes it possible to remove all buildings.</EN>
+    </Description>
+  </Button>
+  <Button Standard="X" ID="MassTree">
+    <Name>
+      <EN>Mass cut trees</EN>
+    </Name>
+    <Description>
+      <EN>When pressed shows a radius of trees which will be cut when the key is released.</EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>CheatMenu050</EN>
+  </Name>
+  <Description>
+    <EN>This Mod grants you superpowers and some other nice features like instant build or instant tree cutting.</EN>
+  </Description>
+  <Version>0.67.1</Version>
+</Mod>
