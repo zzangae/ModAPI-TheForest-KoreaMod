@@ -1,5 +1,4 @@
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\Mod\SleepTimer.dll
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\Mod\SleepTimer.pdb
-D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\obj\x86\Release\SleepTimer.csprojResolveAssemblyReference.cache
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\obj\x86\Release\SleepTimer.dll
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\obj\x86\Release\SleepTimer.pdb
