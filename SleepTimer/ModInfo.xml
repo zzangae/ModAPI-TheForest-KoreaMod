@@ -1,0 +1,18 @@
+<Mod ID="SleepTimer">
+  <Compatible>0.67c</Compatible>
+  <Button Standard="F4" ID="SleepTimer">
+    <Name>
+      <EN>SleepTimer</EN>
+    </Name>
+    <Description>
+      <EN>You can sleep anywhere in the world without building structures.</EN>
+    </Description>
+  </Button>
+  <Name>
+    <EN>SleepTimer</EN>
+  </Name>
+  <Description>
+    <EN>You can sleep anywhere in the world without building structures.</EN>
+  </Description>
+  <Version>1.0.67.1</Version>
+</Mod>
