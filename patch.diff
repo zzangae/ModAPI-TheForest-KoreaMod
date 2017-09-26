@@ -1,0 +1,832 @@
+From 9f4ca16ed3b57c040e9b124ead9b309e3b1d6715 Mon Sep 17 00:00:00 2001
+From: zzangae <zzangae@gmail.com>
+Date: Tue, 26 Sep 2017 14:07:17 +0900
+Subject: [PATCH] Revert "Revert "SleepTimer - 1.67.1 (0.67c)""
+
+This reverts commit 91b9a90737766844e2f57a098886ca046b3bf455.
+---
+ SleepTimer/.vs/SleepTimer/v14/.suo                 | Bin 0 -> 47104 bytes
+ SleepTimer/Mod/SleepTimer.pdb                      | Bin 0 -> 11776 bytes
+ SleepTimer/ModInfo.xml                             |  18 +++
+ SleepTimer/SleepTimer.cs                           |  37 +++++
+ SleepTimer/SleepTimer.csproj                       | 171 +++++++++++++++++++++
+ SleepTimer/SleepTimer.sln                          |  18 +++
+ .../DesignTimeResolveAssemblyReferencesInput.cache | Bin 0 -> 10214 bytes
+ .../Release/SleepTimer.csproj.FileListAbsolute.txt |   5 +
+ ...SleepTimer.csprojResolveAssemblyReference.cache | Bin 0 -> 99243 bytes
+ SleepTimer/obj/x86/Release/SleepTimer.pdb          | Bin 0 -> 11776 bytes
+ 10 files changed, 249 insertions(+)
+ create mode 100644 SleepTimer/.vs/SleepTimer/v14/.suo
+ create mode 100644 SleepTimer/Mod/SleepTimer.pdb
+ create mode 100644 SleepTimer/ModInfo.xml
+ create mode 100644 SleepTimer/SleepTimer.cs
+ create mode 100644 SleepTimer/SleepTimer.csproj
+ create mode 100644 SleepTimer/SleepTimer.sln
+ create mode 100644 SleepTimer/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache
+ create mode 100644 SleepTimer/obj/x86/Release/SleepTimer.csproj.FileListAbsolute.txt
+ create mode 100644 SleepTimer/obj/x86/Release/SleepTimer.csprojResolveAssemblyReference.cache
+ create mode 100644 SleepTimer/obj/x86/Release/SleepTimer.pdb
+
+diff --git a/SleepTimer/.vs/SleepTimer/v14/.suo b/SleepTimer/.vs/SleepTimer/v14/.suo
+new file mode 100644
+index 0000000000000000000000000000000000000000..c475aad344c3fd4ed150cb2b0408b8a597903fba
+GIT binary patch
+literal 47104
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/SleepTimer/Mod/SleepTimer.pdb b/SleepTimer/Mod/SleepTimer.pdb
+new file mode 100644
+index 0000000000000000000000000000000000000000..4e7870210209fcb0c728cf26542da9615f447fb5
+GIT binary patch
+literal 11776
+zcmeHMZD?Cn7(Pks+O*BKOpUYqAUF$KS8r~*(RTe|SKD<44Q{4IDq(4w+^pB7_ttwa
+z*a^<SK)Zo%$iUXQv7tZ8R1iNvI)@c>b~0gD5PzsYL<INgWMc8h;`5%H+orV?#^~B5
+z_f4MroUeP%dEax+JzpU?uBp13G<+@omW>;Ip>Uh8UJylhS!HXOL7e>09)Po-{E+)i
+zvY&ZifzgaDg=~QaX7_+XZvXOc1C9pzjxEmuw3KBs#o$b)2v1w`*#fh*|1!J%^SQ~V
+z>2^d2INtc~T&Dw}H{O2v(eoF6e*Dz&zelRK9t&CtDUOgUKkeK!GblIOcHboym~H&i
+ze3<+FCqJn(lkXB0?P|_p0lWR@FirtPO?2;UI$JXCIUHuAPrc(j`PH^3hW_~dd(Yt}
+z(_en<m1jN4anG4*#wJRGXD)kJW_F!g9(wg3H5lK&x$C~HjSdX0``}{#*nuxTJ)w6F
+zT~!DCgC7-u`SM1^v8*N*=Z#{vB6C{c=CzyGXd(9-rD|=AM5C8pJL0=?=>1D41}-0b
+z_sYS~A|W-=ydxN?6$ABR!zM8rz@xS<(yJz7eR9+c4%9~jf+zryK23d2iW_>Qy+>+O
+zHAy!j;glrxwadMdmg5xSI%A1hOEj~-^%9L9DQT9dQ;7yIamq<0(z=H9)c};wrI2^I
+zt9}(7X;|UH*Kd`)SU2vt)kQs}#}P5NDKQDzbv;0N?=Sl0!wB5DHkaVHWpP-5#)H7B
+zJyaVp+xWS20D_iK9FOYgOT-L`d0CN%-kSidv=qOBJ?!b&5i@#{vXYRM-3Vf36c*mA
+z8&WS@JLMKy)Km&z30YNiVY{SAnjAOZH`5AF%F6TfKF>27)-LrM6y~LTCciF1yQ-%6
+zP@WOqVaR4U&!a<;jlJ8H-Lk^FpA%};vf|=%O&8C8-1$TB^D39~^n0IlQT`#;ia5rK
+zp%m#!M`P5tOF1uLe}R7lNF4ZCHlTFpc_@D;y$tRZjHLxI)=6nPXT#k|`Z2H<{4^N%
+zD(P<UO0Wig5d0Fj5<CE21s(*i1`mVRfJeY<!KcAK@R#6+z~6w^f!(Z;dDt^3s|DB!
+zYzNwa2A~S40UCiVzy@G7(yw7|l;%Q<-9SF1E43*Jxk*q*Tk^~Tw5P9h`L9#ot#I=G
+z$J?FS-fI8(RQXPnF)#H`&r7b0Hq(klTQj?2w_^b>tKxINxh~F5@W{~1Hspkhbs|aN
+zc1p6}U5pl>@BVZd-beny!Qp+@+%P@f_T`fW=DPnm4n_S~i0=t1NtOAPSg)irzplmo
+zJyI+oY27I`zQ+tm$|*_rFUW45wkNcTXv{VXeYQ$~GJtPg!1n-HAy2Mk?b|CDgA0xE
+z7hD0p?=NTU^$K=qmm4u%fDfnv(tst{x6mF1a&?pw9_H;(?){JzLtMr-XBT;Y!Z&lh
+zH+3{5OgWiY+q|W|xf%1#BO}6f2OBs^IgQbS%bVB^nc~FG%*``(Ox{mXx>BrVNk~77
+zX|HD0;Laa)F=m~$WvffoGKDH>ii=m+bX&3W%1e>E5BL|L{pnFuj+mqr?lhRrZ`K1M
+zY+6GgH$dlR*x&L|b}!f(b?8TYq`APfZlwN1<<NeZM(6+M90c03AQrIhZx*C*yHMK#
+Kwgnc{0{;P4(E4it
+
+literal 0
+HcmV?d00001
+
+diff --git a/SleepTimer/ModInfo.xml b/SleepTimer/ModInfo.xml
+new file mode 100644
+index 0000000..eac5e5a
+--- /dev/null
++++ b/SleepTimer/ModInfo.xml
+@@ -0,0 +1,18 @@
++<Mod ID="SleepTimer">
++  <Compatible>0.67c</Compatible>
++  <Button Standard="F4" ID="SleepTimer">
++    <Name>
++      <EN>SleepTimer</EN>
++    </Name>
++    <Description>
++      <EN>You can sleep anywhere in the world without building structures.</EN>
++    </Description>
++  </Button>
++  <Name>
++    <EN>SleepTimer</EN>
++  </Name>
++  <Description>
++    <EN>You can sleep anywhere in the world without building structures.</EN>
++  </Description>
++  <Version>1.0.67.1</Version>
++</Mod>
+\ No newline at end of file
+diff --git a/SleepTimer/SleepTimer.cs b/SleepTimer/SleepTimer.cs
+new file mode 100644
+index 0000000..770772b
+--- /dev/null
++++ b/SleepTimer/SleepTimer.cs
+@@ -0,0 +1,37 @@
++﻿using Pathfinding;
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Text;
++using TheForest.Tools;
++using TheForest.Utils;
++using UnityEngine;
++
++namespace SleepTimer
++{
++    internal class SleepTimer : PlayerStats
++    {
++        protected override void Update()
++        {
++            if (ModAPI.Input.GetButtonDown("SleepTimer"))
++            {
++                if (!BoltNetwork.isClient && Scene.SceneTracker.allPlayers.Count >= 1)
++                {
++                    Scene.MutantSpawnManager.offsetSleepAmounts();
++                    Scene.MutantControler.startSetupFamilies();
++                    EventRegistry.Player.Publish(TfEvent.Slept, null);
++                    base.NextSleepTime = Scene.Clock.ElapsedGameTime;
++                    this.Invoke("TurnOffSleepCam", 3f);
++                    this.Tired = 0f;
++                    this.Atmos.TimeLapse();
++                    Scene.HudGui.GuiCam.SetActive(false);
++                    Scene.Cams.SleepCam.SetActive(true);
++                    this.Energy += 100f;
++                    return;
++                }
++                base.Wake();
++            }
++            base.Update();
++        }
++    }
++}
+diff --git a/SleepTimer/SleepTimer.csproj b/SleepTimer/SleepTimer.csproj
+new file mode 100644
+index 0000000..fa69d21
+--- /dev/null
++++ b/SleepTimer/SleepTimer.csproj
+@@ -0,0 +1,171 @@
++<?xml version="1.0" encoding="utf-8"?>
++<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath\)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
++  <PropertyGroup>
++    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
++    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
++    <ProjectGuid>{53821041-E269-4717-BAED-3C9C6836E83F}</ProjectGuid>
++    <OutputType>Library</OutputType>
++    <AppDesignerFolder>Properties</AppDesignerFolder>
++    <RootNamespace>SleepTimer</RootNamespace>
++    <AssemblyName>SleepTimer</AssemblyName>
++    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
++    <FileAlignment>512</FileAlignment>
++    <TargetFrameworkProfile />
++  </PropertyGroup>
++  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
++    <DebugType>pdbonly</DebugType>
++    <Optimize>true</Optimize>
++    <OutputPath>Mod\</OutputPath>
++    <DefineConstants>TRACE</DefineConstants>
++    <ErrorReport>prompt</ErrorReport>
++    <WarningLevel>4</WarningLevel>
++  </PropertyGroup>
++  <ItemGroup>
++    
++  </ItemGroup>
++  <ItemGroup>
++    <Reference Include="BaseModLib">
++      <HintPath>../../../libs/BaseModLib.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Assembly-CSharp-firstpass">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Assembly-CSharp-firstpass.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Assembly-CSharp">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Assembly-CSharp.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Assembly-UnityScript-firstpass">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Assembly-UnityScript-firstpass.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Assembly-UnityScript">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Assembly-UnityScript.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="bolt">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/bolt.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="bolt.user">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/bolt.user.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="SteamworksManaged">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/SteamworksManaged.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Boo.Lang">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Boo.Lang.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Mono.Security">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Mono.Security.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="UnityScript.Lang">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityScript.Lang.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="AmplifyMotion">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/AmplifyMotion.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Boo.Lang">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Boo.Lang.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Mono.Posix">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Mono.Posix.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Mono.Security">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Mono.Security.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="mscorlib">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/mscorlib.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Pathfinding.ClipperLib">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Pathfinding.ClipperLib.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Pathfinding.Ionic.Zip.Reduced">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Pathfinding.JsonFx">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Pathfinding.JsonFx.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Pathfinding.Poly2Tri">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Pathfinding.Poly2Tri.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="PlayMaker">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/PlayMaker.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="Rewired_Core">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Rewired_Core.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="System.Configuration">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/System.Configuration.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="System.Core">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/System.Core.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="System">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/System.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="System.Security">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/System.Security.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="System.Xml">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/System.Xml.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="UnityEngine">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="UnityEngine.Analytics">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.Analytics.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="UnityEngine.Networking">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.Networking.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="UnityEngine.UI">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.UI.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="UnityScript.Lang">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityScript.Lang.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="udpkit">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/udpkit.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++<Reference Include="udpkit.common">
++      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/udpkit.common.dll</HintPath>
++      <Private>False</Private>
++    </Reference>
++
++  </ItemGroup>
++  <ItemGroup>
++    <Compile Include="SleepTimer.cs"  />
++
++  </ItemGroup>
++  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
++</Project>
+\ No newline at end of file
+diff --git a/SleepTimer/SleepTimer.sln b/SleepTimer/SleepTimer.sln
+new file mode 100644
+index 0000000..4295df6
+--- /dev/null
++++ b/SleepTimer/SleepTimer.sln
+@@ -0,0 +1,18 @@
++Microsoft Visual Studio Solution File, Format Version 12.00
++# Visual Studio 15
++VisualStudioVersion = 15.0.26403.7
++MinimumVisualStudioVersion = 10.0.40219.1
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SleepTimer", "SleepTimer.csproj", "{53821041-E269-4717-BAED-3C9C6836E83F}"
++EndProject
++Global
++	GlobalSection(SolutionConfigurationPlatforms) = preSolution
++		Release|x86 = Release|x86
++	EndGlobalSection
++	GlobalSection(ProjectConfigurationPlatforms) = postSolution
++		{53821041-E269-4717-BAED-3C9C6836E83F}.Release|x86.ActiveCfg = Release|x86
++		{53821041-E269-4717-BAED-3C9C6836E83F}.Release|x86.Build.0 = Release|x86
++	EndGlobalSection
++	GlobalSection(SolutionProperties) = preSolution
++		HideSolutionNode = FALSE
++	EndGlobalSection
++EndGlobal
+diff --git a/SleepTimer/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache b/SleepTimer/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache
+new file mode 100644
+index 0000000000000000000000000000000000000000..1ae88e62241fd689f71df83512d9adaae40dcaa0
+GIT binary patch
+literal 10214
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/SleepTimer/obj/x86/Release/SleepTimer.csproj.FileListAbsolute.txt b/SleepTimer/obj/x86/Release/SleepTimer.csproj.FileListAbsolute.txt
+new file mode 100644
+index 0000000..1da8ea9
+--- /dev/null
++++ b/SleepTimer/obj/x86/Release/SleepTimer.csproj.FileListAbsolute.txt
+@@ -0,0 +1,5 @@
++D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\Mod\SleepTimer.dll
++D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\Mod\SleepTimer.pdb
++D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\obj\x86\Release\SleepTimer.csprojResolveAssemblyReference.cache
++D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\obj\x86\Release\SleepTimer.dll
++D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\SleepTimer\obj\x86\Release\SleepTimer.pdb
+diff --git a/SleepTimer/obj/x86/Release/SleepTimer.csprojResolveAssemblyReference.cache b/SleepTimer/obj/x86/Release/SleepTimer.csprojResolveAssemblyReference.cache
+new file mode 100644
+index 0000000000000000000000000000000000000000..7c7e83e99a534dbb91d6389f74decf3bb2dbd91b
+GIT binary patch
+literal 99243
+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
+Bip2l`
+
+literal 0
+HcmV?d00001
+
+diff --git a/SleepTimer/obj/x86/Release/SleepTimer.pdb b/SleepTimer/obj/x86/Release/SleepTimer.pdb
+new file mode 100644
+index 0000000000000000000000000000000000000000..4e7870210209fcb0c728cf26542da9615f447fb5
+GIT binary patch
+literal 11776
+zcmeHMZD?Cn7(Pks+O*BKOpUYqAUF$KS8r~*(RTe|SKD<44Q{4IDq(4w+^pB7_ttwa
+z*a^<SK)Zo%$iUXQv7tZ8R1iNvI)@c>b~0gD5PzsYL<INgWMc8h;`5%H+orV?#^~B5
+z_f4MroUeP%dEax+JzpU?uBp13G<+@omW>;Ip>Uh8UJylhS!HXOL7e>09)Po-{E+)i
+zvY&ZifzgaDg=~QaX7_+XZvXOc1C9pzjxEmuw3KBs#o$b)2v1w`*#fh*|1!J%^SQ~V
+z>2^d2INtc~T&Dw}H{O2v(eoF6e*Dz&zelRK9t&CtDUOgUKkeK!GblIOcHboym~H&i
+ze3<+FCqJn(lkXB0?P|_p0lWR@FirtPO?2;UI$JXCIUHuAPrc(j`PH^3hW_~dd(Yt}
+z(_en<m1jN4anG4*#wJRGXD)kJW_F!g9(wg3H5lK&x$C~HjSdX0``}{#*nuxTJ)w6F
+zT~!DCgC7-u`SM1^v8*N*=Z#{vB6C{c=CzyGXd(9-rD|=AM5C8pJL0=?=>1D41}-0b
+z_sYS~A|W-=ydxN?6$ABR!zM8rz@xS<(yJz7eR9+c4%9~jf+zryK23d2iW_>Qy+>+O
+zHAy!j;glrxwadMdmg5xSI%A1hOEj~-^%9L9DQT9dQ;7yIamq<0(z=H9)c};wrI2^I
+zt9}(7X;|UH*Kd`)SU2vt)kQs}#}P5NDKQDzbv;0N?=Sl0!wB5DHkaVHWpP-5#)H7B
+zJyaVp+xWS20D_iK9FOYgOT-L`d0CN%-kSidv=qOBJ?!b&5i@#{vXYRM-3Vf36c*mA
+z8&WS@JLMKy)Km&z30YNiVY{SAnjAOZH`5AF%F6TfKF>27)-LrM6y~LTCciF1yQ-%6
+zP@WOqVaR4U&!a<;jlJ8H-Lk^FpA%};vf|=%O&8C8-1$TB^D39~^n0IlQT`#;ia5rK
+zp%m#!M`P5tOF1uLe}R7lNF4ZCHlTFpc_@D;y$tRZjHLxI)=6nPXT#k|`Z2H<{4^N%
+zD(P<UO0Wig5d0Fj5<CE21s(*i1`mVRfJeY<!KcAK@R#6+z~6w^f!(Z;dDt^3s|DB!
+zYzNwa2A~S40UCiVzy@G7(yw7|l;%Q<-9SF1E43*Jxk*q*Tk^~Tw5P9h`L9#ot#I=G
+z$J?FS-fI8(RQXPnF)#H`&r7b0Hq(klTQj?2w_^b>tKxINxh~F5@W{~1Hspkhbs|aN
+zc1p6}U5pl>@BVZd-beny!Qp+@+%P@f_T`fW=DPnm4n_S~i0=t1NtOAPSg)irzplmo
+zJyI+oY27I`zQ+tm$|*_rFUW45wkNcTXv{VXeYQ$~GJtPg!1n-HAy2Mk?b|CDgA0xE
+z7hD0p?=NTU^$K=qmm4u%fDfnv(tst{x6mF1a&?pw9_H;(?){JzLtMr-XBT;Y!Z&lh
+zH+3{5OgWiY+q|W|xf%1#BO}6f2OBs^IgQbS%bVB^nc~FG%*``(Ox{mXx>BrVNk~77
+zX|HD0;Laa)F=m~$WvffoGKDH>ii=m+bX&3W%1e>E5BL|L{pnFuj+mqr?lhRrZ`K1M
+zY+6GgH$dlR*x&L|b}!f(b?8TYq`APfZlwN1<<NeZM(6+M90c03AQrIhZx*C*yHMK#
+Kwgnc{0{;P4(E4it
+
+literal 0
+HcmV?d00001
+
+-- 
+2.12.2.windows.1
+
