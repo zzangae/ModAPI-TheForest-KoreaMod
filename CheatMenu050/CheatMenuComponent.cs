@@ -157,9 +157,6 @@ namespace CheatMenu050
                     UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "InstaKill:", this.labelStyle);
                     InstaKill = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), InstaKill, "");
                     num += 30f;
-                    UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "Use Rebreather:", this.labelStyle);
-                    Rebreather = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), Rebreather, "");
-                    num += 30f;
                     UnityEngine.GUI.Label(new Rect(20f, num, 150f, 20f), "SleepTimer :", this.labelStyle);
                     SleepTimer = UnityEngine.GUI.Toggle(new Rect(170f, num, 20f, 30f), SleepTimer, "");
                     num += 30f;

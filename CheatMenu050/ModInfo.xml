@@ -1,5 +1,5 @@
 <Mod ID="CheatMenu050">
-  <Compatible>0.67b</Compatible>
+  <Compatible>0.67c</Compatible>
   <Button Standard="F1" ID="OpenMenu">
     <Name>
       <EN>Open cheat menu</EN>
@@ -29,7 +29,7 @@
       <EN>SleepTimer</EN>
     </Name>
     <Description>
-      <EN>You can sleep now.</EN>
+      <EN>You can sleep anywhere in the world without building structures.</EN>
     </Description>
   </Button>
   <Button Standard="F" ID="InstantBuild">
@@ -54,5 +54,5 @@
   <Description>
     <EN>This Mod grants you superpowers and some other nice features like instant build or instant tree cutting.</EN>
   </Description>
-  <Version>0.67.2</Version>
+  <Version>0.67.3</Version>
 </Mod>

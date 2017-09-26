@@ -20,3 +20,4 @@ D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\Th
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\CheatMenu050\obj\x86\Release\CheatMenu050.pdb
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\CheatMenu050\Mod\CheatMenu050.dll
 D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\CheatMenu050\Mod\CheatMenu050.pdb
+D:\__더 포레스트\ModAPI\20170830_183026\modapi_20170817_1.0.1.0\projects\TheForest\CheatMenu050\obj\x86\Release\CheatMenu050.csprojResolveAssemblyReference.cache
