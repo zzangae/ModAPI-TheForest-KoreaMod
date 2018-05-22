@@ -1,10 +1,12 @@
 <Mod ID="FlintlockMachinegun">
-  <Compatible>0.68b</Compatible>
+  <Compatible>1.05</Compatible>
   <Name>
     <EN>FlintlockMachinegun</EN>
+    <KO>FlintlockMachinegun</KO>
   </Name>
   <Description>
     <EN>Reduces flintlock reload delay to 0.1 seconds. Does not make it fire automatically. Still requires ammo.</EN>
+    <KO>Flintlock 재-장전 지연을 0.1 초로 줄입니다. 자동적으로 발사하지 않습니다. 탄약이 필요합니다.</KO>
   </Description>
-  <Version>1.0.68.1</Version>
+  <Version>1.1.0.5</Version>
 </Mod>

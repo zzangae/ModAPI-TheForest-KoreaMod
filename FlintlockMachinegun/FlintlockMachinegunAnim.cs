@@ -15,11 +15,7 @@ namespace FlintlockMachinegun
             if (LocalPlayer.Inventory.Owns(this._flintAmmoId, true))
             {
                 LocalPlayer.Animator.SetBool("canReload", false);
-            }
-            else
-            {
-                LocalPlayer.Animator.SetBool("canReload", false);
-            }
+            }            
             if (!LocalPlayer.Animator)
             {
                 return;
@@ -35,7 +31,7 @@ namespace FlintlockMachinegun
             {
                 this.animator.CrossFade(this.idleHash, 0f, 0, 0f);
             }
-            if (this.nextState1.shortNameHash == this.playerShootHash)
+            if (this.nextState1.shortNameHash == this.playerShootHash || nextState1.shortNameHash == playerAimShootHash)
             {
                 this.animator.SetBool("shoot", true);
             }
@@ -75,5 +71,5 @@ namespace FlintlockMachinegun
                 LocalPlayer.Animator.SetBool("forceReload", false);
             }
         }
-    }
+    }    
 }
