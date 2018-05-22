@@ -1,0 +1,12 @@
+<Mod ID="FlareMachinegun">
+  <Compatible>1.05</Compatible>
+  <Name>
+    <EN>FlareMachinegun</EN>
+    <KO>FlareMachinegun</KO>
+  </Name>
+  <Description>
+    <EN>Reduces Flaregun reload delay to 0.1 seconds. Does not make it fire automatically. Still requires ammo.</EN>
+    <KO>Flaregun 재-장전 지연을 0.1 초로 줄입니다. 자동적으로 발사하지 않습니다. 탄약이 필요합니다.</KO>
+  </Description>
+  <Version>1.1.0.5</Version>
+</Mod>
