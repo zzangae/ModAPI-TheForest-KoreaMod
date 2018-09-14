@@ -1,22 +1,26 @@
 <Mod ID="Map">
-  <Compatible>0.57c</Compatible>
+  <Compatible>1.09</Compatible>
   <Button Standard="M" ID="OpenMap">
     <Name>
       <EN>Open map</EN>
       <DE>Karte öffnen</DE>
+      <KO>지도</KO>
     </Name>
     <Description>
       <EN></EN>
       <DE></DE>
+      <KO>게임 안에서 지도 열기</KO>
     </Description>
   </Button>
   <Name>
     <EN>Map</EN>
     <DE>Karte</DE>
+    <KO>지도</KO>
   </Name>
   <Description>
     <EN>An ingame map</EN>
     <DE>Eine Karte</DE>
+    <KO>게임 안에서 지도열기. (한국어버전)</KO>
   </Description>
-  <Version>0.3</Version>
+  <Version>1.5.0.1</Version>
 </Mod>

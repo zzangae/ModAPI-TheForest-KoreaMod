@@ -1,314 +1,349 @@
-﻿using System;
+﻿// Map.Map
+using LitJson;
+using ModAPI;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 
-namespace Map
+public class Map
 {
-    public class Map
+    public class Marker
     {
-        public Texture2D Texture;
-        public Texture2D[] Textures;
-        public const int SPLIT = 8;
-        protected Downloader Downloader;
-        protected string url = "";
-        protected string filename = "";
-        protected bool downloadParsed = false;
-        protected byte[] loadedHash = new byte[0];
-        protected byte[] serverHash = new byte[0];
-        protected Downloader HashDownloader;
-        protected Downloader MarkerDownloader;
-        public bool TexturesLoaded = false;
-        protected bool markerParsed = false;
+        public IngameMap.MarkerSetting Class;
 
-        public class Marker
+        public string Description = "";
+
+        public Vector3 WorldPosition;
+
+        public Vector2 MapPosition;
+
+        public Marker()
         {
-            public IngameMap.MarkerSetting Class;
-            public string Description = "";
-            public Vector3 WorldPosition;
-            public Vector2 MapPosition;
-
-            public Marker()
-            {
-
-            }
-            public Marker(LitJson.JsonData node, IngameMap.MarkerSetting setting)
-            {
-                Class = setting;
-                Description = (string)node["description"];
-                float x = float.Parse((string)node["x"]);
-                float y = 0f;
-                if (((string)node["z"]) != "")
-                    y = float.Parse((string)node["z"]);
-                float z = float.Parse((string)node["y"]);
-                WorldPosition = new Vector3(x, y, z);
-            }
         }
 
-        public List<Marker> Markers = new List<Marker>();
-
-        public static byte[] ConvertHexStringToByteArray(string hexString)
+        public Marker(JsonData node, IngameMap.MarkerSetting setting)
         {
-            byte[] HexAsBytes = new byte[hexString.Length / 2];
-            for (int index = 0; index < HexAsBytes.Length; index++)
+            Class = setting;
+            Description = (string)node["description"];
+            float x = float.Parse((string)node["x"]);
+            float y = 0f;
+            if ((string)node["z"] != "")
             {
-                string byteValue = hexString.Substring(index * 2, 2);
-                HexAsBytes[index] = byte.Parse(byteValue, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture);
+                y = float.Parse((string)node["z"]);
             }
-            return HexAsBytes;
+            float z = float.Parse((string)node["y"]);
+            WorldPosition = new Vector3(x, y, z);
         }
+    }
 
-        public float Progress
+    public Texture2D Texture;
+
+    public Texture2D[] Textures;
+
+    public const int SPLIT = 8;
+
+    protected Downloader Downloader;
+
+    protected string url = "";
+
+    protected string filename = "";
+
+    protected bool downloadParsed;
+
+    protected byte[] loadedHash = new byte[0];
+
+    protected byte[] serverHash = new byte[0];
+
+    protected Downloader HashDownloader;
+
+    protected Downloader MarkerDownloader;
+
+    public bool TexturesLoaded;
+
+    protected bool markerParsed;
+
+    public List<Marker> Markers = new List<Marker>();
+
+    protected int CurrentTexture = -1;
+
+    public float Progress
+    {
+        get
         {
-            get
+            if (HashDownloader.Loading && !HashDownloader.Finished)
             {
-                if (HashDownloader.Loading && !HashDownloader.Finished)
+                if (HashDownloader.BytesTotal == 0)
                 {
-                    if (HashDownloader.BytesTotal == 0)
-                        return 0f;
-                    return (float)HashDownloader.BytesLoaded / (float)HashDownloader.BytesTotal;
+                    return 0f;
                 }
-                else if (Downloader.Loading && !Downloader.Finished)
+                return (float)HashDownloader.BytesLoaded / (float)HashDownloader.BytesTotal;
+            }
+            if (Downloader.Loading && !Downloader.Finished)
+            {
+                if (Downloader.BytesTotal == 0)
                 {
-                    if (Downloader.BytesTotal == 0)
-                        return 0f;
-                    return (float)Downloader.BytesLoaded / (float)Downloader.BytesTotal;
+                    return 0f;
                 }
-                else if (MarkerDownloader.Loading && !MarkerDownloader.Finished)
+                return (float)Downloader.BytesLoaded / (float)Downloader.BytesTotal;
+            }
+            if (MarkerDownloader.Loading && !MarkerDownloader.Finished)
+            {
+                if (MarkerDownloader.BytesTotal == 0)
                 {
-                    if (MarkerDownloader.BytesTotal == 0)
-                        return 0f;
-                    return (float)MarkerDownloader.BytesLoaded / (float)MarkerDownloader.BytesTotal;
+                    return 0f;
                 }
-                else if (!TexturesLoaded)
+                return (float)MarkerDownloader.BytesLoaded / (float)MarkerDownloader.BytesTotal;
+            }
+            if (!TexturesLoaded)
+            {
+                return (float)CurrentTexture / 64f;
+            }
+            return 1f;
+        }
+    }
+
+    public bool Loading
+    {
+        get
+        {
+            if ((Downloader == null || Downloader.Finished || !Downloader.Loading) && (HashDownloader == null || HashDownloader.Finished || !HashDownloader.Loading) && (MarkerDownloader == null || MarkerDownloader.Finished || !MarkerDownloader.Loading))
+            {
+                return !TexturesLoaded;
+            }
+            return true;
+        }
+    }
+
+    public int BytesLoaded
+    {
+        get
+        {
+            if (HashDownloader != null && HashDownloader.Loading && !HashDownloader.Finished)
+            {
+                return HashDownloader.BytesLoaded;
+            }
+            if (Downloader != null && Downloader.Loading && !Downloader.Finished)
+            {
+                return Downloader.BytesLoaded;
+            }
+            if (MarkerDownloader != null && MarkerDownloader.Loading && !MarkerDownloader.Finished)
+            {
+                return MarkerDownloader.BytesLoaded;
+            }
+            if (!TexturesLoaded)
+            {
+                return CurrentTexture;
+            }
+            return 0;
+        }
+    }
+
+    public int BytesTotal
+    {
+        get
+        {
+            if (HashDownloader != null && HashDownloader.Loading && !HashDownloader.Finished)
+            {
+                return HashDownloader.BytesTotal;
+            }
+            if (Downloader != null && Downloader.Loading && !Downloader.Finished)
+            {
+                return Downloader.BytesTotal;
+            }
+            if (MarkerDownloader != null && MarkerDownloader.Loading && !MarkerDownloader.Finished)
+            {
+                return MarkerDownloader.BytesTotal;
+            }
+            if (!TexturesLoaded)
+            {
+                return 64;
+            }
+            return 0;
+        }
+    }
+
+    public string CurrentTask
+    {
+        get
+        {
+            if (HashDownloader != null && HashDownloader.Loading && !HashDownloader.Finished)
+            {
+                return "Downloading hash";
+            }
+            if (Downloader != null && Downloader.Loading && !Downloader.Finished)
+            {
+                return "Downloading map";
+            }
+            if (MarkerDownloader != null && MarkerDownloader.Loading && !MarkerDownloader.Finished)
+            {
+                return "Downloading marker";
+            }
+            if (!TexturesLoaded)
+            {
+                return "Loading textures";
+            }
+            return "Completed";
+        }
+    }
+
+    public static byte[] ConvertHexStringToByteArray(string hexString)
+    {
+        byte[] array = new byte[hexString.Length / 2];
+        for (int i = 0; i < array.Length; i++)
+        {
+            string s = hexString.Substring(i * 2, 2);
+            array[i] = byte.Parse(s, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+        }
+        return array;
+    }
+
+    public Map(string url, string hashURL, string markerURL, string filename)
+    {
+        Textures = new Texture2D[64];
+        this.filename = filename;
+        this.url = url;
+        HashDownloader = new Downloader(hashURL, false);
+        Downloader = new Downloader(url, false);
+        MarkerDownloader = new Downloader(markerURL, true);
+        if (File.Exists(filename))
+        {
+            MD5CryptoServiceProvider mD5CryptoServiceProvider = new MD5CryptoServiceProvider();
+            loadedHash = mD5CryptoServiceProvider.ComputeHash(File.ReadAllBytes(filename));
+            HashDownloader.StartDownload();
+        }
+        else
+        {
+            Downloader.StartDownload();
+        }
+    }
+
+    public void FreeTextures()
+    {
+        if (Textures != null)
+        {
+            for (int i = 0; i < Textures.Length; i++)
+            {
+                if ((UnityEngine.Object)Textures[i] != (UnityEngine.Object)null)
                 {
-                    return (float)CurrentTexture / (float)(SPLIT * SPLIT);
+                    UnityEngine.Object.Destroy(Textures[i]);
                 }
-                return 1f;
             }
         }
+    }
 
-        public bool Loading
+    public void ParseTextures()
+    {
+        FreeTextures();
+        string directoryName = Path.GetDirectoryName(filename);
+        if (!Directory.Exists(directoryName))
         {
-            get
+            Directory.CreateDirectory(directoryName);
+        }
+        Texture2D texture2D = new Texture2D(2, 2, TextureFormat.RGB24, false, false);
+        texture2D.LoadImage(File.ReadAllBytes(filename));
+        int num = texture2D.width / 8;
+        int num2 = texture2D.height / 8;
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
             {
-                return (Downloader != null && !Downloader.Finished && Downloader.Loading) || (HashDownloader != null && !HashDownloader.Finished && HashDownloader.Loading) || (MarkerDownloader != null && !MarkerDownloader.Finished && MarkerDownloader.Loading) || !TexturesLoaded;
+                Texture2D texture2D2 = new Texture2D(num, num2, TextureFormat.RGB24, false, true);
+                texture2D2.SetPixels(texture2D.GetPixels(i * num, j * num2, num, num2));
+                texture2D2.Apply();
+                int num3 = i + j * 8;
+                File.WriteAllBytes(directoryName + Path.DirectorySeparatorChar.ToString() + num3 + ".png", texture2D2.EncodeToPNG());
+                Textures[num3] = texture2D2;
             }
         }
+        CurrentTexture = -1;
+        TexturesLoaded = true;
+        UnityEngine.Object.Destroy(texture2D);
+    }
 
-        public int BytesLoaded
+    private void LoadTexture()
+    {
+        string path = Path.GetDirectoryName(filename) + Path.DirectorySeparatorChar.ToString() + CurrentTexture + ".png";
+        if (!File.Exists(path))
         {
-            get
-            {
-                if (HashDownloader != null && HashDownloader.Loading && !HashDownloader.Finished)
-                {
-                    return HashDownloader.BytesLoaded;
-                }
-                else if (Downloader != null && Downloader.Loading && !Downloader.Finished)
-                {
-                    return Downloader.BytesLoaded;
-                }
-                else if (MarkerDownloader != null && MarkerDownloader.Loading && !MarkerDownloader.Finished)
-                {
-                    return MarkerDownloader.BytesLoaded;
-                }
-                else if (!TexturesLoaded)
-                {
-                    return CurrentTexture;
-                }
-                return 0;
-            }
+            ParseTextures();
         }
-
-        public int BytesTotal
+        if (File.Exists(path))
         {
-            get
-            {
-                if (HashDownloader != null && HashDownloader.Loading && !HashDownloader.Finished)
-                {
-                    return HashDownloader.BytesTotal;
-                }
-                else if (Downloader != null && Downloader.Loading && !Downloader.Finished)
-                {
-                    return Downloader.BytesTotal;
-                }
-                else if (MarkerDownloader != null && MarkerDownloader.Loading && !MarkerDownloader.Finished)
-                {
-                    return MarkerDownloader.BytesTotal;
-                }
-                else if (!TexturesLoaded)
-                {
-                    return SPLIT * SPLIT;
-                }
-                return 0;
-            }
+            Textures[CurrentTexture] = new Texture2D(2, 2, TextureFormat.RGB24, false, true);
+            Textures[CurrentTexture].LoadImage(File.ReadAllBytes(path));
         }
-
-        public string CurrentTask
+        else
         {
-            get
-            {
-                if (HashDownloader != null && HashDownloader.Loading && !HashDownloader.Finished)
-                {
-                    return "Downloading hash";
-                }
-                else if (Downloader != null && Downloader.Loading && !Downloader.Finished)
-                {
-                    return "Downloading map";
-                }
-                else if (MarkerDownloader != null && MarkerDownloader.Loading && !MarkerDownloader.Finished)
-                {
-                    return "Downloading marker";
-                }
-                else if (!TexturesLoaded)
-                {
-                    return "Loading textures";
-                }
-                return "Completed";
-            }
+            CurrentTexture = -1;
         }
-
-        public Map(string url, string hashURL, string markerURL, string filename)
+        CurrentTexture++;
+        if (CurrentTexture >= 64)
         {
-            Textures = new Texture2D[SPLIT * SPLIT];
-            this.filename = filename;
-            this.url = url;
-            this.HashDownloader = new Downloader(hashURL, false);
-            this.Downloader = new Downloader(url, false);
-            this.MarkerDownloader = new Downloader(markerURL, true);
-            if (System.IO.File.Exists(filename))
-            {
-                System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-                loadedHash = md5.ComputeHash(System.IO.File.ReadAllBytes(filename));
-                this.HashDownloader.StartDownload();
-            }
-            else
-            {
-                this.Downloader.StartDownload();
-            }
-        }
-
-        protected int CurrentTexture = -1;
-
-        public void FreeTextures()
-        {
-            if (Textures != null)
-                for (int i = 0; i < Textures.Length; i++)
-                    if (Textures[i] != null)
-                        UnityEngine.Object.Destroy(Textures[i]);
-        }
-
-        public void ParseTextures()
-        {
-            FreeTextures();
-            string directoryName = System.IO.Path.GetDirectoryName(filename);
-            if (!System.IO.Directory.Exists(directoryName))
-                System.IO.Directory.CreateDirectory(directoryName);
-
-            Texture2D whole = new Texture2D(2, 2, TextureFormat.RGB24, false, false);
-            whole.LoadImage(System.IO.File.ReadAllBytes(filename));
-
-            int widthPer = whole.width / SPLIT;
-            int heightPer = whole.height / SPLIT;
-            for (int x = 0; x < SPLIT; x++)
-            {
-                for (int y = 0; y < SPLIT; y++)
-                {
-                    // splitting the texture for better distributed loading performance
-                    Texture2D n = new Texture2D(widthPer, heightPer, TextureFormat.RGB24, false, true);
-                    n.SetPixels(whole.GetPixels(x * widthPer, y * heightPer, widthPer, heightPer));
-                    n.Apply();
-                    int index = x + y * SPLIT;
-                    System.IO.File.WriteAllBytes(directoryName + System.IO.Path.DirectorySeparatorChar + index + ".png", n.EncodeToPNG());
-                    Textures[index] = n;
-                }
-            }
             CurrentTexture = -1;
             TexturesLoaded = true;
-            UnityEngine.Object.Destroy(whole);
         }
+    }
 
-        void LoadTexture()
+    public void Update()
+    {
+        try
         {
-            string fileName = System.IO.Path.GetDirectoryName(filename) + System.IO.Path.DirectorySeparatorChar + CurrentTexture + ".png";
-            if (!System.IO.File.Exists(fileName))
+            if (MarkerDownloader != null && MarkerDownloader.Finished)
+            {
+                JsonData jsonData = JsonMapper.ToObject(Encoding.UTF8.GetString(MarkerDownloader.Data));
+                for (int i = 0; i < jsonData["markers"].Count; i++)
+                {
+                    string key = jsonData["markers"][i]["name"].ToString().Replace("\"", "");
+                    if (IngameMap.markerSettings.ContainsKey(key))
+                    {
+                        Markers.Add(new Marker(jsonData["markers"][i], IngameMap.markerSettings[key]));
+                    }
+                }
+                MarkerDownloader = null;
+            }
+            if (HashDownloader != null && HashDownloader.Finished)
+            {
+                string @string = Encoding.UTF8.GetString(HashDownloader.Data);
+                serverHash = ConvertHexStringToByteArray(@string);
+                bool flag = true;
+                for (int j = 0; j < loadedHash.Length; j++)
+                {
+                    if (loadedHash[j] != serverHash[j])
+                    {
+                        flag = false;
+                        Downloader.StartDownload();
+                        break;
+                    }
+                }
+                if (flag)
+                {
+                    CurrentTexture = 0;
+                }
+                HashDownloader = null;
+            }
+            if (CurrentTexture >= 0)
+            {
+                LoadTexture();
+            }
+            if (Downloader.Finished && !downloadParsed)
+            {
+                string directoryName = Path.GetDirectoryName(filename);
+                if (!Directory.Exists(directoryName))
+                {
+                    Directory.CreateDirectory(directoryName);
+                }
+                File.WriteAllBytes(filename, Downloader.Data);
                 ParseTextures();
-            if (System.IO.File.Exists(fileName))
-            {
-                Textures[CurrentTexture] = new Texture2D(2, 2, TextureFormat.RGB24, false, true);
-                Textures[CurrentTexture].LoadImage(System.IO.File.ReadAllBytes(fileName));
-            }
-            else
-            {
-                CurrentTexture = -1;
-                // something went terribly wrong :(
-            }
-            CurrentTexture++;
-            if (CurrentTexture >= SPLIT * SPLIT)
-            {
-                CurrentTexture = -1;
-                TexturesLoaded = true;
+                downloadParsed = true;
             }
         }
-
-        public void Update()
+        catch (Exception ex)
         {
-            try
-            {
-                if (MarkerDownloader != null && MarkerDownloader.Finished)
-                {
-                    string text = System.Text.UTF8Encoding.UTF8.GetString(MarkerDownloader.Data);
-                    LitJson.JsonData node = LitJson.JsonMapper.ToObject(text);
-                    for (int i = 0; i < node["markers"].Count; i++)
-                    {
-                        string n = node["markers"][i]["name"].ToString().Replace("\"", "");
-                        if (IngameMap.markerSettings.ContainsKey(n))
-                        {
-                            Markers.Add(new Marker(node["markers"][i], IngameMap.markerSettings[n]));
-                        }
-                    }
-                    MarkerDownloader = null;
-                }
-                if (HashDownloader != null && HashDownloader.Finished)
-                {
-                    string text = System.Text.UTF8Encoding.UTF8.GetString(HashDownloader.Data);
-                    serverHash = ConvertHexStringToByteArray(text);
-                    bool identical = true;
-                    for (int i = 0; i < loadedHash.Length; i++)
-                    {
-                        if (loadedHash[i] != serverHash[i])
-                        {
-                            identical = false;
-                            this.Downloader.StartDownload();
-                            break;
-                        }
-                    }
-                    if (identical)
-                    {
-                        CurrentTexture = 0;
-                    }
-                    HashDownloader = null;
-                }
-                // load textures distributed over frames
-                if (CurrentTexture >= 0)
-                {
-                    LoadTexture();
-                }
-
-                if (this.Downloader.Finished && !downloadParsed)
-                {
-                    string directoryName = System.IO.Path.GetDirectoryName(filename);
-                    if (!System.IO.Directory.Exists(directoryName))
-                        System.IO.Directory.CreateDirectory(directoryName);
-                    System.IO.File.WriteAllBytes(filename, Downloader.Data);
-                    ParseTextures();
-                    downloadParsed = true;
-                }
-            } catch (Exception e)
-            {
-                ModAPI.Log.Write(e.ToString());
-            }
+            Log.Write(ex.ToString());
         }
     }
 }

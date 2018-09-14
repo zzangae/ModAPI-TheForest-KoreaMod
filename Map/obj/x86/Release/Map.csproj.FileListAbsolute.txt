@@ -1,5 +1,10 @@
-E:\Users\hamsterphimo\Documents\ModAPI\GitHub\ModAPI\bin\Debug\projects\TheForest\Map\Mod\Map.dll
-E:\Users\hamsterphimo\Documents\ModAPI\GitHub\ModAPI\bin\Debug\projects\TheForest\Map\Mod\Map.pdb
-E:\Users\hamsterphimo\Documents\ModAPI\GitHub\ModAPI\bin\Debug\projects\TheForest\Map\obj\x86\Release\Map.csprojResolveAssemblyReference.cache
-E:\Users\hamsterphimo\Documents\ModAPI\GitHub\ModAPI\bin\Debug\projects\TheForest\Map\obj\x86\Release\Map.dll
-E:\Users\hamsterphimo\Documents\ModAPI\GitHub\ModAPI\bin\Debug\projects\TheForest\Map\obj\x86\Release\Map.pdb
+D:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\Mod\Map.dll
+D:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\Mod\Map.pdb
+D:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\obj\x86\Release\Map.csproj.CoreCompileInputs.cache
+D:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\obj\x86\Release\Map.dll
+D:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\obj\x86\Release\Map.pdb
+F:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\Mod\Map.dll
+F:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\Mod\Map.pdb
+F:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\obj\x86\Release\Map.csproj.CoreCompileInputs.cache
+F:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\obj\x86\Release\Map.dll
+F:\__더 포레스트\ModAPI\modapi_20180429_1.0.5.0\projects\TheForest\Map\obj\x86\Release\Map.pdb
