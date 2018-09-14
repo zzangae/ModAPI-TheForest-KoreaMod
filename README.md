@@ -1,7 +1,7 @@
 # ModAPI-TheForest-KoreaMod
 더 포레스트 ModAPI 한국어지원<br>
 작업시작한날 : 2017-04-05<br>
-업데이트 : 2018-05-23<br>
+업데이트 : 2018-09-14<br>
 <br>
 안녕하세요<br>
 더 포레스트(The forest) 네이버 카페지기 수집거부 입니다<br>
