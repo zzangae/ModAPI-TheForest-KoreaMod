@@ -711,7 +711,7 @@ public class IngameMap : MonoBehaviour
                         Class = new MarkerSetting
                         {
                             ID = "Player",
-                            Color = Color.green,
+                            Color = Color.magenta,
                             Label = "플레이어",
                             Texture = 31,
                             Category = "플레이어"
@@ -861,6 +861,7 @@ public class IngameMap : MonoBehaviour
                     {
                         Vector2 vector4 = new Vector2(Event.current.mousePosition.x - 125f, Event.current.mousePosition.y + 5f);
                         float height = (float)list.Count * 30f + 5f;
+                        //
                         GUI.Box(new Rect(vector4.x, vector4.y, 120f, height), "");
                         float num2 = 0f;
                         for (int l = 0; l < list.Count; l++)
@@ -917,7 +918,8 @@ public class IngameMap : MonoBehaviour
                         ((IDisposable)enumerator3).Dispose();
                     }
                     float num5 = 70f;
-                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "필터", GUI.skin.window);
+                    //Filter-Bar
+                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 330f, num3 + 35f), "필터", GUI.skin.window);
                     int num6 = 0;
                     int num7 = 0;
                     enumerator3 = Categories.Values.GetEnumerator();
@@ -928,7 +930,8 @@ public class IngameMap : MonoBehaviour
                             MarkerCategory current6 = enumerator3.Current;
                             num7 = 0;
                             string category = current6.Markers[0].Category;
-                            current6.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 200f, 20f), current6.Selected, category, GUI.skin.button);
+                            //titleBar
+                            current6.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 330f, 20f), current6.Selected, category, GUI.skin.button);
                             num6 += 20;
                             if (current6.Selected)
                             {
@@ -938,17 +941,20 @@ public class IngameMap : MonoBehaviour
                                     while (enumerator4.MoveNext())
                                     {
                                         MarkerSetting current7 = enumerator4.Current;
-                                        Rect position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 100f, 20f);
+                                        //inside-Bar
+                                        Rect position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 110f, 20f);
                                         GUI.color = new Color(current6.Color.r, current6.Color.g, current6.Color.b, current7.Selected ? 0.2f : 0f);
                                         GUI.DrawTexture(position2, foreground);
                                         GUI.color = current6.Color;
+                                        //width-height inside text-icon 
                                         position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 20f, 20f);
                                         GUI.DrawTextureWithTexCoords(position2, Markers, GetTextureCoords(current7.Texture));
                                         GUI.color = Color.white;
-                                        position2 = new Rect((float)(35 + num7), (float)Screen.height - num3 - num5 + (float)num6, 65f, 20f);
+                                        //TEXT-width
+                                        position2 = new Rect((float)(35 + num7), (float)Screen.height - num3 - num5 + (float)num6, 80f, 20f);
                                         current7.Selected = GUI.Toggle(position2, current7.Selected, current7.Label, GUI.skin.label);
-                                        num7 += 100;
-                                        if (num7 >= 200)
+                                        num7 += 110;
+                                        if (num7 >= 250)
                                         {
                                             num7 = 0;
                                             num6 += 20;
@@ -959,7 +965,7 @@ public class IngameMap : MonoBehaviour
                                 {
                                     ((IDisposable)enumerator4).Dispose();
                                 }
-                                if (num7 == 100)
+                                if (num7 == 110)
                                 {
                                     num6 += 20;
                                 }
@@ -1155,7 +1161,7 @@ public class IngameMap : MonoBehaviour
         }
     }
 
-    private void readIni(string path)
+    private void ReadIni(string path)
     {
         INIHelper iNIHelper = new INIHelper(path);
         foreach (MarkerSetting value in markerSettings.Values)
@@ -1183,7 +1189,7 @@ public class IngameMap : MonoBehaviour
     {
         if (File.Exists("Mods/Map.settings"))
         {
-            readIni("Mods/Map.settings");
+            ReadIni("Mods/Map.settings");
         }
     }
 }
