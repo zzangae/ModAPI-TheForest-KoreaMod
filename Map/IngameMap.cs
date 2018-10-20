@@ -1,4 +1,4 @@
-﻿// Map.IngameMap
+﻿// IngameMap
 using ModAPI;
 using ModAPI.Attributes;
 using System;
@@ -47,20 +47,20 @@ public class IngameMap : MonoBehaviour
             "Big tree",
             new MarkerSetting
             {
-                Label = "큰 나무",
+                Label = "Big tree",
                 Texture = 0,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Good spot",
             new MarkerSetting
             {
-                Label = "좋은 자리",
+                Label = "Good spot",
                 Texture = 1,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
@@ -68,500 +68,500 @@ public class IngameMap : MonoBehaviour
             new MarkerSetting
             {
                 ID = "Passenger",
-                Label = "승객",
+                Label = "Passenger",
                 Texture = 2,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Sharks",
             new MarkerSetting
             {
-                Label = "상어",
+                Label = "Sharks",
                 Texture = 3,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Bedroll",
             new MarkerSetting
             {
-                Label = "침상",
+                Label = "Bedroll",
                 Texture = 4,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Tent",
             new MarkerSetting
             {
-                Label = "텐트",
+                Label = "Tent",
                 Texture = 5,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Boat",
             new MarkerSetting
             {
-                Label = "보트",
+                Label = "Boat",
                 Texture = 6,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Plane",
             new MarkerSetting
             {
-                Label = "비행기",
+                Label = "Plane",
                 Texture = 7,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Anchor",
             new MarkerSetting
             {
-                Label = "닻",
+                Label = "Anchor",
                 Texture = 8,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Suitcase",
             new MarkerSetting
             {
-                Label = "여행가방",
+                Label = "Suitcase",
                 Texture = 9,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Cave",
             new MarkerSetting
             {
-                Label = "동굴",
+                Label = "Cave",
                 Texture = 10,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Collectible",
             new MarkerSetting
             {
-                Label = "수집물",
+                Label = "Collectible",
                 Texture = 11,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Paper",
             new MarkerSetting
             {
-                Label = "사진",
+                Label = "Picture",
                 Texture = 48,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Magazine",
             new MarkerSetting
             {
-                Label = "잡지",
+                Label = "Magazine",
                 Texture = 48,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Cassette",
             new MarkerSetting
             {
-                Label = "카세트",
+                Label = "Cassette",
                 Texture = 40,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Camcorder",
             new MarkerSetting
             {
-                Label = "캠코더",
+                Label = "Camcorder",
                 Texture = 41,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Tape",
             new MarkerSetting
             {
-                Label = "테이프",
+                Label = "Tape",
                 Texture = 42,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Toy",
             new MarkerSetting
             {
-                Label = "인형",
+                Label = "Toy",
                 Texture = 43,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Map",
             new MarkerSetting
             {
-                Label = "지도",
+                Label = "Map",
                 Texture = 44,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Compass",
             new MarkerSetting
             {
-                Label = "나침반",
+                Label = "Compass",
                 Texture = 45,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Pedometer",
             new MarkerSetting
             {
-                Label = "만보계",
+                Label = "Pedometer",
                 Texture = 47,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Fortune",
             new MarkerSetting
             {
-                Label = "재산",
+                Label = "Fortune",
                 Texture = 46,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "수집물"
+                Category = "Collectibles"
             }
         },
         {
             "Explodable",
             new MarkerSetting
             {
-                Label = "폭발물",
+                Label = "Explodable",
                 Texture = 12,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Crate",
             new MarkerSetting
             {
-                Label = "상자",
+                Label = "Crate",
                 Texture = 13,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "기본"
+                Category = "General"
             }
         },
         {
             "Berries",
             new MarkerSetting
             {
-                Label = "열매",
+                Label = "Berries",
                 Texture = 14,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Flower",
             new MarkerSetting
             {
-                Label = "꽃",
+                Label = "Flower",
                 Texture = 14,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Mushrooms",
             new MarkerSetting
             {
-                Label = "버섯",
+                Label = "Mushrooms",
                 Texture = 16,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Oyster",
             new MarkerSetting
             {
-                Label = "굴",
+                Label = "Oyster",
                 Texture = 16,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Fish",
             new MarkerSetting
             {
-                Label = "물고기",
+                Label = "Fish",
                 Texture = 15,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Medicine",
             new MarkerSetting
             {
-                Label = "약",
+                Label = "Medicine",
                 Texture = 17,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Native camp",
             new MarkerSetting
             {
-                Label = "원주민 캠프장",
+                Label = "Native camp",
                 Texture = 18,
                 Color = Color.red,
-                Category = "원주민"
+                Category = "Natives"
             }
         },
         {
             "Cannibal",
             new MarkerSetting
             {
-                Label = "식인종",
+                Label = "Cannibal",
                 Texture = 35,
                 Color = Color.red,
-                Category = "원주민"
+                Category = "Natives"
             }
         },
         {
             "Mutant",
             new MarkerSetting
             {
-                Label = "돌연변이",
+                Label = "Mutant",
                 Texture = 49,
                 Color = Color.red,
-                Category = "원주민"
+                Category = "Natives"
             }
         },
         {
             "Babies",
             new MarkerSetting
             {
-                Label = "아기돌연변이",
+                Label = "Babies",
                 Texture = 35,
                 Color = Color.red,
-                Category = "원주민"
+                Category = "Natives"
             }
         },
         {
             "Flashlight",
             new MarkerSetting
             {
-                Label = "손전등",
+                Label = "Flashlight",
                 Texture = 19,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "DrinkZone",
             new MarkerSetting
             {
-                Label = "마시는지역",
+                Label = "DrinkZone",
                 Texture = 20,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "음식"
+                Category = "Food"
             }
         },
         {
             "Flare",
             new MarkerSetting
             {
-                Label = "플레어",
+                Label = "Flare",
                 Texture = 21,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Money",
             new MarkerSetting
             {
-                Label = "돈",
+                Label = "Money",
                 Texture = 22,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Rope",
             new MarkerSetting
             {
-                Label = "밧줄",
+                Label = "Rope",
                 Texture = 23,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Circuit",
             new MarkerSetting
             {
-                Label = "회로판",
+                Label = "Circuit",
                 Texture = 24,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Rebreather",
             new MarkerSetting
             {
-                Label = "수중호흡기",
+                Label = "Rebreather",
                 Texture = 25,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Air Canister",
             new MarkerSetting
             {
-                Label = "산소통",
+                Label = "Air Canister",
                 Texture = 26,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Pot",
             new MarkerSetting
             {
-                Label = "냄비",
+                Label = "Pot",
                 Texture = 27,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         },
         {
             "Stick",
             new MarkerSetting
             {
-                Label = "막대기",
+                Label = "Stick",
                 Texture = 28,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Axe",
             new MarkerSetting
             {
-                Label = "도끼",
+                Label = "Axe",
                 Texture = 29,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Bow",
             new MarkerSetting
             {
-                Label = "활",
+                Label = "Bow",
                 Texture = 37,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Gun",
             new MarkerSetting
             {
-                Label = "총",
+                Label = "Gun",
                 Texture = 30,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Chainsaw",
             new MarkerSetting
             {
-                Label = "전기톱",
+                Label = "Chainsaw",
                 Texture = 38,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Hairspray",
             new MarkerSetting
             {
-                Label = "헤어스프레이",
+                Label = "Hairspray",
                 Texture = 39,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Fuel Canister",
             new MarkerSetting
             {
-                Label = "연료",
+                Label = "Fuel",
                 Texture = 20,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Ammo",
             new MarkerSetting
             {
-                Label = "총알",
+                Label = "Ammo",
                 Texture = 34,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "무기"
+                Category = "Weapons"
             }
         },
         {
             "Paint",
             new MarkerSetting
             {
-                Label = "페인트",
+                Label = "Paint",
                 Texture = 33,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "도구"
+                Category = "Tools"
             }
         }
     };
@@ -617,6 +617,10 @@ public class IngameMap : MonoBehaviour
     protected Texture2D overworldTexture;
 
     protected Texture2D underworldTexture;
+
+    private bool ShouldEquipLeftHandAfter;
+
+    private bool ShouldEquipRightHandAfter;
 
     protected bool visible;
 
@@ -701,7 +705,7 @@ public class IngameMap : MonoBehaviour
                     List<Map.Marker> list = new List<Map.Marker>();
                     for (int k = 0; k < currentMap.Markers.Count; k++)
                     {
-                        if (currentMap.Markers[k].Class.Selected && DrawMarker(currentMap.Markers[k], 0f, 1f))
+                        if (currentMap.Markers[k].Class.Selected && DrawMarker(currentMap.Markers[k]))
                         {
                             list.Add(currentMap.Markers[k]);
                         }
@@ -711,31 +715,29 @@ public class IngameMap : MonoBehaviour
                         Class = new MarkerSetting
                         {
                             ID = "Player",
-                            Color = Color.magenta,
-                            Label = "플레이어",
+                            Color = Color.white,
+                            Label = "You",
                             Texture = 31,
-                            Category = "플레이어"
+                            Category = "Player"
                         },
-                        Description = "플레이어",
+                        Description = "You",
                         WorldPosition = Vector3.zero
                     };
                     playerMarker.WorldPosition.x = 0f - LocalPlayer.Transform.position.z;
                     playerMarker.WorldPosition.y = LocalPlayer.Transform.position.y;
                     playerMarker.WorldPosition.z = LocalPlayer.Transform.position.x;
-                    Map.Marker marker = playerMarker;
-                    Quaternion quaternion = LocalPlayer.Transform.rotation;
-                    if (DrawMarker(marker, 90f + quaternion.eulerAngles.y, 2f))
+                    if (DrawMarker(playerMarker, 90f + LocalPlayer.Transform.rotation.eulerAngles.y, 2f))
                     {
                         list.Add(playerMarker);
                     }
-                    if (BoltNetwork.isRunning && (UnityEngine.Object)Scene.SceneTracker != (UnityEngine.Object)null && Scene.SceneTracker.allPlayerEntities != null)
+                    if (BoltNetwork.isRunning && Scene.SceneTracker != null && Scene.SceneTracker.allPlayerEntities != null)
                     {
                         PlayerManager.Players.Clear();
                         PlayerManager.Players.AddRange(from o in Scene.SceneTracker.allPlayerEntities.Where(delegate (BoltEntity o)
                         {
-                            if (o.isAttached && o.StateIs<IPlayerState>() && (UnityEngine.Object)LocalPlayer.Entity != (UnityEngine.Object)o && o.gameObject.activeSelf && o.gameObject.activeInHierarchy)
+                            if (o.isAttached && o.StateIs<IPlayerState>() && LocalPlayer.Entity != o && o.gameObject.activeSelf && o.gameObject.activeInHierarchy)
                             {
-                                return (UnityEngine.Object)o.GetComponent<BoltPlayerSetup>() != (UnityEngine.Object)null;
+                                return o.GetComponent<BoltPlayerSetup>() != null;
                             }
                             return false;
                         })
@@ -754,7 +756,7 @@ public class IngameMap : MonoBehaviour
                                     Color = Color.red,
                                     Label = player.Name,
                                     Texture = 32,
-                                    Category = "플레이어"
+                                    Category = "Player"
                                 },
                                 Description = player.Name,
                                 WorldPosition = Vector3.zero
@@ -771,89 +773,60 @@ public class IngameMap : MonoBehaviour
                     if (livemarkers)
                     {
                         List<GameObject> list2;
-                        List<GameObject>.Enumerator enumerator2;
                         if (LocalPlayer.IsInCaves)
                         {
                             list2 = new List<GameObject>(Scene.MutantControler.activeCaveCannibals);
-                            enumerator2 = Scene.MutantControler.activeInstantSpawnedCannibals.GetEnumerator();
-                            try
+                            foreach (GameObject activeInstantSpawnedCannibal in Scene.MutantControler.activeInstantSpawnedCannibals)
                             {
-                                while (enumerator2.MoveNext())
+                                if (!list2.Contains(activeInstantSpawnedCannibal))
                                 {
-                                    GameObject current2 = enumerator2.Current;
-                                    if (!list2.Contains(current2))
-                                    {
-                                        list2.Add(current2);
-                                    }
+                                    list2.Add(activeInstantSpawnedCannibal);
                                 }
                             }
-                            finally
-                            {
-                                ((IDisposable)enumerator2).Dispose();
-                            }
-                            list2.RemoveAll((GameObject o) => (UnityEngine.Object)o == (UnityEngine.Object)null);
+                            list2.RemoveAll((GameObject o) => o == null);
                             list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
                         }
                         else
                         {
                             list2 = new List<GameObject>(Scene.MutantControler.activeWorldCannibals);
-                            enumerator2 = Scene.MutantControler.activeInstantSpawnedCannibals.GetEnumerator();
-                            try
+                            foreach (GameObject activeInstantSpawnedCannibal2 in Scene.MutantControler.activeInstantSpawnedCannibals)
                             {
-                                while (enumerator2.MoveNext())
+                                if (!list2.Contains(activeInstantSpawnedCannibal2))
                                 {
-                                    GameObject current3 = enumerator2.Current;
-                                    if (!list2.Contains(current3))
-                                    {
-                                        list2.Add(current3);
-                                    }
+                                    list2.Add(activeInstantSpawnedCannibal2);
                                 }
                             }
-                            finally
-                            {
-                                ((IDisposable)enumerator2).Dispose();
-                            }
-                            list2.RemoveAll((GameObject o) => (UnityEngine.Object)o == (UnityEngine.Object)null);
+                            list2.RemoveAll((GameObject o) => o == null);
                             list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
                         }
                         if (list2.Count > 0)
                         {
-                            enumerator2 = list2.GetEnumerator();
-                            try
+                            foreach (GameObject item in list2)
                             {
-                                while (enumerator2.MoveNext())
+                                if (item != null)
                                 {
-                                    GameObject current4 = enumerator2.Current;
-                                    if ((UnityEngine.Object)current4 != (UnityEngine.Object)null)
+                                    mutantMarker = new Map.Marker
                                     {
-                                        mutantMarker = new Map.Marker
+                                        Class = new MarkerSetting
                                         {
-                                            Class = new MarkerSetting
-                                            {
-                                                ID = "Live Cannibal",
-                                                Color = Color.red,
-                                                Label = "식인종",
-                                                Texture = 36,
-                                                Category = "원주민"
-                                            },
-                                            Description = "식인종",
-                                            WorldPosition = Vector3.zero
-                                        };
-                                        mutantMarker.WorldPosition.x = 0f - current4.transform.position.z;
-                                        mutantMarker.WorldPosition.y = current4.transform.position.y;
-                                        mutantMarker.WorldPosition.z = current4.transform.position.x;
-                                        quaternion = current4.GetComponentInChildren<Animator>().rootRotation;
-                                        float y = quaternion.eulerAngles.y;
-                                        if (DrawMarker(mutantMarker, 90f + y, 2f))
-                                        {
-                                            list.Add(mutantMarker);
-                                        }
+                                            ID = "Live Cannibal",
+                                            Color = Color.red,
+                                            Label = "Cannibal",
+                                            Texture = 36,
+                                            Category = "Natives"
+                                        },
+                                        Description = "Cannibal",
+                                        WorldPosition = Vector3.zero
+                                    };
+                                    mutantMarker.WorldPosition.x = 0f - item.transform.position.z;
+                                    mutantMarker.WorldPosition.y = item.transform.position.y;
+                                    mutantMarker.WorldPosition.z = item.transform.position.x;
+                                    float y = item.GetComponentInChildren<Animator>().rootRotation.eulerAngles.y;
+                                    if (DrawMarker(mutantMarker, 90f + y, 2f))
+                                    {
+                                        list.Add(mutantMarker);
                                     }
                                 }
-                            }
-                            finally
-                            {
-                                ((IDisposable)enumerator2).Dispose();
                             }
                         }
                     }
@@ -861,7 +834,6 @@ public class IngameMap : MonoBehaviour
                     {
                         Vector2 vector4 = new Vector2(Event.current.mousePosition.x - 125f, Event.current.mousePosition.y + 5f);
                         float height = (float)list.Count * 30f + 5f;
-                        //
                         GUI.Box(new Rect(vector4.x, vector4.y, 120f, height), "");
                         float num2 = 0f;
                         for (int l = 0; l < list.Count; l++)
@@ -878,107 +850,66 @@ public class IngameMap : MonoBehaviour
                     }
                     float num3 = 0f;
                     int num4 = 0;
-                    Dictionary<string, MarkerCategory>.ValueCollection.Enumerator enumerator3 = Categories.Values.GetEnumerator();
-                    List<MarkerSetting>.Enumerator enumerator4;
-                    try
+                    foreach (MarkerCategory value in Categories.Values)
                     {
-                        while (enumerator3.MoveNext())
+                        num3 += 20f;
+                        if (value.Selected)
                         {
-                            MarkerCategory current5 = enumerator3.Current;
-                            num3 += 20f;
-                            if (current5.Selected)
+                            num4 = 0;
+                            foreach (MarkerSetting marker in value.Markers)
                             {
-                                num4 = 0;
-                                enumerator4 = current5.Markers.GetEnumerator();
-                                try
+                                MarkerSetting markerSetting = marker;
+                                if (num4 == 0)
                                 {
-                                    while (enumerator4.MoveNext())
-                                    {
-                                        MarkerSetting current8 = enumerator4.Current;
-                                        if (num4 == 0)
-                                        {
-                                            num3 += 20f;
-                                        }
-                                        num4++;
-                                        if (num4 >= 2)
-                                        {
-                                            num4 = 0;
-                                        }
-                                    }
+                                    num3 += 20f;
                                 }
-                                finally
+                                num4++;
+                                if (num4 >= 2)
                                 {
-                                    ((IDisposable)enumerator4).Dispose();
+                                    num4 = 0;
                                 }
                             }
                         }
                     }
-                    finally
-                    {
-                        ((IDisposable)enumerator3).Dispose();
-                    }
                     float num5 = 70f;
-                    //Filter-Bar
-                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 330f, num3 + 35f), "필터", GUI.skin.window);
+                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "Filter", GUI.skin.window);
                     int num6 = 0;
                     int num7 = 0;
-                    enumerator3 = Categories.Values.GetEnumerator();
-                    try
+                    foreach (MarkerCategory value2 in Categories.Values)
                     {
-                        while (enumerator3.MoveNext())
+                        num7 = 0;
+                        string category = value2.Markers[0].Category;
+                        value2.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 200f, 20f), value2.Selected, category, GUI.skin.button);
+                        num6 += 20;
+                        if (value2.Selected)
                         {
-                            MarkerCategory current6 = enumerator3.Current;
-                            num7 = 0;
-                            string category = current6.Markers[0].Category;
-                            //titleBar
-                            current6.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 330f, 20f), current6.Selected, category, GUI.skin.button);
-                            num6 += 20;
-                            if (current6.Selected)
+                            foreach (MarkerSetting marker2 in value2.Markers)
                             {
-                                enumerator4 = current6.Markers.GetEnumerator();
-                                try
+                                Rect position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 100f, 20f);
+                                GUI.color = new Color(value2.Color.r, value2.Color.g, value2.Color.b, marker2.Selected ? 0.2f : 0f);
+                                GUI.DrawTexture(position2, foreground);
+                                GUI.color = value2.Color;
+                                position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 20f, 20f);
+                                GUI.DrawTextureWithTexCoords(position2, Markers, GetTextureCoords(marker2.Texture));
+                                GUI.color = Color.white;
+                                position2 = new Rect((float)(35 + num7), (float)Screen.height - num3 - num5 + (float)num6, 65f, 20f);
+                                marker2.Selected = GUI.Toggle(position2, marker2.Selected, marker2.Label, GUI.skin.label);
+                                num7 += 100;
+                                if (num7 >= 200)
                                 {
-                                    while (enumerator4.MoveNext())
-                                    {
-                                        MarkerSetting current7 = enumerator4.Current;
-                                        //inside-Bar
-                                        Rect position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 110f, 20f);
-                                        GUI.color = new Color(current6.Color.r, current6.Color.g, current6.Color.b, current7.Selected ? 0.2f : 0f);
-                                        GUI.DrawTexture(position2, foreground);
-                                        GUI.color = current6.Color;
-                                        //width-height inside text-icon 
-                                        position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 20f, 20f);
-                                        GUI.DrawTextureWithTexCoords(position2, Markers, GetTextureCoords(current7.Texture));
-                                        GUI.color = Color.white;
-                                        //TEXT-width
-                                        position2 = new Rect((float)(35 + num7), (float)Screen.height - num3 - num5 + (float)num6, 80f, 20f);
-                                        current7.Selected = GUI.Toggle(position2, current7.Selected, current7.Label, GUI.skin.label);
-                                        num7 += 110;
-                                        if (num7 >= 250)
-                                        {
-                                            num7 = 0;
-                                            num6 += 20;
-                                        }
-                                    }
-                                }
-                                finally
-                                {
-                                    ((IDisposable)enumerator4).Dispose();
-                                }
-                                if (num7 == 110)
-                                {
+                                    num7 = 0;
                                     num6 += 20;
                                 }
                             }
+                            if (num7 == 100)
+                            {
+                                num6 += 20;
+                            }
                         }
                     }
-                    finally
-                    {
-                        ((IDisposable)enumerator3).Dispose();
-                    }
-                    GUI.Label(new Rect(40f, (float)Screen.height - 60f, 200f, 20f), "실시간 식인종", GUI.skin.label);
+                    GUI.Label(new Rect(40f, (float)Screen.height - 60f, 200f, 20f), "Live Cannibals", GUI.skin.label);
                     livemarkers = GUI.Toggle(new Rect(10f, (float)Screen.height - 60f, 20f, 30f), livemarkers, "");
-                    if (GUI.Button(new Rect(10f, (float)Screen.height - 30f, 200f, 20f), "저장"))
+                    if (GUI.Button(new Rect(10f, (float)Screen.height - 30f, 200f, 20f), "Save"))
                     {
                         SaveMarkers(Categories, "Mods/Map.settings");
                     }
@@ -1004,21 +935,18 @@ public class IngameMap : MonoBehaviour
                     {
                         Zoom = Mathf.Clamp(Zoom + Event.current.delta.y / -20f, 1f, 3f);
                     }
-                    GUIContent content = new GUIContent("https://theforestmap.com/ 지도데이터를 만들어주신분께 감사를 드립니다.");
-                    GUIContent content2 = new GUIContent("https://cafe.naver.com/steamforest 네이버 더 포레스트 카페 방문하기");
+                    GUIContent content = new GUIContent("Thanks to https://theforestmap.com/ for providing the map data.");
                     Vector2 vector5 = GUI.skin.label.CalcSize(content);
                     GUI.color = Color.black;
                     GUI.Label(new Rect((float)Screen.width - 5f - vector5.x, (float)Screen.height - 25f, vector5.x + 10f, vector5.y + 10f), content);
-                    GUI.Label(new Rect((float)Screen.width - 5f - vector5.x, (float)Screen.height - 45f, vector5.x + 10f, vector5.y + 10f), content2);
                     GUI.color = Color.white;
                     GUI.Label(new Rect((float)Screen.width - 6f - vector5.x, (float)Screen.height - 26f, vector5.x + 10f, vector5.y + 10f), content);
-                    GUI.Label(new Rect((float)Screen.width - 6f - vector5.x, (float)Screen.height - 46f, vector5.x + 10f, vector5.y + 10f), content2);
                 }
                 if (currentMap.Loading)
                 {
                     if (currentMap.Textures == null || currentMap.Textures.Length == 0)
                     {
-                        string text = "불러오는중...";
+                        string text = "Loading...";
                         Vector2 vector6 = GUI.skin.label.CalcSize(new GUIContent(text));
                         GUI.Label(new Rect((float)Screen.width / 2f - vector6.x / 2f, (float)Screen.height / 2f - vector6.y - 5f, vector6.x + 10f, vector6.y + 10f), text, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width / 4f, (float)Screen.height / 2f + 1f, (float)Screen.width / 2f * currentMap.Progress, 2f), foreground);
@@ -1029,7 +957,7 @@ public class IngameMap : MonoBehaviour
                     }
                     else
                     {
-                        string text3 = "불러오는중...";
+                        string text3 = "Loading...";
                         Vector2 vector7 = GUI.skin.label.CalcSize(new GUIContent(text3));
                         GUI.Label(new Rect((float)Screen.width - 110f - vector7.x / 2f, (float)Screen.height - 40f - vector7.y - 5f, vector7.x + 10f, vector7.y + 10f), text3, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width - 210f, (float)Screen.height - 40f + 1f, 200f * currentMap.Progress, 2f), foreground);
@@ -1106,11 +1034,24 @@ public class IngameMap : MonoBehaviour
         }
     }
 
+    private void RestoreEquipement()
+    {
+        if (ShouldEquipLeftHandAfter)
+        {
+            LocalPlayer.Inventory.EquipPreviousUtility();
+        }
+        if (ShouldEquipRightHandAfter)
+        {
+            LocalPlayer.Inventory.EquipPreviousWeaponDelayed();
+        }
+    }
+
     private void Update()
     {
         if (TheForest.Utils.Input.GetButtonDown("Esc"))
         {
             Opened = false;
+            RestoreEquipement();
         }
         try
         {
@@ -1130,15 +1071,25 @@ public class IngameMap : MonoBehaviour
                 ShowPhase = 0f;
                 if (Opened)
                 {
+                    ShouldEquipLeftHandAfter = !LocalPlayer.Inventory.IsLeftHandEmpty();
+                    ShouldEquipRightHandAfter = !LocalPlayer.Inventory.IsRightHandEmpty();
                     if (!LocalPlayer.Inventory.IsRightHandEmpty())
                     {
                         if (!LocalPlayer.Inventory.RightHand.IsHeldOnly)
                         {
                             LocalPlayer.Inventory.MemorizeItem(Item.EquipmentSlot.RightHand);
                         }
-                        LocalPlayer.Inventory.StashEquipedWeapon(false);
+                        LocalPlayer.Inventory.StashEquipedWeapon(equipPrevious: false);
                     }
-                    LocalPlayer.Inventory.StashLeftHand();
+                    if (!LocalPlayer.Inventory.IsLeftHandEmpty())
+                    {
+                        LocalPlayer.Inventory.MemorizeItem(Item.EquipmentSlot.LeftHand);
+                        LocalPlayer.Inventory.StashLeftHand();
+                    }
+                }
+                else
+                {
+                    RestoreEquipement();
                 }
             }
             if (Opened)
@@ -1147,7 +1098,7 @@ public class IngameMap : MonoBehaviour
                 {
                     ShowPhase += Time.unscaledDeltaTime;
                 }
-                LocalPlayer.FpCharacter.LockView(true);
+                LocalPlayer.FpCharacter.LockView();
             }
             else if (visible)
             {
@@ -1161,7 +1112,7 @@ public class IngameMap : MonoBehaviour
         }
     }
 
-    private void ReadIni(string path)
+    private void readIni(string path)
     {
         INIHelper iNIHelper = new INIHelper(path);
         foreach (MarkerSetting value in markerSettings.Values)
@@ -1189,7 +1140,7 @@ public class IngameMap : MonoBehaviour
     {
         if (File.Exists("Mods/Map.settings"))
         {
-            ReadIni("Mods/Map.settings");
+            readIni("Mods/Map.settings");
         }
     }
 }
