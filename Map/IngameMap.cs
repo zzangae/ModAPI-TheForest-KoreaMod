@@ -47,20 +47,20 @@ public class IngameMap : MonoBehaviour
             "Big tree",
             new MarkerSetting
             {
-                Label = "Big tree",
+                Label = "큰 나무",
                 Texture = 0,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Good spot",
             new MarkerSetting
             {
-                Label = "Good spot",
+                Label = "좋은 자리",
                 Texture = 1,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
@@ -68,500 +68,500 @@ public class IngameMap : MonoBehaviour
             new MarkerSetting
             {
                 ID = "Passenger",
-                Label = "Passenger",
+                Label = "승객",
                 Texture = 2,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Sharks",
             new MarkerSetting
             {
-                Label = "Sharks",
+                Label = "상어",
                 Texture = 3,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Bedroll",
             new MarkerSetting
             {
-                Label = "Bedroll",
+                Label = "침상",
                 Texture = 4,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Tent",
             new MarkerSetting
             {
-                Label = "Tent",
+                Label = "텐트",
                 Texture = 5,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Boat",
             new MarkerSetting
             {
-                Label = "Boat",
+                Label = "보트",
                 Texture = 6,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Plane",
             new MarkerSetting
             {
-                Label = "Plane",
+                Label = "비행기",
                 Texture = 7,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Anchor",
             new MarkerSetting
             {
-                Label = "Anchor",
+                Label = "닻",
                 Texture = 8,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Suitcase",
             new MarkerSetting
             {
-                Label = "Suitcase",
+                Label = "여행가방",
                 Texture = 9,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Cave",
             new MarkerSetting
             {
-                Label = "Cave",
+                Label = "동굴",
                 Texture = 10,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Collectible",
             new MarkerSetting
             {
-                Label = "Collectible",
+                Label = "수집물",
                 Texture = 11,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Paper",
             new MarkerSetting
             {
-                Label = "Picture",
+                Label = "사진",
                 Texture = 48,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Magazine",
             new MarkerSetting
             {
-                Label = "Magazine",
+                Label = "잡지",
                 Texture = 48,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Cassette",
             new MarkerSetting
             {
-                Label = "Cassette",
+                Label = "카세트",
                 Texture = 40,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Camcorder",
             new MarkerSetting
             {
-                Label = "Camcorder",
+                Label = "캠코더",
                 Texture = 41,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Tape",
             new MarkerSetting
             {
-                Label = "Tape",
+                Label = "테이프",
                 Texture = 42,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Toy",
             new MarkerSetting
             {
-                Label = "Toy",
+                Label = "인형",
                 Texture = 43,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Map",
             new MarkerSetting
             {
-                Label = "Map",
+                Label = "지도",
                 Texture = 44,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Compass",
             new MarkerSetting
             {
-                Label = "Compass",
+                Label = "나침반",
                 Texture = 45,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Pedometer",
             new MarkerSetting
             {
-                Label = "Pedometer",
+                Label = "만보계",
                 Texture = 47,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Fortune",
             new MarkerSetting
             {
-                Label = "Fortune",
+                Label = "재산",
                 Texture = 46,
                 Color = new Color(0.9f, 0.1f, 1f),
-                Category = "Collectibles"
+                Category = "수집물"
             }
         },
         {
             "Explodable",
             new MarkerSetting
             {
-                Label = "Explodable",
+                Label = "폭발물",
                 Texture = 12,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Crate",
             new MarkerSetting
             {
-                Label = "Crate",
+                Label = "상자",
                 Texture = 13,
                 Color = new Color(0.75f, 0.75f, 0.75f),
-                Category = "General"
+                Category = "기본"
             }
         },
         {
             "Berries",
             new MarkerSetting
             {
-                Label = "Berries",
+                Label = "열매",
                 Texture = 14,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Flower",
             new MarkerSetting
             {
-                Label = "Flower",
+                Label = "꽃",
                 Texture = 14,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Mushrooms",
             new MarkerSetting
             {
-                Label = "Mushrooms",
+                Label = "버섯",
                 Texture = 16,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Oyster",
             new MarkerSetting
             {
-                Label = "Oyster",
+                Label = "굴",
                 Texture = 16,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Fish",
             new MarkerSetting
             {
-                Label = "Fish",
+                Label = "물고기",
                 Texture = 15,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Medicine",
             new MarkerSetting
             {
-                Label = "Medicine",
+                Label = "약",
                 Texture = 17,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Native camp",
             new MarkerSetting
             {
-                Label = "Native camp",
+                Label = "캠프장",
                 Texture = 18,
                 Color = Color.red,
-                Category = "Natives"
+                Category = "원주민"
             }
         },
         {
             "Cannibal",
             new MarkerSetting
             {
-                Label = "Cannibal",
+                Label = "식인종",
                 Texture = 35,
                 Color = Color.red,
-                Category = "Natives"
+                Category = "원주민"
             }
         },
         {
             "Mutant",
             new MarkerSetting
             {
-                Label = "Mutant",
-                Texture = 49,
+                Label = "돌연변이",
+                Texture = 35,
                 Color = Color.red,
-                Category = "Natives"
+                Category = "원주민"
             }
         },
         {
             "Babies",
             new MarkerSetting
             {
-                Label = "Babies",
+                Label = "아기돌연변이",
                 Texture = 35,
                 Color = Color.red,
-                Category = "Natives"
+                Category = "원주민"
             }
         },
         {
             "Flashlight",
             new MarkerSetting
             {
-                Label = "Flashlight",
+                Label = "손전등",
                 Texture = 19,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "DrinkZone",
             new MarkerSetting
             {
-                Label = "DrinkZone",
+                Label = "마시는지역",
                 Texture = 20,
                 Color = new Color(0.5f, 1f, 0.5f),
-                Category = "Food"
+                Category = "음식"
             }
         },
         {
             "Flare",
             new MarkerSetting
             {
-                Label = "Flare",
+                Label = "플레어",
                 Texture = 21,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Money",
             new MarkerSetting
             {
-                Label = "Money",
+                Label = "돈",
                 Texture = 22,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Rope",
             new MarkerSetting
             {
-                Label = "Rope",
+                Label = "밧줄",
                 Texture = 23,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Circuit",
             new MarkerSetting
             {
-                Label = "Circuit",
+                Label = "회로판",
                 Texture = 24,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Rebreather",
             new MarkerSetting
             {
-                Label = "Rebreather",
+                Label = "수중호흡기",
                 Texture = 25,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Air Canister",
             new MarkerSetting
             {
-                Label = "Air Canister",
+                Label = "산소통",
                 Texture = 26,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Pot",
             new MarkerSetting
             {
-                Label = "Pot",
+                Label = "냄비",
                 Texture = 27,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         },
         {
             "Stick",
             new MarkerSetting
             {
-                Label = "Stick",
+                Label = "막대기",
                 Texture = 28,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Axe",
             new MarkerSetting
             {
-                Label = "Axe",
+                Label = "도끼",
                 Texture = 29,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Bow",
             new MarkerSetting
             {
-                Label = "Bow",
+                Label = "활",
                 Texture = 37,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Gun",
             new MarkerSetting
             {
-                Label = "Gun",
+                Label = "총",
                 Texture = 30,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Chainsaw",
             new MarkerSetting
             {
-                Label = "Chainsaw",
+                Label = "전기톱",
                 Texture = 38,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Hairspray",
             new MarkerSetting
             {
-                Label = "Hairspray",
+                Label = "헤어스프레이",
                 Texture = 39,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Fuel Canister",
             new MarkerSetting
             {
-                Label = "Fuel",
+                Label = "연료",
                 Texture = 20,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Ammo",
             new MarkerSetting
             {
-                Label = "Ammo",
+                Label = "총알",
                 Texture = 34,
                 Color = new Color(1f, 0.6f, 0f),
-                Category = "Weapons"
+                Category = "무기"
             }
         },
         {
             "Paint",
             new MarkerSetting
             {
-                Label = "Paint",
+                Label = "페인트",
                 Texture = 33,
                 Color = new Color(0.75f, 0.75f, 1f),
-                Category = "Tools"
+                Category = "도구"
             }
         }
     };
@@ -715,12 +715,12 @@ public class IngameMap : MonoBehaviour
                         Class = new MarkerSetting
                         {
                             ID = "Player",
-                            Color = Color.white,
-                            Label = "You",
+                            Color = Color.magenta,
+                            Label = "플레이어",
                             Texture = 31,
-                            Category = "Player"
+                            Category = "플레이어"
                         },
-                        Description = "You",
+                        Description = "플레이어",
                         WorldPosition = Vector3.zero
                     };
                     playerMarker.WorldPosition.x = 0f - LocalPlayer.Transform.position.z;
@@ -756,7 +756,7 @@ public class IngameMap : MonoBehaviour
                                     Color = Color.red,
                                     Label = player.Name,
                                     Texture = 32,
-                                    Category = "Player"
+                                    Category = "플레이어"
                                 },
                                 Description = player.Name,
                                 WorldPosition = Vector3.zero
@@ -811,11 +811,11 @@ public class IngameMap : MonoBehaviour
                                         {
                                             ID = "Live Cannibal",
                                             Color = Color.red,
-                                            Label = "Cannibal",
+                                            Label = "식인종",
                                             Texture = 36,
-                                            Category = "Natives"
+                                            Category = "원주민"
                                         },
-                                        Description = "Cannibal",
+                                        Description = "식인종",
                                         WorldPosition = Vector3.zero
                                     };
                                     mutantMarker.WorldPosition.x = 0f - item.transform.position.z;
@@ -872,27 +872,32 @@ public class IngameMap : MonoBehaviour
                         }
                     }
                     float num5 = 70f;
-                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "Filter", GUI.skin.window);
+                    //Filter-Bar
+                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "필터", GUI.skin.window);
                     int num6 = 0;
                     int num7 = 0;
                     foreach (MarkerCategory value2 in Categories.Values)
                     {
                         num7 = 0;
                         string category = value2.Markers[0].Category;
+                        //All-Bar
                         value2.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 200f, 20f), value2.Selected, category, GUI.skin.button);
                         num6 += 20;
                         if (value2.Selected)
                         {
                             foreach (MarkerSetting marker2 in value2.Markers)
                             {
+                                //inside BG-bar (front, height, width, 20f)
                                 Rect position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 100f, 20f);
                                 GUI.color = new Color(value2.Color.r, value2.Color.g, value2.Color.b, marker2.Selected ? 0.2f : 0f);
                                 GUI.DrawTexture(position2, foreground);
                                 GUI.color = value2.Color;
+                                //width-height inside text-icon
                                 position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 20f, 20f);
                                 GUI.DrawTextureWithTexCoords(position2, Markers, GetTextureCoords(marker2.Texture));
                                 GUI.color = Color.white;
-                                position2 = new Rect((float)(35 + num7), (float)Screen.height - num3 - num5 + (float)num6, 65f, 20f);
+                                //TEXT-width
+                                position2 = new Rect((float)(30 + num7), (float)Screen.height - num3 - num5 + (float)num6, 90f, 20f);
                                 marker2.Selected = GUI.Toggle(position2, marker2.Selected, marker2.Label, GUI.skin.label);
                                 num7 += 100;
                                 if (num7 >= 200)
@@ -901,15 +906,15 @@ public class IngameMap : MonoBehaviour
                                     num6 += 20;
                                 }
                             }
-                            if (num7 == 100)
+                            if (num7 == 110)
                             {
                                 num6 += 20;
                             }
                         }
                     }
-                    GUI.Label(new Rect(40f, (float)Screen.height - 60f, 200f, 20f), "Live Cannibals", GUI.skin.label);
+                    GUI.Label(new Rect(40f, (float)Screen.height - 60f, 200f, 20f), "실시간 식인종", GUI.skin.label);
                     livemarkers = GUI.Toggle(new Rect(10f, (float)Screen.height - 60f, 20f, 30f), livemarkers, "");
-                    if (GUI.Button(new Rect(10f, (float)Screen.height - 30f, 200f, 20f), "Save"))
+                    if (GUI.Button(new Rect(10f, (float)Screen.height - 30f, 200f, 20f), "저장"))
                     {
                         SaveMarkers(Categories, "Mods/Map.settings");
                     }
@@ -935,18 +940,21 @@ public class IngameMap : MonoBehaviour
                     {
                         Zoom = Mathf.Clamp(Zoom + Event.current.delta.y / -20f, 1f, 3f);
                     }
-                    GUIContent content = new GUIContent("Thanks to https://theforestmap.com/ for providing the map data.");
+                    GUIContent content = new GUIContent("https://theforestmap.com/ 지도데이터를 만들어주신분께 감사를 드립니다.");
+                    GUIContent content2 = new GUIContent("https://cafe.naver.com/steamforest 네이버 더 포레스트 카페 방문하기");
                     Vector2 vector5 = GUI.skin.label.CalcSize(content);
                     GUI.color = Color.black;
                     GUI.Label(new Rect((float)Screen.width - 5f - vector5.x, (float)Screen.height - 25f, vector5.x + 10f, vector5.y + 10f), content);
+                    GUI.Label(new Rect((float)Screen.width - 5f - vector5.x, (float)Screen.height - 45f, vector5.x + 10f, vector5.y + 10f), content2);
                     GUI.color = Color.white;
                     GUI.Label(new Rect((float)Screen.width - 6f - vector5.x, (float)Screen.height - 26f, vector5.x + 10f, vector5.y + 10f), content);
+                    GUI.Label(new Rect((float)Screen.width - 6f - vector5.x, (float)Screen.height - 46f, vector5.x + 10f, vector5.y + 10f), content2);
                 }
                 if (currentMap.Loading)
                 {
                     if (currentMap.Textures == null || currentMap.Textures.Length == 0)
                     {
-                        string text = "Loading...";
+                        string text = "불러오는중...";
                         Vector2 vector6 = GUI.skin.label.CalcSize(new GUIContent(text));
                         GUI.Label(new Rect((float)Screen.width / 2f - vector6.x / 2f, (float)Screen.height / 2f - vector6.y - 5f, vector6.x + 10f, vector6.y + 10f), text, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width / 4f, (float)Screen.height / 2f + 1f, (float)Screen.width / 2f * currentMap.Progress, 2f), foreground);
@@ -957,7 +965,7 @@ public class IngameMap : MonoBehaviour
                     }
                     else
                     {
-                        string text3 = "Loading...";
+                        string text3 = "불러오는중...";
                         Vector2 vector7 = GUI.skin.label.CalcSize(new GUIContent(text3));
                         GUI.Label(new Rect((float)Screen.width - 110f - vector7.x / 2f, (float)Screen.height - 40f - vector7.y - 5f, vector7.x + 10f, vector7.y + 10f), text3, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width - 210f, (float)Screen.height - 40f + 1f, 200f * currentMap.Progress, 2f), foreground);

@@ -20,7 +20,7 @@
   <Description>
     <EN>An ingame map</EN>
     <DE>Eine Karte</DE>
-    <KO>게임 안에서 지도열기. (한국어버전)</KO>
+    <KO>게임 안에서 지도열기. (한국어)</KO>
   </Description>
-  <Version>1.6</Version>
+  <Version>1.6.0.1</Version>
 </Mod>
