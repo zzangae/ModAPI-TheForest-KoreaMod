@@ -20,27 +20,34 @@ namespace FullInventory
             {
                 new GameObject(FillInv.GOName).AddComponent<FillInv>();
             }
-        }
+        }       
 
         private void Update()
         {
-            if (ModAPI.Input.GetButtonDown("FillInventory"))
-            {
+            var Fillinven1 = ModAPI.Input.GetButton("FillInventory");
+            var Fillinven2 = ModAPI.Input.GetButton("FillUnlimit");
+
+            if (Fillinven1)
+            {                
                 for (int i = 0; i < ItemDatabase.Items.Length; i++)
                 {
                     Item item = ItemDatabase.Items[i];
                     try
                     {
                         if (item._maxAmount >= 0)
-                        {                            
-                            LocalPlayer.Inventory.AddItem(item._id, 2000 - LocalPlayer.Inventory.AmountOf(item._id, true), true, false, null);
-
+                        {
+                            LocalPlayer.Inventory.AddItem(item._id, 100000, true, false, null);
                         }
                     }
-                    catch (System.Exception)
+                    catch (Exception)
                     {
+                        
                     }
-                }
+                }                
+            }
+            if (Fillinven2)
+            {
+                LocalPlayer.Inventory.ItemFilter = new InventoryItemFilter_Unlimited();
             }
         }
     }

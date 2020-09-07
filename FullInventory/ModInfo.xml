@@ -1,18 +1,32 @@
 <Mod ID="FullInventory">
-  <Compatible>0.67b</Compatible>
+  <Compatible>1.11b</Compatible>
   <Button Standard="F7" ID="FillInventory">
     <Name>
       <EN>Fill Key </EN>
+      <KO>Full 인벤토리</KO>
     </Name>
     <Description>
       <EN>Press F7 to fill your entire inventory! </EN>
+      <KO>F7키를 누르면 모든 아이템이 채워집니다.</KO>
+    </Description>
+  </Button>
+  <Button Standard="F8" ID="FillUnlimit">
+    <Name>
+      <EN>Unlimited items</EN>
+      <KO>무제한 아이템</KO>
+    </Name>
+    <Description>
+      <EN>The number of items of all changes to infinite</EN>
+      <KO>모든 아이템의 갯수가 무제한</KO>
     </Description>
   </Button>
   <Name>
     <EN>FullInventory </EN>
+    <KO>FullInventory </KO>
   </Name>
   <Description>
-    <EN>Press F7 to fill your entire inventory! </EN>
+    <EN>All items are filled in the inventory. (Unlimited items)</EN>
+    <KO>모든 항목이 인벤토리에 채워집니다 (무제한)</KO>
   </Description>
-  <Version>1.0.0.2</Version>
+  <Version>1.0.0.4</Version>
 </Mod>
