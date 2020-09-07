@@ -1,4 +1,5 @@
 ﻿// Map.Downloader
+using ModAPI;
 using System;
 using System.Net;
 using System.Net.Security;
@@ -53,6 +54,7 @@ public class Downloader
         catch (Exception ex)
         {
             Error = ex.ToString();
+            Log.Write(Error);
         }
     }
 

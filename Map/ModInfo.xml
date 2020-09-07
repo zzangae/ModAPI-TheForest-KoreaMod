@@ -1,5 +1,5 @@
 <Mod ID="Map">
-  <Compatible>1.09</Compatible>
+  <Compatible>1.11b</Compatible>
   <Button Standard="M" ID="OpenMap">
     <Name>
       <EN>Open map</EN>
@@ -22,5 +22,5 @@
     <DE>Eine Karte</DE>
     <KO>게임 안에서 지도열기. (한국어)</KO>
   </Description>
-  <Version>1.6.0.1</Version>
+  <Version>1.7.0.1</Version>
 </Mod>

@@ -206,9 +206,9 @@ public class Map
         Textures = new Texture2D[64];
         this.filename = filename;
         this.url = url;
-        HashDownloader = new Downloader(hashURL, false);
-        Downloader = new Downloader(url, false);
-        MarkerDownloader = new Downloader(markerURL, true);
+        HashDownloader = new Downloader(hashURL);
+        Downloader = new Downloader(url);
+        MarkerDownloader = new Downloader(markerURL, startInstant: true);
         if (File.Exists(filename))
         {
             MD5CryptoServiceProvider mD5CryptoServiceProvider = new MD5CryptoServiceProvider();
@@ -223,16 +223,17 @@ public class Map
 
     public void FreeTextures()
     {
-        if (Textures != null)
+        if (Textures == null)
         {
+            return;
+        }
             for (int i = 0; i < Textures.Length; i++)
             {
-                if ((UnityEngine.Object)Textures[i] != (UnityEngine.Object)null)
+                if (Textures[i] != null)
                 {
                     UnityEngine.Object.Destroy(Textures[i]);
                 }
             }
-        }
     }
 
     public void ParseTextures()
@@ -243,7 +244,7 @@ public class Map
         {
             Directory.CreateDirectory(directoryName);
         }
-        Texture2D texture2D = new Texture2D(2, 2, TextureFormat.RGB24, false, false);
+        Texture2D texture2D = new Texture2D(2, 2, TextureFormat.RGB24, mipmap: false, linear: false);
         texture2D.LoadImage(File.ReadAllBytes(filename));
         int num = texture2D.width / 8;
         int num2 = texture2D.height / 8;
@@ -251,7 +252,7 @@ public class Map
         {
             for (int j = 0; j < 8; j++)
             {
-                Texture2D texture2D2 = new Texture2D(num, num2, TextureFormat.RGB24, false, true);
+                Texture2D texture2D2 = new Texture2D(num, num2, TextureFormat.RGB24, mipmap: false, linear: true);
                 texture2D2.SetPixels(texture2D.GetPixels(i * num, j * num2, num, num2));
                 texture2D2.Apply();
                 int num3 = i + j * 8;
@@ -273,7 +274,7 @@ public class Map
         }
         if (File.Exists(path))
         {
-            Textures[CurrentTexture] = new Texture2D(2, 2, TextureFormat.RGB24, false, true);
+            Textures[CurrentTexture] = new Texture2D(2, 2, TextureFormat.RGB24, mipmap: false, linear: true);
             Textures[CurrentTexture].LoadImage(File.ReadAllBytes(path));
         }
         else

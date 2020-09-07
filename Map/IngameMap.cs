@@ -630,7 +630,7 @@ public class IngameMap : MonoBehaviour
         int num2 = Mathf.FloorToInt((float)index / 6f);
         float x = (float)num / 6f;
         float y = 1f - (float)(num2 + 1) / 9f;
-        return new Rect(x, y, 0.166666672f, 0.111111112f);
+        return new Rect(x, y, 355f / (678f * (float)Math.PI), 0.111111112f);
     }
 
     public static Vector2 WorldToMap(Vector3 world)
@@ -647,19 +647,19 @@ public class IngameMap : MonoBehaviour
     public bool DrawMarker(Map.Marker marker, float angle = 0f, float scale = 1f)
     {
         Vector2 vector = new Vector2((float)Screen.width / 2f, (float)Screen.height / 2f) + Position * Zoom;
-        Vector2 vector2 = new Vector2((float)Screen.height * 1.777778f, (float)Screen.height) * Zoom;
+        Vector2 vector2 = new Vector2((float)Screen.height * 1.777778f, Screen.height) * Zoom;
         Vector2 vector3 = WorldToMap(marker.WorldPosition);
         vector3.x *= vector2.x;
         vector3.y *= vector2.y;
         float num = GetMarkerSize() * scale;
         Rect textureCoords = GetTextureCoords(marker.Class.Texture);
-        Vector2 vector4 = new Vector2(vector.x + vector3.x, vector.y + vector3.y);
-        Rect position = new Rect(vector4.x - num / 2f, vector4.y - num / 2f, num, num);
+        Vector2 pivotPoint = new Vector2(vector.x + vector3.x, vector.y + vector3.y);
+        Rect position = new Rect(pivotPoint.x - num / 2f, pivotPoint.y - num / 2f, num, num);
         GUI.color = marker.Class.Color;
         if (angle != 0f)
         {
             Matrix4x4 matrix = GUI.matrix;
-            GUIUtility.RotateAroundPivot(angle, vector4);
+            GUIUtility.RotateAroundPivot(angle, pivotPoint);
             GUI.DrawTextureWithTexCoords(position, Markers, textureCoords);
             GUI.matrix = matrix;
         }
@@ -677,28 +677,30 @@ public class IngameMap : MonoBehaviour
         {
             GUI.skin = Interface.Skin;
             GUI.color = Color.white;
-            if (Opened)
+            if (!Opened)
             {
-                GUI.DrawTexture(new Rect(0f, 0f, (float)Camera.main.pixelWidth, (float)Camera.main.pixelHeight), background);
+                return;
+            }
+                GUI.DrawTexture(new Rect(0f, 0f, Camera.main.pixelWidth, Camera.main.pixelHeight), background);
                 if (currentMap.Textures != null && currentMap.Textures.Length != 0)
                 {
-                    Vector2 vector = new Vector2((float)Screen.height * 1.777778f, (float)Screen.height) * Zoom;
-                    if (vector.x < vector.y)
+                    Vector2 a = new Vector2((float)Screen.height * 1.777778f, Screen.height) * Zoom;
+                    if (a.x < a.y)
                     {
-                        vector.y = vector.x;
+                        a.y = a.x;
                     }
                     else
                     {
-                        vector.x = vector.y;
+                        a.x = a.y;
                     }
-                    Vector2 vector2 = vector / 8f;
-                    Vector2 vector3 = new Vector2((float)Screen.width / 2f, (float)Screen.height / 2f) + Position * Zoom - vector / 2f;
+                    Vector2 vector = a / 8f;
+                    Vector2 vector2 = new Vector2((float)Screen.width / 2f, (float)Screen.height / 2f) + Position * Zoom - a / 2f;
                     for (int i = 0; i < 8; i++)
                     {
                         for (int j = 0; j < 8; j++)
                         {
                             int num = i + (8 - j - 1) * 8;
-                            GUI.DrawTexture(new Rect(vector3.x + vector2.x * (float)i, vector3.y + vector2.y * (float)j, vector2.x, vector2.y), currentMap.Textures[num]);
+                            GUI.DrawTexture(new Rect(vector2.x + vector.x * (float)i, vector2.y + vector.y * (float)j, vector.x, vector.y), currentMap.Textures[num]);
                         }
                     }
                     GUI.DrawTexture(new Rect(0f, 0f, 500f, 500f), currentMap.Texture);
@@ -733,16 +735,10 @@ public class IngameMap : MonoBehaviour
                     if (BoltNetwork.isRunning && Scene.SceneTracker != null && Scene.SceneTracker.allPlayerEntities != null)
                     {
                         PlayerManager.Players.Clear();
-                        PlayerManager.Players.AddRange(from o in Scene.SceneTracker.allPlayerEntities.Where(delegate (BoltEntity o)
-                        {
-                            if (o.isAttached && o.StateIs<IPlayerState>() && LocalPlayer.Entity != o && o.gameObject.activeSelf && o.gameObject.activeInHierarchy)
-                            {
-                                return o.GetComponent<BoltPlayerSetup>() != null;
-                            }
-                            return false;
-                        })
-                                                       orderby o.GetState<IPlayerState>().name
-                                                       select new Player(o));
+                        PlayerManager.Players.AddRange(from o in Scene.SceneTracker.allPlayerEntities
+                            where o.isAttached && o.StateIs<IPlayerState>() && LocalPlayer.Entity != o && o.gameObject.activeSelf && o.gameObject.activeInHierarchy && o.GetComponent<BoltPlayerSetup>() != null
+                            orderby o.GetState<IPlayerState>().name
+                            select new Player(o));
                     }
                     if (BoltNetwork.isRunning)
                     {
@@ -832,19 +828,19 @@ public class IngameMap : MonoBehaviour
                     }
                     if (list.Count > 0)
                     {
-                        Vector2 vector4 = new Vector2(Event.current.mousePosition.x - 125f, Event.current.mousePosition.y + 5f);
+                        Vector2 vector3 = new Vector2(Event.current.mousePosition.x - 125f, Event.current.mousePosition.y + 5f);
                         float height = (float)list.Count * 30f + 5f;
-                        GUI.Box(new Rect(vector4.x, vector4.y, 120f, height), "");
+                        GUI.Box(new Rect(vector3.x, vector3.y, 120f, height), "");
                         float num2 = 0f;
                         for (int l = 0; l < list.Count; l++)
                         {
-                            Rect position = new Rect(vector4.x, vector4.y + num2, 120f, 30f);
+                            Rect position = new Rect(vector3.x, vector3.y + num2, 120f, 30f);
                             GUI.color = new Color(list[l].Class.Color.r, list[l].Class.Color.g, list[l].Class.Color.b, 0.2f);
                             GUI.DrawTexture(position, foreground);
                             GUI.color = list[l].Class.Color;
-                            GUI.DrawTextureWithTexCoords(new Rect(vector4.x + 5f, vector4.y + num2 + 5f, 20f, 20f), Markers, GetTextureCoords(list[l].Class.Texture));
+                            GUI.DrawTextureWithTexCoords(new Rect(vector3.x + 5f, vector3.y + num2 + 5f, 20f, 20f), Markers, GetTextureCoords(list[l].Class.Texture));
                             GUI.color = Color.white;
-                            GUI.Label(new Rect(vector4.x + 30f, vector4.y + num2 + 5f, 90f, 30f), list[l].Class.Label);
+                            GUI.Label(new Rect(vector3.x + 30f, vector3.y + num2 + 5f, 90f, 30f), list[l].Class.Label);
                             num2 += 30f;
                         }
                     }
@@ -853,63 +849,60 @@ public class IngameMap : MonoBehaviour
                     foreach (MarkerCategory value in Categories.Values)
                     {
                         num3 += 20f;
-                        if (value.Selected)
+                        if (!value.Selected)
                         {
-                            num4 = 0;
-                            foreach (MarkerSetting marker in value.Markers)
+                            continue;
+                        }
+                        num4 = 0;
+                        foreach (MarkerSetting marker in value.Markers)
+                        {
+                            _ = marker;
+                            if (num4 == 0)
                             {
-                                MarkerSetting markerSetting = marker;
-                                if (num4 == 0)
-                                {
-                                    num3 += 20f;
-                                }
-                                num4++;
-                                if (num4 >= 2)
-                                {
-                                    num4 = 0;
-                                }
+                                num3 += 20f;
+                            }
+                            num4++;
+                            if (num4 >= 2)
+                            {
+                                num4 = 0;
                             }
                         }
                     }
                     float num5 = 70f;
-                    //Filter-Bar
-                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "필터", GUI.skin.window);
+                    GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "필터", GUI.skin.window);//Filter-Bar
                     int num6 = 0;
                     int num7 = 0;
                     foreach (MarkerCategory value2 in Categories.Values)
                     {
                         num7 = 0;
                         string category = value2.Markers[0].Category;
-                        //All-Bar
-                        value2.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 200f, 20f), value2.Selected, category, GUI.skin.button);
+                        value2.Selected = GUI.Toggle(new Rect(10f, (float)Screen.height - num3 - num5 + (float)num6, 200f, 20f), value2.Selected, category, GUI.skin.button);//All-Bar
                         num6 += 20;
-                        if (value2.Selected)
+                        if (!value2.Selected)
                         {
-                            foreach (MarkerSetting marker2 in value2.Markers)
+                            continue;
+                        }
+                        foreach (MarkerSetting marker2 in value2.Markers)
+                        {
+                            Rect position2 = new Rect(10 + num7, (float)Screen.height - num3 - num5 + (float)num6, 100f, 20f);//inside BG-bar (front, height, width, 20f)
+                            GUI.color = new Color(value2.Color.r, value2.Color.g, value2.Color.b, marker2.Selected ? 0.2f : 0f);
+                            GUI.DrawTexture(position2, foreground);
+                            GUI.color = value2.Color;
+                            position2 = new Rect(10 + num7, (float)Screen.height - num3 - num5 + (float)num6, 20f, 20f);//width-height inside text-icon
+                            GUI.DrawTextureWithTexCoords(position2, Markers, GetTextureCoords(marker2.Texture));
+                            GUI.color = Color.white;
+                            position2 = new Rect(35 + num7, (float)Screen.height - num3 - num5 + (float)num6, 90f, 20f);//TEXT-width
+                            marker2.Selected = GUI.Toggle(position2, marker2.Selected, marker2.Label, GUI.skin.label);
+                            num7 += 100;
+                            if (num7 >= 200)
                             {
-                                //inside BG-bar (front, height, width, 20f)
-                                Rect position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 100f, 20f);
-                                GUI.color = new Color(value2.Color.r, value2.Color.g, value2.Color.b, marker2.Selected ? 0.2f : 0f);
-                                GUI.DrawTexture(position2, foreground);
-                                GUI.color = value2.Color;
-                                //width-height inside text-icon
-                                position2 = new Rect((float)(10 + num7), (float)Screen.height - num3 - num5 + (float)num6, 20f, 20f);
-                                GUI.DrawTextureWithTexCoords(position2, Markers, GetTextureCoords(marker2.Texture));
-                                GUI.color = Color.white;
-                                //TEXT-width
-                                position2 = new Rect((float)(30 + num7), (float)Screen.height - num3 - num5 + (float)num6, 90f, 20f);
-                                marker2.Selected = GUI.Toggle(position2, marker2.Selected, marker2.Label, GUI.skin.label);
-                                num7 += 100;
-                                if (num7 >= 200)
-                                {
-                                    num7 = 0;
-                                    num6 += 20;
-                                }
-                            }
-                            if (num7 == 110)
-                            {
+                                num7 = 0;
                                 num6 += 20;
                             }
+                        }
+                        if (num7 == 100)
+                        {
+                            num6 += 20;
                         }
                     }
                     GUI.Label(new Rect(40f, (float)Screen.height - 60f, 200f, 20f), "실시간 식인종", GUI.skin.label);
@@ -925,9 +918,9 @@ public class IngameMap : MonoBehaviour
                     }
                     else if (Event.current.type == EventType.MouseDrag)
                     {
-                        Vector2 a = Event.current.mousePosition - LastMousePos;
-                        float num8 = (float)Mathf.Min(Screen.width, Screen.height);
-                        Position += a / Zoom;
+                        Vector2 a2 = Event.current.mousePosition - LastMousePos;
+                        float num8 = Mathf.Min(Screen.width, Screen.height);
+                        Position += a2 / Zoom;
                         Position.x = Mathf.Clamp(Position.x, num8 / -2f, num8 / 2f);
                         Position.y = Mathf.Clamp(Position.y, num8 / -2f, num8 / 2f);
                         LastMousePos = Event.current.mousePosition;
@@ -942,40 +935,39 @@ public class IngameMap : MonoBehaviour
                     }
                     GUIContent content = new GUIContent("https://theforestmap.com/ 지도데이터를 만들어주신분께 감사를 드립니다.");
                     GUIContent content2 = new GUIContent("https://cafe.naver.com/steamforest 네이버 더 포레스트 카페 방문하기");
-                    Vector2 vector5 = GUI.skin.label.CalcSize(content);
+                    Vector2 vector4 = GUI.skin.label.CalcSize(content);
                     GUI.color = Color.black;
-                    GUI.Label(new Rect((float)Screen.width - 5f - vector5.x, (float)Screen.height - 25f, vector5.x + 10f, vector5.y + 10f), content);
-                    GUI.Label(new Rect((float)Screen.width - 5f - vector5.x, (float)Screen.height - 45f, vector5.x + 10f, vector5.y + 10f), content2);
+                    GUI.Label(new Rect((float)Screen.width - 5f - vector4.x, (float)Screen.height - 25f, vector4.x + 10f, vector4.y + 10f), content);
+                    GUI.Label(new Rect((float)Screen.width - 5f - vector4.x, (float)Screen.height - 45f, vector4.x + 10f, vector4.y + 10f), content2);
                     GUI.color = Color.white;
-                    GUI.Label(new Rect((float)Screen.width - 6f - vector5.x, (float)Screen.height - 26f, vector5.x + 10f, vector5.y + 10f), content);
-                    GUI.Label(new Rect((float)Screen.width - 6f - vector5.x, (float)Screen.height - 46f, vector5.x + 10f, vector5.y + 10f), content2);
+                    GUI.Label(new Rect((float)Screen.width - 6f - vector4.x, (float)Screen.height - 26f, vector4.x + 10f, vector4.y + 10f), content);
+                    GUI.Label(new Rect((float)Screen.width - 6f - vector4.x, (float)Screen.height - 46f, vector4.x + 10f, vector4.y + 10f), content2);
                 }
                 if (currentMap.Loading)
                 {
                     if (currentMap.Textures == null || currentMap.Textures.Length == 0)
                     {
                         string text = "불러오는중...";
-                        Vector2 vector6 = GUI.skin.label.CalcSize(new GUIContent(text));
-                        GUI.Label(new Rect((float)Screen.width / 2f - vector6.x / 2f, (float)Screen.height / 2f - vector6.y - 5f, vector6.x + 10f, vector6.y + 10f), text, WhiteLabel);
+                        Vector2 vector5 = GUI.skin.label.CalcSize(new GUIContent(text));
+                        GUI.Label(new Rect((float)Screen.width / 2f - vector5.x / 2f, (float)Screen.height / 2f - vector5.y - 5f, vector5.x + 10f, vector5.y + 10f), text, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width / 4f, (float)Screen.height / 2f + 1f, (float)Screen.width / 2f * currentMap.Progress, 2f), foreground);
                         string text2 = currentMap.CurrentTask + ": " + Mathf.FloorToInt(currentMap.Progress * 100f) + "% (" + Mathf.FloorToInt((float)currentMap.BytesLoaded) + "kb / " + Mathf.FloorToInt((float)currentMap.BytesTotal / 1024f) + "kb)";
-                        vector6 = GUI.skin.label.CalcSize(new GUIContent(text2));
-                        GUI.Label(new Rect((float)Screen.width / 2f - vector6.x / 2f, (float)Screen.height / 2f + 2f, vector6.x + 10f, vector6.y + 10f), text2, WhiteLabel);
+                        vector5 = GUI.skin.label.CalcSize(new GUIContent(text2));
+                        GUI.Label(new Rect((float)Screen.width / 2f - vector5.x / 2f, (float)Screen.height / 2f + 2f, vector5.x + 10f, vector5.y + 10f), text2, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width / 4f, (float)Screen.height / 2f, (float)Screen.width / 2f, 1f), foreground);
                     }
                     else
                     {
                         string text3 = "불러오는중...";
-                        Vector2 vector7 = GUI.skin.label.CalcSize(new GUIContent(text3));
-                        GUI.Label(new Rect((float)Screen.width - 110f - vector7.x / 2f, (float)Screen.height - 40f - vector7.y - 5f, vector7.x + 10f, vector7.y + 10f), text3, WhiteLabel);
+                        Vector2 vector6 = GUI.skin.label.CalcSize(new GUIContent(text3));
+                        GUI.Label(new Rect((float)Screen.width - 110f - vector6.x / 2f, (float)Screen.height - 40f - vector6.y - 5f, vector6.x + 10f, vector6.y + 10f), text3, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width - 210f, (float)Screen.height - 40f + 1f, 200f * currentMap.Progress, 2f), foreground);
                         string text4 = currentMap.CurrentTask + ": " + Mathf.FloorToInt(currentMap.Progress * 100f) + " % (" + Mathf.FloorToInt((float)currentMap.BytesLoaded) + "kb / " + Mathf.FloorToInt((float)currentMap.BytesTotal / 1024f) + "kb)";
-                        vector7 = GUI.skin.label.CalcSize(new GUIContent(text4));
-                        GUI.Label(new Rect((float)Screen.width - 110f - vector7.x / 2f, (float)Screen.height - 40f + 2f, vector7.x + 10f, vector7.y + 10f), text4, WhiteLabel);
+                        vector6 = GUI.skin.label.CalcSize(new GUIContent(text4));
+                        GUI.Label(new Rect((float)Screen.width - 110f - vector6.x / 2f, (float)Screen.height - 40f + 2f, vector6.x + 10f, vector6.y + 10f), text4, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width - 210f, (float)Screen.height - 40f, 200f, 1f), foreground);
                     }
-                }
-            }
+                }            
         }
         catch (Exception ex)
         {
@@ -1033,8 +1025,8 @@ public class IngameMap : MonoBehaviour
             foreground.Apply();
             WhiteLabel = new GUIStyle(Interface.Skin.label);
             WhiteLabel.normal.textColor = Color.white;
-            Overworld = new Map("https://theforestmap.com/map/map-4096.jpg", "https://theforestmap.com/map/md5.php?map=forest", "https://theforestmap.com/inc/api/?json&map=forest", "Mods/Map/Cache/Overworld/map.jpg");
-            Underworld = new Map("https://theforestmap.com/map/cave-4096.jpg", "https://theforestmap.com/map/md5.php?map=cave", "https://theforestmap.com/inc/api/?json&map=cave", "Mods/Map/Cache/Underworld/map.jpg");
+            Overworld = new Map("http://theforestmap.com/map/map-4096.jpg", "http://theforestmap.com/map/md5.php?map=forest", "http://theforestmap.com/inc/api/?json&map=forest", "Mods/Map/Cache/Overworld/map.jpg");
+            Underworld = new Map("http://theforestmap.com/map/cave-4096.jpg", "http://theforestmap.com/map/md5.php?map=cave", "http://theforestmap.com/inc/api/?json&map=cave", "Mods/Map/Cache/Underworld/map.jpg");
         }
         catch (Exception ex)
         {
