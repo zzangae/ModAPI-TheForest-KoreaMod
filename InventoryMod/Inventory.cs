@@ -30,8 +30,8 @@ namespace InventoryMod
         private void OnGUI()
         {
             if (this.visible)
-            {
-                UnityEngine.GUI.skin = ModAPI.Gui.Skin;
+            {                
+                UnityEngine.GUI.skin = ModAPI.Interface.Skin;
                 Matrix4x4 matrix = UnityEngine.GUI.matrix;
                 if (this.labelStyle == null)
                 {
@@ -44,6 +44,7 @@ namespace InventoryMod
                 for (int i = 0; i < ItemDatabase.Items.Length; i++)
                 {
                     UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), ItemDatabase.Items[i]._name, this.labelStyle);
+                    string layerId = (ItemDatabase.Items[i]._id).ToString();
                     if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Add"))
                     {
 
@@ -57,6 +58,7 @@ namespace InventoryMod
                             LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, ItemDatabase.Items.Length, false, false, null);
                         }
                     }
+                    UnityEngine.GUI.Label(new Rect(320f, this.cY, 150f, 20f), "( "+layerId+" )", this.labelStyle);
                     this.cY += 30f;
                 }
                 UnityEngine.GUI.EndScrollView();

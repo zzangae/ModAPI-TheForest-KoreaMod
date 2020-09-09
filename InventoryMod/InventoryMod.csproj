@@ -69,10 +69,6 @@
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityScript.Lang.dll</HintPath>
       <Private>False</Private>
     </Reference>
-<Reference Include="AmplifyMotion">
-      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/AmplifyMotion.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
 <Reference Include="Boo.Lang">
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/Boo.Lang.dll</HintPath>
       <Private>False</Private>
@@ -133,12 +129,16 @@
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/System.Xml.dll</HintPath>
       <Private>False</Private>
     </Reference>
-<Reference Include="UnityEngine">
-      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.dll</HintPath>
+<Reference Include="TheForest.Commons">
+      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/TheForest.Commons.dll</HintPath>
       <Private>False</Private>
     </Reference>
-<Reference Include="UnityEngine.Analytics">
-      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.Analytics.dll</HintPath>
+<Reference Include="TheForest.Modding">
+      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/TheForest.Modding.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+<Reference Include="UnityEngine">
+      <HintPath>../../../modlib/TheForest/TheForest_data/Managed/UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
 <Reference Include="UnityEngine.Networking">
