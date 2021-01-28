@@ -12,7 +12,7 @@ namespace FlintlockMachinegun
     {
         protected override void Update()
         {
-            if (LocalPlayer.Inventory.Owns(this._flintAmmoId, true))
+            if (LocalPlayer.Inventory.Owns(_flintAmmoId, true))
             {
                 LocalPlayer.Animator.SetBool("canReload", false);
             }            
@@ -20,49 +20,49 @@ namespace FlintlockMachinegun
             {
                 return;
             }
-            this.currState1 = LocalPlayer.Animator.GetCurrentAnimatorStateInfo(1);
-            this.nextState1 = LocalPlayer.Animator.GetNextAnimatorStateInfo(1);
-            this.currState2 = LocalPlayer.Animator.GetCurrentAnimatorStateInfo(2);
-            if (this.currState1.shortNameHash == this.playerReloadHash && !this._net)
+            currState1 = LocalPlayer.Animator.GetCurrentAnimatorStateInfo(1);
+            nextState1 = LocalPlayer.Animator.GetNextAnimatorStateInfo(1);
+            currState2 = LocalPlayer.Animator.GetCurrentAnimatorStateInfo(2);
+            if (currState1.shortNameHash == playerReloadHash && !_net)
             {
-                this._playerAnimator.SetBool("forceReload", false);
+                _playerAnimator.SetBool("forceReload", false);
             }
-            if (this.currState1.tagHash == this.knockBackHash || this.currState2.shortNameHash == this.sittingHash)
+            if (currState1.tagHash == knockBackHash || currState2.shortNameHash == sittingHash)
             {
-                this.animator.CrossFade(this.idleHash, 0f, 0, 0f);
+                animator.CrossFade(idleHash, 0f, 0, 0f);
             }
-            if (this.nextState1.shortNameHash == this.playerShootHash || nextState1.shortNameHash == playerAimShootHash)
+            if (nextState1.shortNameHash == playerShootHash || nextState1.shortNameHash == playerAimShootHash)
             {
-                this.animator.SetBool("shoot", true);
+                animator.SetBool("shoot", true);
             }
             else
             {
-                this.animator.SetBool("shoot", false);
+                animator.SetBool("shoot", false);
             }
-            if (this.currState1.shortNameHash == this.playerReloadHash && !this.reloadSync && !LocalPlayer.Inventory.IsLeftHandEmpty())
+            if (currState1.shortNameHash == playerReloadHash && !reloadSync && !LocalPlayer.Inventory.IsLeftHandEmpty())
             {
-                this.animator.CrossFade(this.reloadHash, 0f, 0, this.currState1.normalizedTime);
-                this.reloadSync = false;
-                this.animator.SetBool("shoot", false);
+                animator.CrossFade(reloadHash, 0f, 0, currState1.normalizedTime);
+                reloadSync = false;
+                animator.SetBool("shoot", false);
             }
-            else if (this.animator.GetCurrentAnimatorStateInfo(0).shortNameHash == this.shootHash)
+            else if (animator.GetCurrentAnimatorStateInfo(0).shortNameHash == shootHash)
             {
-                this.reloadSync = false;
+                reloadSync = false;
             }
-            if (this._net && this.currState1.shortNameHash == this.playerShootHash)
-            {
-                return;
-            }
-            else if (this._net && this.currState1.shortNameHash == this.playerReloadHash)
+            if (_net && currState1.shortNameHash == playerShootHash)
             {
                 return;
             }
-            if (this.nextState1.shortNameHash != this.playerIdleHash && !this._net)
+            else if (_net && currState1.shortNameHash == playerReloadHash)
+            {
+                return;
+            }
+            if (nextState1.shortNameHash != playerIdleHash && !_net)
             {
                 LocalPlayer.Inventory.CancelReloadDelay();
             }            
-            this.leftHandFull = false;
-            if (this.storeReloadDelay > 0.5f)
+            leftHandFull = false;
+            if (storeReloadDelay > 0.5f)
             {
                 base.Invoke("ForceReloadWeapon", 0.05f);
             }
