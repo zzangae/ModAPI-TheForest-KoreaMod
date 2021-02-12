@@ -12,6 +12,7 @@ namespace FullInventory
     public class FillInv : MonoBehaviour
     {
         private static string GOName = "__FillInv__";
+        public bool Fillinven;
 
         [ExecuteOnGameStart]
         private static void PutThisOnScene()
@@ -25,13 +26,13 @@ namespace FullInventory
         private void Update()
         {
             var Fillinven1 = ModAPI.Input.GetButton("FillInventory");
-            var Fillinven2 = ModAPI.Input.GetButton("FillUnlimit");
+            var Fillinven2 = ModAPI.Input.GetButton("FillUnlimit");       
 
             if (Fillinven1)
-            {                
+            {
                 for (int i = 0; i < ItemDatabase.Items.Length; i++)
                 {
-                    Item item = ItemDatabase.Items[i];
+                    Item item = ItemDatabase.Items[i];                    
                     try
                     {
                         if (item._maxAmount >= 0)
@@ -45,9 +46,20 @@ namespace FullInventory
                     }
                 }                
             }
-            if (Fillinven2)
+
+            if (Fillinven2 && !Fillinven)
             {
                 LocalPlayer.Inventory.ItemFilter = new InventoryItemFilter_Unlimited();
+                Fillinven = true;
+            }
+            else if (Fillinven2 && Fillinven)
+            {
+                LocalPlayer.Inventory.ItemFilter = null;
+                Fillinven = false;
+            }
+            else
+            {
+                Fillinven = false;
             }
         }
     }

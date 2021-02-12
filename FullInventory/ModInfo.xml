@@ -16,8 +16,8 @@
       <KO>무제한 아이템</KO>
     </Name>
     <Description>
-      <EN>The number of items of all changes to infinite</EN>
-      <KO>모든 아이템의 갯수가 무제한</KO>
+      <EN>The number of all items that change to infinite. Press again to return to the original state.</EN>
+      <KO>모든 아이템의 갯수가 무제한. 다시 누르면 원래 상태로 돌아갑니다.</KO>
     </Description>
   </Button>
   <Name>
@@ -28,5 +28,5 @@
     <EN>All items are filled in the inventory. (Unlimited items)</EN>
     <KO>모든 항목이 인벤토리에 채워집니다 (무제한)</KO>
   </Description>
-  <Version>1.0.0.4</Version>
+  <Version>1.0.0.5</Version>
 </Mod>
