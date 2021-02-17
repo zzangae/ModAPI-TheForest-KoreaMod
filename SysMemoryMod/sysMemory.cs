@@ -39,10 +39,6 @@ namespace SysMemoryMod
 		private void OnGUI()
 		{
 			Color color = GUI.color;
-			if (ToggleHandle())
-			{
-				return;
-			}
 			if (ShowWindow)
 			{
 				GUILayout.BeginHorizontal(GUILayout.Width(Screen.width), GUILayout.Height(24f));
@@ -135,42 +131,20 @@ namespace SysMemoryMod
 			ModAPI.Log.Write(string.Concat("GameObject.FindObjectsOfType<", t, ">().Length = ", num, " (", num == amount, ")"));
 		}
 
-		private void ToggleWindowOverlay()
-		{
-			ShowWindow = !ShowWindow;
-		}
-
-		private void TogglePlayerStats()
-		{
-			ShowPlayerStat = !ShowPlayerStat;
-		}
-
-		private bool ToggleHandle()
-		{
-			if (UnityEngine.Event.current.type == EventType.KeyDown)
-			{
-				switch (UnityEngine.Event.current.keyCode)
-				{
-					case KeyCode.F1:
-						ToggleWindowOverlay();
-						break;
-					case KeyCode.F2:
-						TogglePlayerStats();
-						break;
-					default:
-						return false;
-				}
-				return true;
-			}
-			return false;
-		}
-
 		private void Update()
 		{
 			ShowFPS = Mathf.Lerp(ShowFPS, 1f / Time.deltaTime, 0.05f);
 			if (float.IsNaN(ShowFPS) || ShowFPS == 0f)
 			{
 				ShowFPS = 1f;
+			}
+			if (ModAPI.Input.GetButtonDown("ToggleOverlay"))
+			{
+				ShowWindow = !ShowWindow;
+			}
+			else if (ModAPI.Input.GetButtonDown("ToggleStat"))
+			{
+				ShowPlayerStat = !ShowPlayerStat;
 			}
 		}
 	}
