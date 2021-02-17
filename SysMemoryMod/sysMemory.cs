@@ -12,47 +12,39 @@ using System.Collections;
 
 namespace SysMemoryMod
 {
-    public class sysMemory : MonoBehaviour
-    {
-        public bool ShowWindow;
-        public bool ShowPlayerStat;
-        private float ShowFPS = 60f;		
-        public GUIStyle txtStyle;
+	public class sysMemory : MonoBehaviour
+	{
+		public bool ShowWindow;
+		public bool ShowPlayerStat;
+		private float ShowFPS = 60f;		
 		private int _totalEntities = 0;
-        private int _activeEntities = 0;
-        private int _frozenTrees = 0;
-	    private int _activeTrees = 0;
+		private int _activeEntities = 0;
+		private int _frozenTrees = 0;
+		private int _activeTrees = 0;
 		private Dictionary<Type, int> _counters;
-		private static Dictionary<Type, int> Counters;
+		private static Dictionary<Type, int> Counters;		
 
-		public GUIStyle _textStyle;
+		[ExecuteOnGameStart]
+		private static void AddMeToScene()
+		{
+			new GameObject("__SystemMenu__").AddComponent<sysMemory>();
+		}
 
-        [ExecuteOnGameStart]
-        private static void AddMeToScene()
-        {
-            new GameObject("__SystemMenu__").AddComponent<sysMemory>();
-        }
-
-        private void Awake()
-        {            
-            txtStyle = new GUIStyle();
-            txtStyle.normal.textColor = Color.white;			
-            txtStyle.fontSize = 12;
-            txtStyle.margin = new RectOffset(0, 0, 0, 0);
-            txtStyle.padding = new RectOffset(0, 0, 0, 0);
-			Counters = (_counters = new Dictionary<Type, int>());			
+		private void Awake()
+		{			
+			Counters = (_counters = new Dictionary<Type, int>());
 			DontDestroyOnLoad(this);
-        }
+		}
 
-        private void OnGUI()
-        {
+		private void OnGUI()
+		{
 			Color color = GUI.color;
 			if (ToggleHandle())
 			{
 				return;
 			}
 			if (ShowWindow)
-			{	
+			{
 				GUILayout.BeginHorizontal(GUILayout.Width(Screen.width), GUILayout.Height(24f));
 				GUILayout.FlexibleSpace();
 				GUILayout.BeginVertical();
@@ -73,11 +65,11 @@ namespace SysMemoryMod
 				}
 				GUILayout.EndVertical();
 				GUILayout.BeginVertical();
-				GUILayout.Label("Total Alloc: Profiler.GetTotalAllocatedMemoryLong()", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label("Total Reserved: Profiler.GetTotalReservedMemoryLong()", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label("Heap Size: Profiler.GetMonoHeapSizeLong()", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label("Used Size: ToMbString(Profiler.GetMonoUsedSizeLong()", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label("GC: GC.GetTotalMemory(forceFullCollection: false)", GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.Label($"Total Alloc: {Profiler.GetTotalAllocatedMemoryLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label($"Total Reserved: {Profiler.GetTotalReservedMemoryLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label($"Heap Size: {Profiler.GetMonoHeapSizeLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label($"Used Size: {Profiler.GetMonoUsedSizeLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label($"GC: {(GC.GetTotalMemory(forceFullCollection: false))}", GUI.skin.button, GUILayout.MinWidth(100f));
 				GUILayout.EndVertical();
 				GUILayout.BeginVertical();
 				GUILayout.Label((int)FMOD_StudioEventEmitter.HoursSinceMidnight + "h" + (int)((FMOD_StudioEventEmitter.HoursSinceMidnight - (float)(int)FMOD_StudioEventEmitter.HoursSinceMidnight) * 60f) + ((!Clock.Dark) ? " (d)" : " (n)"), GUI.skin.button, GUILayout.Width(80f));
@@ -134,7 +126,7 @@ namespace SysMemoryMod
 				GUILayout.EndVertical();
 				GUILayout.EndArea();
 			}
-		}		
+		}
 
 		private void CheckAmount(Type t, int amount)
 		{
@@ -144,17 +136,17 @@ namespace SysMemoryMod
 		}
 
 		private void ToggleWindowOverlay()
-        {
+		{
 			ShowWindow = !ShowWindow;
 		}
 
-        private void TogglePlayerStats()
-        {
-            ShowPlayerStat = !ShowPlayerStat;
-        }
+		private void TogglePlayerStats()
+		{
+			ShowPlayerStat = !ShowPlayerStat;
+		}
 
-        private bool ToggleHandle()
-        {
+		private bool ToggleHandle()
+		{
 			if (UnityEngine.Event.current.type == EventType.KeyDown)
 			{
 				switch (UnityEngine.Event.current.keyCode)
@@ -174,12 +166,12 @@ namespace SysMemoryMod
 		}
 
 		private void Update()
-        {
-            ShowFPS = Mathf.Lerp(ShowFPS, 1f / Time.deltaTime, 0.05f);
-            if (float.IsNaN(ShowFPS) || ShowFPS == 0f)
-            {
-                ShowFPS = 1f;
-            }
-        }
-    }
+		{
+			ShowFPS = Mathf.Lerp(ShowFPS, 1f / Time.deltaTime, 0.05f);
+			if (float.IsNaN(ShowFPS) || ShowFPS == 0f)
+			{
+				ShowFPS = 1f;
+			}
+		}
+	}
 }

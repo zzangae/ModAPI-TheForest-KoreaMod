@@ -3,30 +3,30 @@
   <Button Standard="LeftShift+X" ID="ToggleOverlay">
     <Name>
       <EN>RealMemory</EN>
-      <KO>메모리 뷰어</KO>
+      <KO>메모리 상태</KO>
     </Name>
     <Description>
       <EN>Shows memory and fps allocated in game. </EN>
-      <KO>메모리 및 FPS 표시함.</KO>
+      <KO>메모리 및 FPS 표시함</KO>
     </Description>
   </Button>
   <Button Standard="LeftShift+Z" ID="ToggleStat">
     <Name>
       <EN>PlayerStat</EN>
-      <KO>플레이어 상태 표시</KO>
+      <KO>플레이어 상태</KO>
     </Name>
     <Description>
       <EN>Shows the player status assigned to the game</EN>
-      <KO>게임에 할당된 플레이어 상태를 표시합니다</KO>
+      <KO>게임에 할당된 플레이어 상태 표시</KO>
     </Description>
   </Button>
   <Name>
-    <EN>sysMemory Viewer</EN>
-    <KO>메모리 뷰어</KO>
+    <EN>System Viewer</EN>
+    <KO>시스템 뷰어</KO>
   </Name>
   <Description>
     <EN>Displays the memory / fps and player status assigned to the game.</EN>
     <KO>게임에 할당된 메모리/fps 및 플레이어 상태를 표시합니다.</KO>
   </Description>
-  <Version>1.0.1.1</Version>
+  <Version>1.0.1.2</Version>
 </Mod>
