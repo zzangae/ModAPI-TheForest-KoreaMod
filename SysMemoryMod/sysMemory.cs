@@ -5,16 +5,27 @@ using System.Text;
 using UnityEngine;
 using ModAPI;
 using TheForest.Utils;
+using UnityEngine.VR;
+using UnityEngine.Profiling;
 using ModAPI.Attributes;
+using System.Collections;
 
 namespace SysMemoryMod
 {
     public class sysMemory : MonoBehaviour
     {
         public bool ShowWindow;
-        private float ShowFPS = 60f;
-        public GUIStyle LayoutStyle;
+        public bool ShowPlayerStat;
+        private float ShowFPS = 60f;		
         public GUIStyle txtStyle;
+		private int _totalEntities = 0;
+        private int _activeEntities = 0;
+        private int _frozenTrees = 0;
+	    private int _activeTrees = 0;
+		private Dictionary<Type, int> _counters;
+		private static Dictionary<Type, int> Counters;
+
+		public GUIStyle _textStyle;
 
         [ExecuteOnGameStart]
         private static void AddMeToScene()
@@ -23,121 +34,152 @@ namespace SysMemoryMod
         }
 
         private void Awake()
-        {
-            this.LayoutStyle = new GUIStyle();
-            this.LayoutStyle.normal.background = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-            this.LayoutStyle.normal.background.SetPixel(0, 0, new Color(0f, 0f, 0f, 0.25f));
-            this.LayoutStyle.normal.background.Apply();
-            this.LayoutStyle.normal.background.wrapMode = TextureWrapMode.Repeat;
-            this.LayoutStyle.margin = new RectOffset(0, 0, 2, 0);
-            this.LayoutStyle.padding = new RectOffset(3, 1, 1, 1);
-            this.LayoutStyle.normal.textColor = Color.white;
-            this.LayoutStyle.fixedHeight = 12f;
-            this.LayoutStyle.fontSize = 12;
-            this.txtStyle = new GUIStyle();
-            this.txtStyle.normal.textColor = Color.white;
-            this.txtStyle.fontSize = 12;
-            this.txtStyle.margin = new RectOffset(0, 0, 0, 0);
-            this.txtStyle.padding = new RectOffset(0, 0, 0, 0);
-            UnityEngine.Object.DontDestroyOnLoad(this);
+        {            
+            txtStyle = new GUIStyle();
+            txtStyle.normal.textColor = Color.white;			
+            txtStyle.fontSize = 12;
+            txtStyle.margin = new RectOffset(0, 0, 0, 0);
+            txtStyle.padding = new RectOffset(0, 0, 0, 0);
+			Counters = (_counters = new Dictionary<Type, int>());			
+			DontDestroyOnLoad(this);
         }
 
         private void OnGUI()
         {
-            Color color = UnityEngine.GUI.color;
+			Color color = GUI.color;
+			if (ToggleHandle())
+			{
+				return;
+			}
+			if (ShowWindow)
+			{	
+				GUILayout.BeginHorizontal(GUILayout.Width(Screen.width), GUILayout.Height(24f));
+				GUILayout.FlexibleSpace();
+				GUILayout.BeginVertical();
+				GUILayout.Label("IsGPad: " + TheForest.Utils.Input.IsGamePad, GUI.skin.button);
+				GUILayout.Label("WasGPad: " + TheForest.Utils.Input.WasGamePad, GUI.skin.button);
+				GUILayout.Label("AnyKey: " + TheForest.Utils.Input.anyKeyDown, GUI.skin.button);
+				GUILayout.Label("MouseLoc: " + TheForest.Utils.Input.IsMouseLocked, GUI.skin.button);
+				GUILayout.EndVertical();
+				GUILayout.BeginVertical();
+				GUILayout.Label("FPS: " + (int)ShowFPS, GUI.skin.button);
+				GUILayout.Label("DXType: " + SystemInfo.graphicsDeviceType, GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.Label("DX11: " + (SystemInfo.graphicsShaderLevel >= 50 && SystemInfo.supportsComputeShaders), GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.Label("GSL: " + SystemInfo.graphicsShaderLevel, GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.Label("CompSh: " + SystemInfo.supportsComputeShaders, GUI.skin.button, GUILayout.MinWidth(100f));
+				if (ForestVR.Enabled)
+				{
+					GUILayout.Label("VRRenderScale: " + VRSettings.renderScale, GUI.skin.button, GUILayout.MinWidth(100f));
+				}
+				GUILayout.EndVertical();
+				GUILayout.BeginVertical();
+				GUILayout.Label("Total Alloc: Profiler.GetTotalAllocatedMemoryLong()", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Total Reserved: Profiler.GetTotalReservedMemoryLong()", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Heap Size: Profiler.GetMonoHeapSizeLong()", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Used Size: ToMbString(Profiler.GetMonoUsedSizeLong()", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("GC: GC.GetTotalMemory(forceFullCollection: false)", GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.EndVertical();
+				GUILayout.BeginVertical();
+				GUILayout.Label((int)FMOD_StudioEventEmitter.HoursSinceMidnight + "h" + (int)((FMOD_StudioEventEmitter.HoursSinceMidnight - (float)(int)FMOD_StudioEventEmitter.HoursSinceMidnight) * 60f) + ((!Clock.Dark) ? " (d)" : " (n)"), GUI.skin.button, GUILayout.Width(80f));
+				GUILayout.Label((!LocalPlayer.IsInCaves) ? "Not in cave" : "In cave", GUI.skin.button, GUILayout.Width(80f));
+				if ((bool)LocalPlayer.Inventory)
+				{
+					GUILayout.Label("x: " + LocalPlayer.Transform.position.x + "\ny: " + LocalPlayer.Transform.position.y + "\nz: " + LocalPlayer.Transform.position.z, GUI.skin.button, GUILayout.Width(80f));
+				}
+				GUILayout.EndVertical();
+				GUILayout.BeginVertical();
+				ShowPlayerStat = GUILayout.Toggle(ShowPlayerStat, "Player Stats", GUI.skin.button);
+				if ((bool)Scene.SceneTracker)
+				{
+					GUILayout.Label("Shadow Distance: " + Scene.Atmosphere.DebugShadowDist.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("Light Forward: " + Scene.Atmosphere.DebugLightForward.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("mod shadow blend: " + Scene.Atmosphere.DebugModShadow.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("Occlusion: " + LOD_Manager.TreeOcclusionBonusRatio.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("shadow resolution: " + QualitySettings.shadowResolution, GUI.skin.button);
+					GUILayout.Label("Total Entities: " + _totalEntities.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("Total Active Entities: " + _activeEntities.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("Total Active Trees: " + _activeTrees.ToString("0.00"), GUI.skin.button);
+					GUILayout.Label("Total Frozen Trees: " + _frozenTrees.ToString("0.00"), GUI.skin.button);
+				}
+				GUILayout.EndVertical();
+				foreach (KeyValuePair<Type, int> counter in Counters)
+				{
+					if (GUILayout.Button(counter.Key.Name + ": " + counter.Value))
+					{
+						CheckAmount(counter.Key, counter.Value);
+					}
+				}
+				GUILayout.FlexibleSpace();
+				GUILayout.EndHorizontal();
+			}
+			if (ShowPlayerStat && (bool)LocalPlayer.Stats)
+			{
+				GUILayout.BeginArea(new Rect(Screen.width - 250, Screen.height / 2 - 200, 250f, 400f), GUI.skin.textArea);
+				GUILayout.BeginVertical();
+				GUILayout.Label("+ Athleticism real:" + LocalPlayer.Stats.Skills.AthleticismSkillLevel + ", display:" + LocalPlayer.Stats.Skills.AthleticismSkillLevelProgressApprox, GUI.skin.button);
+				GUILayout.Label($"|- Sprint: {LocalPlayer.Stats.Skills.TotalRunDuration:F0} / {LocalPlayer.Stats.Skills.RunSkillLevelDuration:F0} = {LocalPlayer.Stats.Skills.TotalRunDuration / LocalPlayer.Stats.Skills.RunSkillLevelDuration:F0} ", GUI.skin.button);
+				GUILayout.Label($"|- Diving: {LocalPlayer.Stats.Skills.TotalLungBreathingDuration:F0} / {LocalPlayer.Stats.Skills.BreathingSkillLevelDuration:F0} = {LocalPlayer.Stats.Skills.TotalLungBreathingDuration / LocalPlayer.Stats.Skills.BreathingSkillLevelDuration:F0} ", GUI.skin.button);
+				GUILayout.Space(20f);
+				GUILayout.Label($"+ Weight {LocalPlayer.Stats.PhysicalStrength.CurrentWeight:F3}lbs", GUI.skin.button);
+				GUILayout.Label($"|- Current Calories Burnt: {LocalPlayer.Stats.Calories.CurrentCaloriesBurntCount:F3}", GUI.skin.button);
+				GUILayout.Label($"|- Current Calories Eaten: {LocalPlayer.Stats.Calories.CurrentCaloriesEatenCount:F3}", GUI.skin.button);
+				GUILayout.Label($"|- Excess Calories Final: {LocalPlayer.Stats.Calories.GetExcessCaloriesFinal()}", GUI.skin.button);
+				GUILayout.Label($"|- Time to next resolution: {LocalPlayer.Stats.Calories.TimeToNextResolution():F3} Hours (IG)", GUI.skin.button);
+				int excessCaloriesFinal = LocalPlayer.Stats.Calories.GetExcessCaloriesFinal();
+				GUILayout.Label($"|- Weight change at resolution: {(float)excessCaloriesFinal * ((excessCaloriesFinal <= 0) ? LocalPlayer.Stats.Calories.WeightLossPerMissingCalory : LocalPlayer.Stats.Calories.WeightGainPerExcessCalory):F3} lbs", GUI.skin.button);
+				GUILayout.Space(20f);
+				GUILayout.Space(20f);
+				GUILayout.Label(string.Format("+ Strength {0:F4} ({1})", LocalPlayer.Stats.PhysicalStrength.CurrentStrength, (excessCaloriesFinal <= 0) ? "Losing" : "Gaining"), GUI.skin.button);
+				GUILayout.Space(20f);
+				GUILayout.EndVertical();
+				GUILayout.EndArea();
+			}
+		}		
 
-            if (this.ShowWindow)
-            {
-                GUILayout.BeginHorizontal(new GUILayoutOption[]
-                {
-                    GUILayout.Width((float)Screen.width),
-                    GUILayout.Height(24f)
-                });                
-                GUILayout.FlexibleSpace();
-                GUILayout.Label("FPS: " + (int)this.ShowFPS, UnityEngine.GUI.skin.button, new GUILayoutOption[0]);
+		private void CheckAmount(Type t, int amount)
+		{
+			UnityEngine.Object[] array = UnityEngine.Object.FindObjectsOfType(t);
+			int num = ((array != null) ? array.Length : 0);
+			ModAPI.Log.Write(string.Concat("GameObject.FindObjectsOfType<", t, ">().Length = ", num, " (", num == amount, ")"));
+		}
 
-                GUILayout.BeginVertical(new GUILayoutOption[0]);
-                GUILayout.Label("Total Alloc: " + Profiler.GetTotalAllocatedMemory() / 1000u / 1000u + "MB", UnityEngine.GUI.skin.button, new GUILayoutOption[]
-                {
-                    GUILayout.MinWidth(140f)
-                });
-                GUILayout.Label("Total Reserved: " + Profiler.GetTotalReservedMemory() / 1000u / 1000u + "MB", UnityEngine.GUI.skin.button, new GUILayoutOption[]
-                {
-                    GUILayout.MinWidth(140f)
-                });
-                GUILayout.Label("Total Memory: " + GC.GetTotalMemory(false) / 1000L / 1000L + "MB", UnityEngine.GUI.skin.button, new GUILayoutOption[]
-                {
-                    GUILayout.MinWidth(100f)
-                });
-                GUILayout.EndVertical();
-
-                GUILayout.BeginVertical(new GUILayoutOption[0]);
-                GUILayout.Label((!Clock.InCave) ? "Not in cave" : "In cave", UnityEngine.GUI.skin.button, new GUILayoutOption[]
-                {
-                    GUILayout.Width(100f)
-                });
-                GUILayout.EndVertical();
-
-                GUILayout.BeginVertical(new GUILayoutOption[0]);
-                if (LocalPlayer.Inventory)
-                {
-                    GUILayout.Label(string.Concat(new object[]
-                    {
-                        "Local position",
-                        "\nx: ",
-                        LocalPlayer.Transform.position.x,
-                        "\ny: ",
-                        LocalPlayer.Transform.position.y,
-                        "\nz: ",
-                        LocalPlayer.Transform.position.z
-                    }), UnityEngine.GUI.skin.button, new GUILayoutOption[]
-                    {
-                        GUILayout.Width(150f)
-                    });
-                }
-                GUILayout.EndVertical();
-
-                GUILayout.BeginVertical(new GUILayoutOption[0]);
-                GUILayout.Label(string.Concat(new object[]
-                {
-                    "current time: ",
-                    (int)FMOD_StudioEventEmitter.HoursSinceMidnight,
-                    "h",
-                    (int)((FMOD_StudioEventEmitter.HoursSinceMidnight - (float)((int)FMOD_StudioEventEmitter.HoursSinceMidnight)) * 60f),
-                    (!Clock.Dark) ? " (d)" : " (n)"
-                }), UnityEngine.GUI.skin.button, new GUILayoutOption[]
-                {
-                    GUILayout.Width(150f)
-                });
-                GUILayout.EndVertical();
-
-                GUILayout.FlexibleSpace();
-                GUILayout.EndHorizontal();
-            }
-        }
-
-        private void Update()
+		private void ToggleWindowOverlay()
         {
-            this.ShowFPS = Mathf.Lerp(this.ShowFPS, 1f / Time.deltaTime, 0.05f);
-            if (float.IsNaN(this.ShowFPS) || this.ShowFPS == 0f)
-            {
-                this.ShowFPS = 1f;
-            }
-            
-            if (ModAPI.Input.GetButtonDown("open"))
-            {
-                if (this.ShowWindow)
-                {
-                    LocalPlayer.FpCharacter.UnLockView();
-                }
-                else
-                {
-                    LocalPlayer.FpCharacter.LockView(true);
-                }
-                this.ShowWindow = !this.ShowWindow;
-            }
+			ShowWindow = !ShowWindow;
+		}
+
+        private void TogglePlayerStats()
+        {
+            ShowPlayerStat = !ShowPlayerStat;
         }
 
-        
+        private bool ToggleHandle()
+        {
+			if (UnityEngine.Event.current.type == EventType.KeyDown)
+			{
+				switch (UnityEngine.Event.current.keyCode)
+				{
+					case KeyCode.F1:
+						ToggleWindowOverlay();
+						break;
+					case KeyCode.F2:
+						TogglePlayerStats();
+						break;
+					default:
+						return false;
+				}
+				return true;
+			}
+			return false;
+		}
+
+		private void Update()
+        {
+            ShowFPS = Mathf.Lerp(ShowFPS, 1f / Time.deltaTime, 0.05f);
+            if (float.IsNaN(ShowFPS) || ShowFPS == 0f)
+            {
+                ShowFPS = 1f;
+            }
+        }
     }
 }

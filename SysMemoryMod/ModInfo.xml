@@ -1,8 +1,8 @@
 <Mod ID="SysMemoryMod">
-  <Compatible>0.57c</Compatible>
-  <Button Standard="LeftShift+X" ID="open">
+  <Compatible>1.11b</Compatible>
+  <Button Standard="LeftShift+X" ID="ToggleOverlay">
     <Name>
-      <EN>sysMemory Viewer</EN>
+      <EN>RealMemory</EN>
       <KO>메모리 뷰어</KO>
     </Name>
     <Description>
@@ -10,13 +10,23 @@
       <KO>메모리 및 FPS 표시함.</KO>
     </Description>
   </Button>
+  <Button Standard="LeftShift+Z" ID="ToggleStat">
+    <Name>
+      <EN>PlayerStat</EN>
+      <KO>플레이어 상태 표시</KO>
+    </Name>
+    <Description>
+      <EN>Shows the player status assigned to the game</EN>
+      <KO>게임에 할당된 플레이어 상태를 표시합니다</KO>
+    </Description>
+  </Button>
   <Name>
     <EN>sysMemory Viewer</EN>
     <KO>메모리 뷰어</KO>
   </Name>
   <Description>
-    <EN>Shows memory and fps allocated in game. Press ESC to play while showing mod.</EN>
-    <KO>메모리 및 FPS 표시함. Mod 를 보면서 플레이어를 움직이려면 ESC 를 누르십시오.</KO>
+    <EN>Displays the memory / fps and player status assigned to the game.</EN>
+    <KO>게임에 할당된 메모리/fps 및 플레이어 상태를 표시합니다.</KO>
   </Description>
-  <Version>1.0.0.0</Version>
+  <Version>1.0.1.1</Version>
 </Mod>
