@@ -53,19 +53,21 @@ namespace SysMemoryMod
 				GUILayout.Label("FPS: " + (int)ShowFPS, GUI.skin.button);
 				GUILayout.Label("DXType: " + SystemInfo.graphicsDeviceType, GUI.skin.button, GUILayout.MinWidth(100f));
 				GUILayout.Label("DX11: " + (SystemInfo.graphicsShaderLevel >= 50 && SystemInfo.supportsComputeShaders), GUI.skin.button, GUILayout.MinWidth(100f));
-				GUILayout.Label("GSL: " + SystemInfo.graphicsShaderLevel, GUI.skin.button, GUILayout.MinWidth(100f));
-				GUILayout.Label("CompSh: " + SystemInfo.supportsComputeShaders, GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.Label("Graphics Shader Level: " + SystemInfo.graphicsShaderLevel, GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Graphics Memory Size:" + SystemInfo.graphicsMemorySize, GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Graphics Deivce ver:" + SystemInfo.graphicsDeviceVersion, GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Compute Shaders : " + SystemInfo.supportsComputeShaders, GUI.skin.button, GUILayout.MinWidth(140f));
 				if (ForestVR.Enabled)
 				{
 					GUILayout.Label("VRRenderScale: " + VRSettings.renderScale, GUI.skin.button, GUILayout.MinWidth(100f));
 				}
 				GUILayout.EndVertical();
 				GUILayout.BeginVertical();
-				GUILayout.Label($"Total Alloc: {Profiler.GetTotalAllocatedMemoryLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label($"Total Reserved: {Profiler.GetTotalReservedMemoryLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label($"Heap Size: {Profiler.GetMonoHeapSizeLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label($"Used Size: {Profiler.GetMonoUsedSizeLong()}", GUI.skin.button, GUILayout.MinWidth(140f));
-				GUILayout.Label($"GC: {(GC.GetTotalMemory(forceFullCollection: false))}", GUI.skin.button, GUILayout.MinWidth(100f));
+				GUILayout.Label("Total Alloc: " + Profiler.GetTotalAllocatedMemoryLong() / 1000u / 1000u + "MB", GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Total Reserved: " + Profiler.GetTotalReservedMemoryLong(), GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Heap Size: " + Profiler.GetMonoHeapSizeLong(), GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Used Size: " + Profiler.GetMonoUsedSizeLong(), GUI.skin.button, GUILayout.MinWidth(140f));
+				GUILayout.Label("Total Memory: " + GC.GetTotalMemory(forceFullCollection: false), GUI.skin.button, GUILayout.MinWidth(140f));
 				GUILayout.EndVertical();
 				GUILayout.BeginVertical();
 				GUILayout.Label((int)FMOD_StudioEventEmitter.HoursSinceMidnight + "h" + (int)((FMOD_StudioEventEmitter.HoursSinceMidnight - (float)(int)FMOD_StudioEventEmitter.HoursSinceMidnight) * 60f) + ((!Clock.Dark) ? " (d)" : " (n)"), GUI.skin.button, GUILayout.Width(80f));
@@ -75,9 +77,10 @@ namespace SysMemoryMod
 					GUILayout.Label("x: " + LocalPlayer.Transform.position.x + "\ny: " + LocalPlayer.Transform.position.y + "\nz: " + LocalPlayer.Transform.position.z, GUI.skin.button, GUILayout.Width(80f));
 				}
 				GUILayout.EndVertical();
-				GUILayout.BeginVertical();
-				ShowPlayerStat = GUILayout.Toggle(ShowPlayerStat, "Player Stats", GUI.skin.button);
-				if ((bool)Scene.SceneTracker)
+				GUILayout.BeginArea(new Rect(0, Screen.height / 2 - 200, 250f, 230f), GUI.skin.textArea);
+				GUILayout.BeginVertical();	
+				ShowPlayerStat = GUILayout.Toggle(ShowPlayerStat, "player stats", GUI.skin.button);
+				if ((bool)TheForest.Utils.Scene.SceneTracker)
 				{
 					GUILayout.Label("Shadow Distance: " + Scene.Atmosphere.DebugShadowDist.ToString("0.00"), GUI.skin.button);
 					GUILayout.Label("Light Forward: " + Scene.Atmosphere.DebugLightForward.ToString("0.00"), GUI.skin.button);
@@ -90,6 +93,7 @@ namespace SysMemoryMod
 					GUILayout.Label("Total Frozen Trees: " + _frozenTrees.ToString("0.00"), GUI.skin.button);
 				}
 				GUILayout.EndVertical();
+				GUILayout.EndArea();
 				foreach (KeyValuePair<Type, int> counter in Counters)
 				{
 					if (GUILayout.Button(counter.Key.Name + ": " + counter.Value))
