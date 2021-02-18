@@ -10,6 +10,9 @@ namespace FlintlockMachinegun
 {
     internal class FlareGunAnim : flareGunAnimSetup
     {
+        private AnimatorStateInfo _currState;
+        private AnimatorStateInfo _nextState;
+
         protected override void Update()
         {
             if (LocalPlayer.Inventory.Owns(_ammoId, true))
@@ -20,85 +23,22 @@ namespace FlintlockMachinegun
             {
                 return;
             }
-            AnimatorStateInfo currentAnimatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-            currState1 = _playerAnimator.GetCurrentAnimatorStateInfo(1);
-            nextState1 = _playerAnimator.GetNextAnimatorStateInfo(1);
-            currState2 = _playerAnimator.GetCurrentAnimatorStateInfo(2);
-            if (currState1.shortNameHash == playerReloadHash && !_net)
+            AnimatorStateInfo _currAniStateinfo = _animator.GetCurrentAnimatorStateInfo(0);
+            _currState = _playerAnimator.GetCurrentAnimatorStateInfo(1);
+            _nextState = _playerAnimator.GetNextAnimatorStateInfo(1);            
+            if (_currState.shortNameHash == playerReloadHash && !reloadSync)
             {
-                _playerAnimator.SetBool("forceReload", false);
-            }
-            if (currState1.tagHash == knockBackHash || currState2.shortNameHash == sittingHash)
-            {
-                _animator.CrossFade(idleHash, 0f, 0, 0f);
-            }
-            if (nextState1.shortNameHash == playerShootHash || nextState1.shortNameHash == playerAimShootHash)
-            {
-                if (!_net)
-                {
-                    doWeaponNoise();
-                }
-                _animator.SetBool("shoot", true);
-            }
-            else
-            {
-                _animator.SetBool("shoot", false);
-            }
-            if (currState1.shortNameHash == playerReloadHash && !reloadSync)
-            {
-                _animator.CrossFade(reloadHash, 0f, 0, currState1.normalizedTime);
+                _animator.CrossFade(reloadHash, 0f, 0, _currState.normalizedTime);
                 reloadSync = false;
                 _animator.SetBool("shoot", false);
             }
-            else if (currentAnimatorStateInfo.shortNameHash == shootHash)
+            else if (_currAniStateinfo.shortNameHash == shootHash)
             {
                 reloadSync = false;
             }
-            if (_net && currState1.shortNameHash == playerShootHash)
-            {
-                _animator.Play(shootHash, 0, currState1.normalizedTime);
-            }
-            else if (_net && currState1.shortNameHash == playerReloadHash)
-            {
-                _animator.Play(reloadHash, 0, currState1.normalizedTime);
-            }
-            if (nextState1.shortNameHash != playerIdleHash && !_net)
+            if (_nextState.shortNameHash != playerIdleHash && !_net)
             {
                 LocalPlayer.Inventory.CancelReloadDelay();
-            }
-            if (currentAnimatorStateInfo.shortNameHash == reloadHash)
-            {
-                if (currentAnimatorStateInfo.normalizedTime < 0.1f)
-                {
-                    _ammoEmpty.SetActive(false);
-                    _ammoFull.SetActive(false);
-                }
-                else if (currentAnimatorStateInfo.normalizedTime < 0.306f)
-                {
-                    _ammoEmpty.SetActive(true);
-                    _ammoFull.SetActive(true);
-                }
-                else if (currentAnimatorStateInfo.normalizedTime < 0.73f)
-                {
-                    _ammoEmpty.SetActive(false);
-                    _ammoFull.SetActive(true);
-                }
-                else
-                {
-                    _ammoEmpty.SetActive(false);
-                    _ammoFull.SetActive(false);
-                }
-            }
-            else if (currentAnimatorStateInfo.shortNameHash == idleHash)
-            {
-                if (_ammoEmpty.activeSelf)
-                {
-                    _ammoEmpty.SetActive(false);
-                }
-                if (_ammoFull.activeSelf)
-                {
-                    _ammoFull.SetActive(false);
-                }
             }
             _ammoEmpty.SetActive(false);
             _ammoFull.SetActive(false);
