@@ -41,24 +41,21 @@ namespace InventoryMod
                 UnityEngine.GUI.Box(new Rect(10f, 10f, 400f, 450f), "Inventory menu", UnityEngine.GUI.skin.window);
                 this.scrollPosition = UnityEngine.GUI.BeginScrollView(new Rect(10f, 50f, 390f, 350f), this.scrollPosition, new Rect(0f, 0f, 350f, this.cY));
                 this.cY = 25f;
-                for (int i = 0; i < ItemDatabase.Items.Length; i++)
+                for (int _item = 0; _item < ItemDatabase.Items.Length; _item++)
                 {
-                    UnityEngine.GUI.Label(new Rect(20f, this.cY, 150f, 20f), ItemDatabase.Items[i]._name, this.labelStyle);
-                    string layerId = (ItemDatabase.Items[i]._id).ToString();
-                    if (UnityEngine.GUI.Button(new Rect(170f, this.cY, 70f, 20f), "Add"))
+                    string layerId = (ItemDatabase.Items[_item]._id).ToString();//Show item-ID
+                    GUI.Label(new Rect(20f, this.cY, 200f, 20f), ItemDatabase.Items[_item]._name + " ( " + layerId + " )", this.labelStyle);//item list
+                    if (GUI.Button(new Rect(220f, this.cY, 60f, 20f), "Add"))
                     {
-
-                        LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, 1, false, false, null);
-
+                        LocalPlayer.Inventory.AddItem(ItemDatabase.Items[_item]._id, 1, false, false, null);//Add button
                     }
-                    if (UnityEngine.GUI.Button(new Rect(250f, this.cY, 70f, 20f), "MAX"))
+                    if (GUI.Button(new Rect(280f, this.cY, 60f, 20f), "MAX"))
                     {
-                        for (int i2 = 0; i2 < ItemDatabase.Items.Length; ++i2)
+                        for (int _max = 0; _max < ItemDatabase.Items.Length; ++_max)
                         {
-                            LocalPlayer.Inventory.AddItem(ItemDatabase.Items[i]._id, ItemDatabase.Items.Length, false, false, null);
+                            LocalPlayer.Inventory.AddItem(ItemDatabase.Items[_item]._id, ItemDatabase.Items.Length, false, false, null);//MAX button
                         }
                     }
-                    UnityEngine.GUI.Label(new Rect(320f, this.cY, 150f, 20f), "( "+layerId+" )", this.labelStyle);
                     this.cY += 30f;
                 }
                 UnityEngine.GUI.EndScrollView();
