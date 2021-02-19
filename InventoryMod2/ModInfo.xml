@@ -1,18 +1,22 @@
 <Mod ID="InventoryMod2">
-  <Compatible>0.57c</Compatible>
+  <Compatible>1.11b</Compatible>
   <Button Standard="F4" ID="StartInventoryMenu2">
     <Name>
       <EN>Open Menu</EN>
+      <KO>메뉴 열기</KO>
     </Name>
     <Description>
       <EN>Open Inventory Mod Menu </EN>
+      <KO>인벤토리 메뉴열기</KO>
     </Description>
   </Button>
   <Name>
     <EN>Inventory Mod 2.1</EN>
+    <KO>인벤토리 모드 2.1</KO>
   </Name>
   <Description>
     <EN>Inventory Mod 2 provides abilities to add more than one of certain items and has them sorted alphabeticaly and by category</EN>
+    <KO>인벤토리모드 2.1 은 특정 항목을 두 개 이상 추가 할 수있는 능력을 제공하며 알파벳순, 범주별로 정렬합니다</KO>
   </Description>
-  <Version>1.0.0.5</Version>
+  <Version>1.0.73.6</Version>
 </Mod>
