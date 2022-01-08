@@ -9,10 +9,7 @@ public class Player
 {
     private static readonly Dictionary<string, ulong> CachedIds = new Dictionary<string, ulong>();
 
-    public BoltEntity Entity
-    {
-        get;
-    }
+    public BoltEntity Entity { get; }
 
     public ulong SteamId
     {

@@ -10,7 +10,7 @@ public class PlayerManager
     } = new List<Player>();
 
 
-    public PlayerManager(Map instance)
+    public PlayerManager(global::Map instance)
     {
     }
 

@@ -568,9 +568,9 @@ public class IngameMap : MonoBehaviour
 
     public static bool Opened = false;
 
-    protected Map Overworld;
+    protected global::Map Overworld;
 
-    protected Map Underworld;
+    protected global::Map Underworld;
 
     protected Texture2D background;
 
@@ -586,13 +586,13 @@ public class IngameMap : MonoBehaviour
 
     public static bool livemarkers = true;
 
-    private Map.Marker playerMarker;
+    private global::Map.Marker playerMarker;
 
-    private Map.Marker playerMPMarker;
+    private global::Map.Marker playerMPMarker;
 
-    private Map.Marker mutantMarker;
+    private global::Map.Marker mutantMarker;
 
-    private Map currentMap;
+    private global::Map currentMap;
 
     protected bool Drag;
 
@@ -644,7 +644,7 @@ public class IngameMap : MonoBehaviour
         new GameObject("__Map__").AddComponent<IngameMap>();
     }
 
-    public bool DrawMarker(Map.Marker marker, float angle = 0f, float scale = 1f)
+    public bool DrawMarker(global::Map.Marker marker, float angle = 0f, float scale = 1f)
     {
         Vector2 vector = new Vector2((float)Screen.width / 2f, (float)Screen.height / 2f) + Position * Zoom;
         Vector2 vector2 = new Vector2((float)Screen.height * 1.777778f, Screen.height) * Zoom;
@@ -684,27 +684,27 @@ public class IngameMap : MonoBehaviour
                 GUI.DrawTexture(new Rect(0f, 0f, Camera.main.pixelWidth, Camera.main.pixelHeight), background);
                 if (currentMap.Textures != null && currentMap.Textures.Length != 0)
                 {
-                    Vector2 a = new Vector2((float)Screen.height * 1.777778f, Screen.height) * Zoom;
-                    if (a.x < a.y)
+                    Vector2 vector = new Vector2((float)Screen.height * 1.777778f, Screen.height) * Zoom;
+                    if (vector.x < vector.y)
                     {
-                        a.y = a.x;
+                    vector.y = vector.x;
                     }
                     else
                     {
-                        a.x = a.y;
+                    vector.x = vector.y;
                     }
-                    Vector2 vector = a / 8f;
-                    Vector2 vector2 = new Vector2((float)Screen.width / 2f, (float)Screen.height / 2f) + Position * Zoom - a / 2f;
+                    Vector2 vector2 = vector / 8f;
+                    Vector2 vector3 = new Vector2((float)Screen.width / 2f, (float)Screen.height / 2f) + Position * Zoom - vector / 2f;
                     for (int i = 0; i < 8; i++)
                     {
                         for (int j = 0; j < 8; j++)
                         {
                             int num = i + (8 - j - 1) * 8;
-                            GUI.DrawTexture(new Rect(vector2.x + vector.x * (float)i, vector2.y + vector.y * (float)j, vector.x, vector.y), currentMap.Textures[num]);
+                            GUI.DrawTexture(new Rect(vector3.x + vector2.x * (float)i, vector3.y + vector2.y * (float)j, vector2.x, vector2.y), currentMap.Textures[num]);
                         }
                     }
                     GUI.DrawTexture(new Rect(0f, 0f, 500f, 500f), currentMap.Texture);
-                    List<Map.Marker> list = new List<Map.Marker>();
+                    List<global::Map.Marker> list = new List<global::Map.Marker>();
                     for (int k = 0; k < currentMap.Markers.Count; k++)
                     {
                         if (currentMap.Markers[k].Class.Selected && DrawMarker(currentMap.Markers[k]))
@@ -712,7 +712,7 @@ public class IngameMap : MonoBehaviour
                             list.Add(currentMap.Markers[k]);
                         }
                     }
-                    playerMarker = new Map.Marker
+                    playerMarker = new global::Map.Marker
                     {
                         Class = new MarkerSetting
                         {
@@ -744,7 +744,7 @@ public class IngameMap : MonoBehaviour
                     {
                         foreach (Player player in PlayerManager.Players)
                         {
-                            playerMPMarker = new Map.Marker
+                            playerMPMarker = new global::Map.Marker
                             {
                                 Class = new MarkerSetting
                                 {
@@ -766,109 +766,116 @@ public class IngameMap : MonoBehaviour
                             }
                         }
                     }
-                    if (livemarkers)
+                if (livemarkers)
+                {
+                    List<GameObject> list2;
+                    if (GameSetup.IsMpClient)
                     {
-                        List<GameObject> list2;
-                        if (LocalPlayer.IsInCaves)
+                        list2 = (from x in UnityEngine.Object.FindObjectsOfType<enemyWeaponMelee>()
+                                 select x.gameObject).ToList();
+                        list2.RemoveAll((GameObject o) => o == null);
+                        list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
+                    }
+                    else if (LocalPlayer.IsInCaves)
+                    {
+                        list2 = new List<GameObject>(Scene.MutantControler.activeCaveCannibals);
+                        foreach (GameObject activeInstantSpawnedCannibal in Scene.MutantControler.activeInstantSpawnedCannibals)
                         {
-                            list2 = new List<GameObject>(Scene.MutantControler.activeCaveCannibals);
-                            foreach (GameObject activeInstantSpawnedCannibal in Scene.MutantControler.activeInstantSpawnedCannibals)
+                            if (!list2.Contains(activeInstantSpawnedCannibal))
                             {
-                                if (!list2.Contains(activeInstantSpawnedCannibal))
-                                {
-                                    list2.Add(activeInstantSpawnedCannibal);
-                                }
+                                list2.Add(activeInstantSpawnedCannibal);
                             }
-                            list2.RemoveAll((GameObject o) => o == null);
-                            list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
                         }
-                        else
+                        list2.RemoveAll((GameObject o) => o == null);
+                        list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
+                    }
+                    else
+                    {
+                        list2 = new List<GameObject>(Scene.MutantControler.activeWorldCannibals);
+                        foreach (GameObject activeInstantSpawnedCannibal2 in Scene.MutantControler.activeInstantSpawnedCannibals)
                         {
-                            list2 = new List<GameObject>(Scene.MutantControler.activeWorldCannibals);
-                            foreach (GameObject activeInstantSpawnedCannibal2 in Scene.MutantControler.activeInstantSpawnedCannibals)
+                            if (!list2.Contains(activeInstantSpawnedCannibal2))
                             {
-                                if (!list2.Contains(activeInstantSpawnedCannibal2))
-                                {
-                                    list2.Add(activeInstantSpawnedCannibal2);
-                                }
+                                list2.Add(activeInstantSpawnedCannibal2);
                             }
-                            list2.RemoveAll((GameObject o) => o == null);
-                            list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
                         }
-                        if (list2.Count > 0)
+                        list2.RemoveAll((GameObject o) => o == null);
+                        list2.RemoveAll((GameObject o) => (bool)o != o.activeSelf);
+                    }
+                    if (list2.Count > 0)
+                    {
+                        foreach (GameObject item in list2)
                         {
-                            foreach (GameObject item in list2)
+                            if (item != null)
                             {
-                                if (item != null)
+                                mutantMarker = new global::Map.Marker
                                 {
-                                    mutantMarker = new Map.Marker
+                                    Class = new MarkerSetting
                                     {
-                                        Class = new MarkerSetting
-                                        {
-                                            ID = "Live Cannibal",
-                                            Color = Color.red,
-                                            Label = "식인종",
-                                            Texture = 36,
-                                            Category = "원주민"
-                                        },
-                                        Description = "식인종",
-                                        WorldPosition = Vector3.zero
-                                    };
-                                    mutantMarker.WorldPosition.x = 0f - item.transform.position.z;
-                                    mutantMarker.WorldPosition.y = item.transform.position.y;
-                                    mutantMarker.WorldPosition.z = item.transform.position.x;
-                                    float y = item.GetComponentInChildren<Animator>().rootRotation.eulerAngles.y;
-                                    if (DrawMarker(mutantMarker, 90f + y, 2f))
-                                    {
-                                        list.Add(mutantMarker);
-                                    }
+                                        ID = "Live Cannibal",
+                                        Color = Color.red,
+                                        Label = "식인종",
+                                        Texture = 36,
+                                        Category = "원주민"
+                                    },
+                                    Description = "식인종",
+                                    WorldPosition = Vector3.zero
+                                };
+                                mutantMarker.WorldPosition.x = 0f - item.transform.position.z;
+                                mutantMarker.WorldPosition.y = item.transform.position.y;
+                                mutantMarker.WorldPosition.z = item.transform.position.x;
+                                float y = item.GetComponentInChildren<Animator>().rootRotation.eulerAngles.y;
+                                if (DrawMarker(mutantMarker, 90f + y, 2f))
+                                {
+                                    list.Add(mutantMarker);
                                 }
                             }
                         }
                     }
-                    if (list.Count > 0)
+                }
+                if (list.Count > 0)
+                {
+                    Vector2 vector4 = new Vector2(Event.current.mousePosition.x - 125f, Event.current.mousePosition.y + 5f);
+                    float height = (float)list.Count * 30f + 5f;
+                    GUI.Box(new Rect(vector4.x, vector4.y, 120f, height), "");
+                    float num2 = 0f;
+                    for (int l = 0; l < list.Count; l++)
                     {
-                        Vector2 vector3 = new Vector2(Event.current.mousePosition.x - 125f, Event.current.mousePosition.y + 5f);
-                        float height = (float)list.Count * 30f + 5f;
-                        GUI.Box(new Rect(vector3.x, vector3.y, 120f, height), "");
-                        float num2 = 0f;
-                        for (int l = 0; l < list.Count; l++)
+                        Rect position = new Rect(vector4.x, vector4.y + num2, 120f, 30f);
+                        GUI.color = new Color(list[l].Class.Color.r, list[l].Class.Color.g, list[l].Class.Color.b, 0.2f);
+                        GUI.DrawTexture(position, foreground);
+                        GUI.color = list[l].Class.Color;
+                        GUI.DrawTextureWithTexCoords(new Rect(vector4.x + 5f, vector4.y + num2 + 5f, 20f, 20f), Markers, GetTextureCoords(list[l].Class.Texture));
+                        GUI.color = Color.white;
+                        GUI.Label(new Rect(vector4.x + 30f, vector4.y + num2 + 5f, 90f, 30f), list[l].Class.Label);
+                        num2 += 30f;
+                    }
+                }
+                float num3 = 0f;
+                int num4 = 0;
+                foreach (MarkerCategory value in Categories.Values)
+                {
+                    num3 += 20f;
+                    if (!value.Selected)
+                    {
+                        continue;
+                    }
+                    num4 = 0;
+                    foreach (MarkerSetting marker in value.Markers)
+                    {
+                        _ = marker;
+                        if (num4 == 0)
                         {
-                            Rect position = new Rect(vector3.x, vector3.y + num2, 120f, 30f);
-                            GUI.color = new Color(list[l].Class.Color.r, list[l].Class.Color.g, list[l].Class.Color.b, 0.2f);
-                            GUI.DrawTexture(position, foreground);
-                            GUI.color = list[l].Class.Color;
-                            GUI.DrawTextureWithTexCoords(new Rect(vector3.x + 5f, vector3.y + num2 + 5f, 20f, 20f), Markers, GetTextureCoords(list[l].Class.Texture));
-                            GUI.color = Color.white;
-                            GUI.Label(new Rect(vector3.x + 30f, vector3.y + num2 + 5f, 90f, 30f), list[l].Class.Label);
-                            num2 += 30f;
+                            num3 += 20f;
+                        }
+                        num4++;
+                        if (num4 >= 2)
+                        {
+                            num4 = 0;
                         }
                     }
-                    float num3 = 0f;
-                    int num4 = 0;
-                    foreach (MarkerCategory value in Categories.Values)
-                    {
-                        num3 += 20f;
-                        if (!value.Selected)
-                        {
-                            continue;
-                        }
-                        num4 = 0;
-                        foreach (MarkerSetting marker in value.Markers)
-                        {
-                            _ = marker;
-                            if (num4 == 0)
-                            {
-                                num3 += 20f;
-                            }
-                            num4++;
-                            if (num4 >= 2)
-                            {
-                                num4 = 0;
-                            }
-                        }
-                    }
-                    float num5 = 70f;
+                }
+                float num5 = 70f;
                     GUI.Box(new Rect(10f, (float)Screen.height - (num3 + 30f) - num5, 200f, num3 + 35f), "필터", GUI.skin.window);//Filter-Bar
                     int num6 = 0;
                     int num7 = 0;
@@ -918,9 +925,9 @@ public class IngameMap : MonoBehaviour
                     }
                     else if (Event.current.type == EventType.MouseDrag)
                     {
-                        Vector2 a2 = Event.current.mousePosition - LastMousePos;
+                        Vector2 Vector5 = Event.current.mousePosition - LastMousePos;
                         float num8 = Mathf.Min(Screen.width, Screen.height);
-                        Position += a2 / Zoom;
+                        Position += Vector5 / Zoom;
                         Position.x = Mathf.Clamp(Position.x, num8 / -2f, num8 / 2f);
                         Position.y = Mathf.Clamp(Position.y, num8 / -2f, num8 / 2f);
                         LastMousePos = Event.current.mousePosition;
@@ -935,36 +942,36 @@ public class IngameMap : MonoBehaviour
                     }
                     GUIContent content = new GUIContent("https://theforestmap.com/ 지도데이터를 만들어주신분께 감사를 드립니다.");
                     GUIContent content2 = new GUIContent("https://cafe.naver.com/steamforest 네이버 더 포레스트 카페 방문하기");
-                    Vector2 vector4 = GUI.skin.label.CalcSize(content);
+                    Vector2 vector6 = GUI.skin.label.CalcSize(content);
                     GUI.color = Color.black;
-                    GUI.Label(new Rect((float)Screen.width - 5f - vector4.x, (float)Screen.height - 25f, vector4.x + 10f, vector4.y + 10f), content);
-                    GUI.Label(new Rect((float)Screen.width - 5f - vector4.x, (float)Screen.height - 45f, vector4.x + 10f, vector4.y + 10f), content2);
+                    GUI.Label(new Rect((float)Screen.width - 5f - vector6.x, (float)Screen.height - 25f, vector6.x + 10f, vector6.y + 10f), content);
+                    GUI.Label(new Rect((float)Screen.width - 5f - vector6.x, (float)Screen.height - 45f, vector6.x + 10f, vector6.y + 10f), content2);
                     GUI.color = Color.white;
-                    GUI.Label(new Rect((float)Screen.width - 6f - vector4.x, (float)Screen.height - 26f, vector4.x + 10f, vector4.y + 10f), content);
-                    GUI.Label(new Rect((float)Screen.width - 6f - vector4.x, (float)Screen.height - 46f, vector4.x + 10f, vector4.y + 10f), content2);
+                    GUI.Label(new Rect((float)Screen.width - 6f - vector6.x, (float)Screen.height - 26f, vector6.x + 10f, vector6.y + 10f), content);
+                    GUI.Label(new Rect((float)Screen.width - 6f - vector6.x, (float)Screen.height - 46f, vector6.x + 10f, vector6.y + 10f), content2);
                 }
                 if (currentMap.Loading)
                 {
                     if (currentMap.Textures == null || currentMap.Textures.Length == 0)
                     {
                         string text = "불러오는중...";
-                        Vector2 vector5 = GUI.skin.label.CalcSize(new GUIContent(text));
-                        GUI.Label(new Rect((float)Screen.width / 2f - vector5.x / 2f, (float)Screen.height / 2f - vector5.y - 5f, vector5.x + 10f, vector5.y + 10f), text, WhiteLabel);
+                        Vector2 vector7 = GUI.skin.label.CalcSize(new GUIContent(text));
+                        GUI.Label(new Rect((float)Screen.width / 2f - vector7.x / 2f, (float)Screen.height / 2f - vector7.y - 5f, vector7.x + 10f, vector7.y + 10f), text, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width / 4f, (float)Screen.height / 2f + 1f, (float)Screen.width / 2f * currentMap.Progress, 2f), foreground);
                         string text2 = currentMap.CurrentTask + ": " + Mathf.FloorToInt(currentMap.Progress * 100f) + "% (" + Mathf.FloorToInt((float)currentMap.BytesLoaded) + "kb / " + Mathf.FloorToInt((float)currentMap.BytesTotal / 1024f) + "kb)";
-                        vector5 = GUI.skin.label.CalcSize(new GUIContent(text2));
-                        GUI.Label(new Rect((float)Screen.width / 2f - vector5.x / 2f, (float)Screen.height / 2f + 2f, vector5.x + 10f, vector5.y + 10f), text2, WhiteLabel);
+                        vector7 = GUI.skin.label.CalcSize(new GUIContent(text2));
+                        GUI.Label(new Rect((float)Screen.width / 2f - vector7.x / 2f, (float)Screen.height / 2f + 2f, vector7.x + 10f, vector7.y + 10f), text2, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width / 4f, (float)Screen.height / 2f, (float)Screen.width / 2f, 1f), foreground);
                     }
                     else
                     {
                         string text3 = "불러오는중...";
-                        Vector2 vector6 = GUI.skin.label.CalcSize(new GUIContent(text3));
-                        GUI.Label(new Rect((float)Screen.width - 110f - vector6.x / 2f, (float)Screen.height - 40f - vector6.y - 5f, vector6.x + 10f, vector6.y + 10f), text3, WhiteLabel);
+                        Vector2 vector8 = GUI.skin.label.CalcSize(new GUIContent(text3));
+                        GUI.Label(new Rect((float)Screen.width - 110f - vector8.x / 2f, (float)Screen.height - 40f - vector8.y - 5f, vector8.x + 10f, vector8.y + 10f), text3, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width - 210f, (float)Screen.height - 40f + 1f, 200f * currentMap.Progress, 2f), foreground);
                         string text4 = currentMap.CurrentTask + ": " + Mathf.FloorToInt(currentMap.Progress * 100f) + " % (" + Mathf.FloorToInt((float)currentMap.BytesLoaded) + "kb / " + Mathf.FloorToInt((float)currentMap.BytesTotal / 1024f) + "kb)";
-                        vector6 = GUI.skin.label.CalcSize(new GUIContent(text4));
-                        GUI.Label(new Rect((float)Screen.width - 110f - vector6.x / 2f, (float)Screen.height - 40f + 2f, vector6.x + 10f, vector6.y + 10f), text4, WhiteLabel);
+                        vector8 = GUI.skin.label.CalcSize(new GUIContent(text4));
+                        GUI.Label(new Rect((float)Screen.width - 110f - vector8.x / 2f, (float)Screen.height - 40f + 2f, vector8.x + 10f, vector8.y + 10f), text4, WhiteLabel);
                         GUI.DrawTexture(new Rect((float)Screen.width - 210f, (float)Screen.height - 40f, 200f, 1f), foreground);
                     }
                 }            
